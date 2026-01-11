@@ -4256,3 +4256,20 @@ a.download-btn {
 a.download-btn:visited {
     text-decoration: none !important;
 }
+
+/* ============================================================
+   FIX: PREVENT BUTTON TEXT COLOR CHANGE AFTER CLICKING
+   ============================================================ */
+a.btn,
+a.btn:visited,
+a.btn:active,
+a.btn:focus {
+    color: var(--color-white) !important;
+    text-decoration: none !important;
+}
+
+/* Ensure the icon inside stays white too */
+a.btn i,
+a.btn svg {
+    color: var(--color-white) !important;
+}
