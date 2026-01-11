@@ -81,23 +81,28 @@ document.addEventListener('DOMContentLoaded', () => {
     let scrollTimeout; // For debounced scroll handler
 
     // ========================================================================
-    // 3. VANTA.JS HERO ANIMATION
+    // 3. VANTA.JS HERO ANIMATION (Dynamic Light/Dark Mode)
     // ========================================================================
     function initializeVantaWaves() {
         try {
-            if (typeof VANTA !== 'undefined')
-            {
+            if (typeof VANTA !== 'undefined') {
+                const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                // COLORS:
+                const darkColor = 0x092434;  // Deep Blue (Dark Mode)
+                const lightColor = 0x5c87e6; // <--- CHANGED: Soft Royal Blue (Light Mode)
+
                 const vantaEffect = VANTA.WAVES({
                     el: "#hero",
                     mouseControls: true,
                     touchControls: true,
-                    color: 0x092434, // ← CHANGE THIS to your new color
+                    color: isDarkMode ? darkColor : lightColor, 
                     waveHeight: 15.0,
                     waveSpeed: 0.8,
                     zoom: 0.75,
                 });
 
-                // ✅ FIX: Ensure Vanta canvas is positioned correctly
+                // Canvas positioning fix
                 setTimeout(() => {
                     const canvas = document.querySelector("#hero canvas");
                     if (canvas) {
