@@ -378,6 +378,11 @@ html {
   background-color: var(--color-background);
   box-sizing: border-box;
   scroll-behavior: smooth;
+  /* --- ADD THESE LINES FOR IOS --- */
+  -webkit-text-size-adjust: 100%;  /* Prevents text zooming */
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent; /* Removes grey tap box */
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -394,6 +399,24 @@ body {
   color: var(--color-text);
   line-height: var(--line-height-normal);
   overflow-x: hidden;
+}
+
+/* iOS Form Element Reset */
+input, 
+textarea, 
+button, 
+select, 
+.btn, 
+.submit-btn {
+  -webkit-appearance: none; /* Removes native iOS styling */
+  appearance: none;
+  border-radius: var(--radius-base); /* Enforces your specific radius */
+}
+
+/* Fix for Search Inputs specifically on iOS */
+input[type="search"] {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 main {
@@ -987,6 +1010,7 @@ textarea.error + .field-error {
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh; /* New standard for mobile stability */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1658,6 +1682,9 @@ textarea.error + .field-error {
 
 .hero {
   text-align: center;
+  height: auto !important;
+  min-height: 100vh;
+  padding: 120px 20px 100px 20px !important;
 }
 
 .hero-top {
@@ -1698,7 +1725,7 @@ textarea.error + .field-error {
 /* ===== DOWNLOAD BUTTON - REDUCE SIZE (Mobile Only) ===== */
 
 .download-btn {
-  display: flex !important;
+  display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: var(--space-6) !important;
@@ -2417,9 +2444,7 @@ body.body-no-scroll {
 /* Force hero to fill entire viewport height */
 .hero {
     min-height: 100vh !important;
-    height: 100vh !important;
-    margin: 0 !important;
-    padding: 0 !important;
+        position: relative;
 }
 
 /* Remove any top spacing from main and body */
@@ -2913,6 +2938,8 @@ main {
   #projects,
   #contact {
     padding: var(--space-32) var(--space-16);
+    padding-left: max(var(--space-16), env(safe-area-inset-left));
+    padding-right: max(var(--space-16), env(safe-area-inset-right));
   }
 
   .section-title {
@@ -3203,7 +3230,7 @@ main {
   .download-btn {
     padding: 10px 24px;
     font-size: 0.875rem;
-    margin-top: 40px;
+    margin: 40px auto 0 !important;
   }
 
   #about,
