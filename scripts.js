@@ -10,12 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========================================================================
     const projects = [
         {
-            id: 1, // Now your #1 Project
+            id: 1, 
             title: "TMDb Data Engineering",
             description: "End-to-End Pipeline & Risk Analysis (Python/Excel)",
-            fullDescription: "Engineered a hybrid Python/Excel pipeline to transform raw, nested JSON data into a relational decision-support system. Automated the parsing of 100k+ personnel records, validated 4,412 films with 100% financial density, and developed 'Director Risk Profiles' to identify high-ROI budget opportunities.",
+            fullDescription: "Engineered a hybrid Python/Excel pipeline to transform raw, nested JSON data into a relational decision-support system. Automated the parsing of 100k+ personnel records, validated 4,412 films with 100% financial density.",
             icon: "database", 
-            image: "images/tmdb-architecture.png", // REMINDER: Save your screenshot with this name!
+            image: "images/tmdb-architecture.png",
+            // ✅ CHANGED: Now using a list for multiple files
+            documents: [
+                { title: "Read Executive Summary", url: "docs/EXECUTIVE SUMMARY TMDb.pdf" },
+                { title: "Read Full Master Doc", url: "docs/TMDb Data Engineering Master Documentation.pdf" }
+            ]
         },
         {
             id: 2,
@@ -232,6 +237,43 @@ document.addEventListener('DOMContentLoaded', () => {
         if (project) {
             document.getElementById('modalProjectTitle').textContent = project.title;
             document.getElementById('modalProjectDescription').textContent = project.fullDescription;
+            
+            // --- NEW CODE: Handle Multiple Buttons ---
+            // 1. Clear any existing buttons from previous opens
+            const existingContainer = document.getElementById('modalBtnContainer');
+            if (existingContainer) existingContainer.remove();
+
+            // 2. Check if this project has a 'documents' list
+            if (project.documents && project.documents.length > 0) {
+                // Create a container to hold the buttons side-by-side
+                const btnContainer = document.createElement('div');
+                btnContainer.id = 'modalBtnContainer';
+                btnContainer.style.marginTop = "20px";
+                btnContainer.style.display = "flex";
+                btnContainer.style.gap = "15px"; // Space between buttons
+                btnContainer.style.flexWrap = "wrap"; // Wrap on mobile
+
+                // 3. Loop through the list and create a button for each
+                project.documents.forEach(doc => {
+                    const btn = document.createElement('a');
+                    btn.href = doc.url;
+                    btn.target = "_blank"; // Open in new tab
+                    btn.className = "btn btn--primary";
+                    // Add a nice file icon
+                    btn.innerHTML = `<i data-lucide="file-text"></i> ${doc.title}`;
+                    
+                    // Add to the container
+                    btnContainer.appendChild(btn);
+                });
+
+                // 4. Insert the container after the description text
+                document.getElementById('modalProjectDescription').after(btnContainer);
+
+                // 5. Refresh icons so the file icon shows up
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+            // ------------------------------------------
+
             openModal('projectModal');
         }
     }
