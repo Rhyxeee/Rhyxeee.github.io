@@ -10,7 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========================================================================
     const projects = [
         {
-            id: 1,
+            id: 1, // Now your #1 Project
+            title: "TMDb Data Engineering",
+            description: "End-to-End Pipeline & Risk Analysis (Python/Excel)",
+            fullDescription: "Engineered a hybrid Python/Excel pipeline to transform raw, nested JSON data into a relational decision-support system. Automated the parsing of 100k+ personnel records, validated 4,412 films with 100% financial density, and developed 'Director Risk Profiles' to identify high-ROI budget opportunities.",
+            icon: "database", 
+            image: "images/tmdb-architecture.png", // REMINDER: Save your screenshot with this name!
+        },
+        {
+            id: 2,
             title: "Sales Dashboard",
             description: "Sales Performance Analytics Dashboard (Excel)",
             fullDescription: "Analyzed sales data to build a dynamic Excel dashboard, identifying key revenue drivers and suggesting optimized discount strategies for an e-commerce platform.",
@@ -18,21 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
             image: "images/card-1-sales.png",
         },
         {
-            id: 2,
+            id: 3,
             title: "Pima Dataset",
             description: "Pima Diabetes Dataset Preprocessing (JASP)",
             fullDescription: "Cleaned and prepared the Pima Diabetes dataset for statistical analysis using JASP, applying median imputation and removing outliers to ensure data integrity.",
             icon: "line-chart",
             image: "images/card-3-pima.png",
         },
-        {
-            id: 3,
-            title: "Budget Audit",
-            description: "Financial Audit & Budget Transparency (₱2M+)",
-            fullDescription: "Audited a student government budget of over ₱2M, verifying transactions and creating transparent reports to enhance fiscal governance and accountability.",
-            icon: "dollar-sign",
-            image: "images/card-6-audit.png",
-        },
+        // "Budget Audit" has been removed as requested
         {
             id: 4,
             title: "Data Structuring",
