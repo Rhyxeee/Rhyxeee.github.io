@@ -1078,18 +1078,21 @@ textarea.error + .field-error {
 
 /* Hero Info */
 .hero-info h1 {
-  color: var(--color-white);
   font-size: 2.5rem;
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-8);
   line-height: var(--line-height-tight);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: none;
   letter-spacing: var(--letter-spacing-tight);
 }
 
-.hero-info p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: var(--font-size-xl);
+.hero-info p, 
+.hero-description {
+  color: #000000;
+  font-size: var(--font-size-lg);
+  max-width: 600px;
+  margin: 0 auto var(--space-32);
+  font-weight: 500;
 }
 
 .hero-subtitle-formatted {
@@ -1133,21 +1136,25 @@ textarea.error + .field-error {
 
 /* Hero Headlines */
 .hero-headline {
-  color: var(--color-white);
+  color: #000000;
   font-size: 3.5rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: 800;
   line-height: var(--line-height-tight);
   max-width: 900px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: none;
   letter-spacing: var(--letter-spacing-tight);
+  margin-bottom: var(--space-16);
 }
 
 .hero-sub-headline {
-  color: rgba(255, 255, 255, 0.9);
+  color: #000000;
   font-size: var(--font-size-xl);
+  font-weight: 600;
   max-width: 900px;
   margin-top: var(--space-16);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: var(--space-24);
+  opacity: 1;
+  text-shadow: none;
 }
 /* ========================================================================
    8. ABOUT SECTION
@@ -4272,4 +4279,30 @@ a.btn:focus {
 a.btn i,
 a.btn svg {
     color: var(--color-white) !important;
+}
+
+
+/* ============================================================
+   FIX: RESTORE WHITE TEXT IN DARK MODE
+   ============================================================ */
+/* 1. If the user's system is set to Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .hero-info h1,
+    .hero-headline,
+    .hero-sub-headline,
+    .hero-info p,
+    .hero-description {
+        color: var(--color-white) !important;
+        text-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Adds a glow so it pops */
+    }
+}
+
+/* 2. If the website uses a manual Dark Mode toggle */
+[data-color-scheme="dark"] .hero-info h1,
+[data-color-scheme="dark"] .hero-headline,
+[data-color-scheme="dark"] .hero-sub-headline,
+[data-color-scheme="dark"] .hero-info p,
+[data-color-scheme="dark"] .hero-description {
+    color: var(--color-white) !important;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
