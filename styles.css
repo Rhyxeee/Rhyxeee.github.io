@@ -4397,3 +4397,17 @@ html[data-color-scheme="light"] .card:hover img {
 html[data-color-scheme="light"] .card .card-summary {
     background-color: rgba(11, 29, 53, 0.95) !important; /* Matches Hover Color */
 }
+
+/* ============================================================
+   FIX: PROFILE MODAL ALIGNMENT (Center Name & Bio)
+   ============================================================ */
+#profileModal .modal-content {
+    text-align: center !important; /* Forces Name and Description to center */
+}
+
+/* Optional: Add a little padding to the bio so it doesn't touch the edges */
+#profileModal .modal-description {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
