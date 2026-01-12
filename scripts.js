@@ -81,39 +81,74 @@ document.addEventListener('DOMContentLoaded', () => {
     let scrollTimeout; // For debounced scroll handler
 
     // ========================================================================
-    // 3. VANTA.JS HERO ANIMATION (Dynamic Light/Dark Mode)
+    // 3. VANTA.JS HERO ANIMATION (Auto System Sync)
     // ========================================================================
     function initializeVantaWaves() {
         try {
             if (typeof VANTA !== 'undefined') {
-                const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                
-                // COLORS:
+                let vantaEffect = null;
+
+                // --- COLORS ---
                 const darkColor = 0x092434;  // Deep Blue (Dark Mode)
-                const lightColor = 0x5c87e6; // <--- CHANGED: Soft Royal Blue (Light Mode)
+                const lightColor = 0x5c87e6; // Soft Royal Blue (Light Mode)
 
-                const vantaEffect = VANTA.WAVES({
-                    el: "#hero",
-                    mouseControls: true,
-                    touchControls: true,
-                    color: isDarkMode ? darkColor : lightColor, 
-                    waveHeight: 15.0,
-                    waveSpeed: 0.8,
-                    zoom: 0.75,
-                });
+                // --- FUNCTION TO START/RESTART ANIMATION ---
+                const setVantaMode = (mode) => {
+                    // 1. Destroy old instance to prevent glitches
+                    if (vantaEffect) vantaEffect.destroy();
 
-                // Canvas positioning fix
-                setTimeout(() => {
-                    const canvas = document.querySelector("#hero canvas");
-                    if (canvas) {
-                        canvas.style.position = "absolute";
-                        canvas.style.top = "0";
-                        canvas.style.left = "0";
-                        canvas.style.width = "100%";
-                        canvas.style.height = "100%";
-                        canvas.style.zIndex = "0";
-                    }
-                }, 100);
+                    // 2. Pick color
+                    const targetColor = (mode === 'dark') ? darkColor : lightColor;
+
+                    // 3. Create new instance
+                    vantaEffect = VANTA.WAVES({
+                        el: "#hero",
+                        mouseControls: true,
+                        touchControls: true,
+                        color: targetColor,
+                        waveHeight: 15.0,
+                        waveSpeed: 0.8,
+                        zoom: 0.75,
+                    });
+
+                    // 4. Force Canvas Position (Fixes layout bugs)
+                    setTimeout(() => {
+                        const canvas = document.querySelector("#hero canvas");
+                        if (canvas) {
+                            canvas.style.position = "absolute";
+                            canvas.style.top = "0";
+                            canvas.style.left = "0";
+                            canvas.style.width = "100%";
+                            canvas.style.height = "100%";
+                            canvas.style.zIndex = "0";
+                        }
+                    }, 50);
+                };
+
+                // --- SYSTEM THEME LISTENER ---
+                const handleSystemChange = (e) => {
+                    const newMode = e.matches ? 'dark' : 'light';
+                    
+                    // A. Update the HTML tag so your CSS (Text/Cards) updates too
+                    document.documentElement.setAttribute('data-color-scheme', newMode);
+                    
+                    // B. Restart Vanta with the new color
+                    setVantaMode(newMode);
+                };
+
+                // --- INITIALIZATION ---
+                // 1. Check System Preference right now
+                const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+                const initialMode = systemDark.matches ? 'dark' : 'light';
+
+                // 2. Force the HTML tag to match System Preference (Overrides your hardcoded "light")
+                document.documentElement.setAttribute('data-color-scheme', initialMode);
+
+                // 3. Start Vanta
+                setVantaMode(initialMode);
+
+                // 4. Listen for future changes (Live switching)
+                systemDark.addEventListener('change', handleSystemChange);
             }
         } catch (error) {
             console.warn("Vanta.js failed to initialize:", error);
