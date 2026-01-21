@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // UPDATED DESCRIPTION: Matches your new Agency-Level Resume
             fullDescription: "Engineered a data pipeline for 25,355 raw transaction records to create a single-view interactive dashboard. Identified $770k in revenue leakage due to inefficient discounting and validated a 51/49 Retail-Online split, directly supporting a strategic pricing review.",
             icon: "bar-chart-3",
-            image: "images/card-1-sales.png",
+            image: "images/360_dashboardpng.png",
             // OPTIONAL: Link to your new Case Study PDF if you have it hosted
             documents: [
                 { title: "View Case Study PDF", url: "docs/360_Sales_Performance_Hub.pdf" } 
@@ -652,3 +652,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initializePortfolio();
 
 }); // END DOMContentLoaded
+
