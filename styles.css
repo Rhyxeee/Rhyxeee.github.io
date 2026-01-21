@@ -4491,11 +4491,14 @@ html[data-color-scheme="dark"] .skill-category {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* ============================================================
+   FIX: TIMELINE IMAGE VISIBILITY (Show Full Image)
+   ============================================================ */
 .card--timeline .card-image {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
-    object-position: top;
+    height: 350px;          /* Slightly taller to give it more room */
+    object-fit: contain;    /* CRITICAL: Ensures the WHOLE image is seen, no cropping */
+    background-color: #0d1117; /* Dark background to fill any empty space nicely */
     margin-bottom: 0;
     border-radius: 0;
 }
@@ -4626,22 +4629,40 @@ html[data-color-scheme="dark"] .skill-category {
    FINAL POLISH: BUTTON ALIGNMENT & BIGGER PILLS
    ============================================================ */
 
-/* 1. Fix Button Alignment (Icon & Text) */
+/* ============================================================
+   FIX: BUTTON ALIGNMENT (Icon & Text)
+   ============================================================ */
 .view-project-btn {
-    display: inline-flex !important;    /* Makes the button a flex container */
-    align-items: center !important;     /* Forces Icon and Text to align vertically */
+    display: inline-flex !important;    /* Critical: Makes icon and text sit side-by-side */
+    align-items: center !important;     /* Critical: Centers them vertically */
     justify-content: center !important; /* Centers them horizontally */
-    gap: 8px !important;                /* Adds consistent space between Icon and Text */
-    line-height: 1 !important;          /* Prevents text from sitting strangely */
+    gap: 8px !important;                /* Adds neat space between icon and text */
     padding: 12px 24px !important;      /* Consistent sizing */
+    
+    /* Keep your existing styling */
+    background: white;
+    color: var(--color-primary);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-standard);
+    text-decoration: none;
+    line-height: 1; /* Prevents text from being taller than icon */
 }
 
-/* Fix the icon size inside the button just in case */
+/* Ensure the icon behaves */
 .view-project-btn i, 
 .view-project-btn svg {
-    position: relative !important;
-    top: 0 !important;                  /* Resets any weird positioning */
-    transform: none !important;
+    display: block;
+    margin: 0;
+    position: relative;
+    top: 0; /* Resets any floating */
+}
+
+.view-project-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* 2. Make Tech Stack Pills Bigger (But not OA) */
