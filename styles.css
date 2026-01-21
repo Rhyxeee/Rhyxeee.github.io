@@ -227,17 +227,20 @@
     --color-error-rgb: var(--color-red-400-rgb);
     --color-warning-rgb: var(--color-orange-400-rgb);
     --color-info-rgb: var(--color-gray-300-rgb);
-      .about-box,
-      .projects-box,
-      .contact-box {
-        border: 2px solid var(--color-border);
-        border-radius: 32px;
-        padding: 3rem;
-        box-shadow: 0 0 50px rgba(50, 184, 198, 0.4),
-                    0 8px 30px rgba(50, 184, 198, 0.25),
-                    0 -4px 20px rgba(50, 184, 198, 0.2);
-        background: var(--color-background-secondary);
-      }
+  }
+
+  /* These styles must be OUTSIDE of :root */
+  .about-box,
+  .projects-box,
+  .contact-box,
+  .experience-box {
+    border: 2px solid var(--color-border);
+    border-radius: 32px;
+    padding: 3rem;
+    box-shadow: 0 0 50px rgba(50, 184, 198, 0.4),
+                0 8px 30px rgba(50, 184, 198, 0.25),
+                0 -4px 20px rgba(50, 184, 198, 0.2);
+    background: var(--color-background-secondary);
   }
 
   .achievements-list {
@@ -327,29 +330,47 @@
   --color-info-rgb: var(--color-gray-300-rgb);
 }
 
+/* ============================================================
+   LIGHT MODE VARIABLES (GLOBAL BLUE THEME FIX)
+   ============================================================ */
 [data-color-scheme="light"] {
-  --color-brown-600-rgb: 94, 82, 64;
-  --color-teal-500-rgb: 33, 128, 141;
-  --color-slate-900-rgb: 19, 52, 59;
+  /* 1. Define the RGB values for Blue (Royal Blue: #2563EB) */
+  --color-primary-rgb: 37, 99, 235;          /* This was previously Teal */
+  --color-primary: rgba(37, 99, 235, 1);     /* Main Brand Color -> Blue */
+  --color-primary-hover: rgba(29, 78, 216, 1); /* Darker Blue for Hovers */
+  --color-primary-active: rgba(30, 64, 175, 1); /* Deepest Blue for Clicks */
+
+  /* 2. Update Glow Effects to Blue */
+  --glow-primary: rgba(37, 99, 235, 0.4);    /* Input Focus Ring -> Blue */
+  --glow-primary-strong: rgba(37, 99, 235, 0.6);
+  --color-focus-ring: rgba(37, 99, 235, 0.4);
+
+  /* 3. Keep Existing Light Mode Backgrounds */
   --color-background: rgba(245, 245, 243, 1);
   --color-surface: var(--color-cream-100);
   --color-text: var(--color-slate-900);
   --color-text-secondary: var(--color-slate-500);
-  --color-primary: var(--color-teal-500);
-  --color-primary-hover: var(--color-teal-600);
-  --color-primary-active: var(--color-teal-700);
-  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
-  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
-  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
-  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
-  --color-btn-primary-text: var(--color-cream-50);
-  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
-  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  
+  /* 4. Secondary Colors (Light Blue Backgrounds) */
+  --color-secondary: rgba(37, 99, 235, 0.1); /* Light Blue bg for tags */
+  --color-secondary-hover: rgba(37, 99, 235, 0.15);
+  --color-secondary-active: rgba(37, 99, 235, 0.2);
+  
+  /* 5. Borders */
+  --color-border: rgba(37, 99, 235, 0.2);
+  --color-card-border: rgba(37, 99, 235, 0.15);
+  --color-card-border-inner: rgba(37, 99, 235, 0.1);
+
+  /* 6. Button Text */
+  --color-btn-primary-text: var(--color-white);
+
+  /* 7. Semantic Colors */
   --color-error: var(--color-red-500);
-  --color-success: var(--color-teal-500);
+  --color-success: var(--color-teal-500); /* Keep success green/teal */
   --color-warning: var(--color-orange-500);
   --color-info: var(--color-slate-500);
-  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  
+  /* 8. RGB Helpers for Opacity */
   --color-success-rgb: var(--color-teal-500-rgb);
   --color-error-rgb: var(--color-red-500-rgb);
   --color-warning-rgb: var(--color-orange-500-rgb);
@@ -1222,9 +1243,11 @@ textarea.error + .field-error {
   margin-bottom: 1.2rem;
 }
 
+/* CORRECTED SELECTOR LIST */
 .about-box,
 .projects-box,
-.contact-box {
+.contact-box,
+.experience-box {
   border: 2px solid var(--color-border);
   border-radius: 32px;
   padding: 3rem;
@@ -1341,71 +1364,6 @@ textarea.error + .field-error {
   font-size: var(--font-size-2xl);
   margin-bottom: var(--space-24);
   color: var(--color-text);
-}
-
-.skills-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem; /* Add a small gap between the header and the bar */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.skill-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Stagger animation for skills */
-.skill-item:nth-child(1) { transition-delay: 0.1s; }
-.skill-item:nth-child(2) { transition-delay: 0.2s; }
-.skill-item:nth-child(3) { transition-delay: 0.3s; }
-.skill-item:nth-child(4) { transition-delay: 0.4s; }
-
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.skill-icon {
-  font-size: 2rem;
-  margin-bottom: var(--space-8);
-}
-
-.skill-name {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text);
-}
-
-.skill-level {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-  margin-top: var(--space-4);
-}
-
-.skill-bar {
-  width: 100%;
-  height: 10px;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.skill-progress {
-  background: linear-gradient(90deg, #1B6996 0%, #68B0CA 100%);
-  height: 10px;
-  border-radius: 5px;
-  width: var(--progress-width, 0%);
-  transition: width 0.6s ease-out;
 }
 
 /* ========================================================================
@@ -1651,6 +1609,10 @@ textarea.error + .field-error {
 }
 
 .projects-box {
+  padding: var(--space-20) var(--space-12) var(--space-24) var(--space-12) !important;
+}
+
+.experience-box {
   padding: var(--space-20) var(--space-12) var(--space-24) var(--space-12) !important;
 }
 
@@ -2955,6 +2917,7 @@ main {
 
   #about,
   #projects,
+  #experience,
   #contact {
     padding: var(--space-32) var(--space-16);
     padding-left: max(var(--space-16), env(safe-area-inset-left));
@@ -3103,15 +3066,6 @@ main {
 
   .achievement-item {
     padding: var(--space-16);
-  }
-
-  .skills-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-12);
-  }
-
-  .skill-item {
-    padding: var(--space-12);
   }
 
   .card {
@@ -3278,15 +3232,6 @@ main {
 
   .achievement-number {
     font-size: var(--font-size-2xl);
-  }
-
-  .skills-list {
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
-  }
-
-  .skill-item {
-    padding: var(--space-8);
   }
 
   .contact-icon {
@@ -3560,54 +3505,6 @@ main {
   /* Headers */
   h1, h2, h3, h4, h5, h6 {
     color: var(--color-text);
-  }
-
-  /* Skill Items */
-  .skill-item {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 0 var(--space-16) 0 !important;
-  }
-
-  .skill-item .skill-label {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    margin-bottom: var(--space-8) !important;
-  }
-
-  .skill-name {
-    font-size: var(--font-size-base) !important;
-    font-weight: var(--font-weight-semibold) !important;
-    color: var(--color-text) !important;
-  }
-
-  .skill-percentage {
-    font-size: var(--font-size-sm) !important;
-    color: var(--color-text-secondary) !important;
-  }
-
-  .skill-bar-container {
-    width: 100% !important;
-    height: 8px !important;
-    background: rgba(var(--color-primary-rgb), 0.15) !important;
-    border-radius: 4px !important;
-    overflow: hidden !important;
-  }
-
-  .skill-bar-fill {
-    height: 100% !important;
-    background: var(--color-primary) !important;
-    border-radius: 4px !important;
-    transition: width 0.3s ease !important;
-  }
-
-  .skills-list {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0 !important;
   }
 
   /* Achievement Items */
@@ -4410,4 +4307,348 @@ html[data-color-scheme="light"] .card .card-summary {
     max-width: 90%;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* ============================================================
+   FIX: SKILLS LIST STYLING (Replaces Progress Bars)
+   ============================================================ */
+.skills-text-list {
+    list-style: none; /* Remove default ugly bullets */
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; /* Nice spacing between rows */
+    margin-top: 1rem;
+}
+
+.skills-text-list li {
+    position: relative;
+    padding-left: 1.5rem; /* Space for the custom bullet */
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* The Custom Blue Bullet */
+.skills-text-list li::before {
+    content: "●"; 
+    position: absolute;
+    left: 0;
+    top: 1px; 
+    color: var(--color-primary); /* Uses your theme Blue/Teal */
+    font-size: 0.9em;
+}
+
+/* The Category Name (e.g., "Excel:", "Statistics:") */
+.skill-category {
+    font-weight: 700;
+    color: var(--color-primary); /* Highlights the key term */
+    margin-right: 5px;
+}
+
+/* Dark Mode Adjustment for Readability */
+html[data-color-scheme="dark"] .skill-category {
+    color: var(--color-teal-300); /* Lighter teal for dark mode */
+}
+
+/* ============================================================
+   1. WORK EXPERIENCE SECTION (Layout & Structure)
+   ============================================================ */
+
+/* Section Container - Matching Spacing of Other Sections */
+#experience {
+    padding: var(--space-40) 80px !important;
+    background-color: var(--color-background);
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Force Left Alignment for Title */
+#experience .section-title {
+    text-align: left !important;
+    margin-bottom: 1.2rem !important;
+}
+
+/* The Experience Box - Full Width to Match Projects */
+.experience-box {
+    border: 2px solid var(--color-border);
+    border-radius: 32px;
+    padding: 3rem;
+    background: var(--color-background-secondary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    /* FORCE FULL WIDTH */
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+/* Timeline Vertical Line */
+.timeline {
+    position: relative;
+    border-left: 2px solid var(--color-border);
+    margin-left: 10px;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.timeline-item { position: relative; }
+
+/* The Timeline Dot */
+.timeline-marker {
+    position: absolute;
+    left: -37px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--color-primary);
+    border: 3px solid var(--color-surface);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+/* Job Header */
+.timeline-header { margin-bottom: 1rem; }
+.timeline-header .role {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+.timeline-header .company {
+    display: block;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+}
+.timeline-header .date {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-style: italic;
+}
+
+/* Job Details */
+.job-summary {
+    margin-bottom: 1rem;
+    font-style: italic;
+    color: var(--color-text-secondary);
+    border-left: 3px solid var(--color-primary);
+    padding-left: 1rem;
+}
+.timeline-details { list-style: none; padding: 0; margin: 0; }
+.timeline-details li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+}
+.timeline-details li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+}
+
+/* Tech Stack Pills */
+.tech-stack-mini {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+.tech-stack-mini span {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 1px solid var(--color-border);
+}
+
+/* ============================================================
+   2. INTERACTIVE TIMELINE CARD (Image Hover)
+   ============================================================ */
+.timeline-gallery.single-image {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card--timeline {
+    padding: 0 !important;
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 100%;
+    border: 1px solid var(--color-card-border);
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card--timeline .card-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+/* Hover Effect */
+.card--timeline:hover .card-summary {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ============================================================
+   3. BUTTON ALIGNMENT FIX (Icon & Text)
+   ============================================================ */
+.view-project-btn {
+    display: inline-flex !important; /* Critical for alignment */
+    align-items: center !important;  /* Vertically centers items */
+    justify-content: center !important;
+    gap: 8px !important;             /* Space between Eye and Text */
+    padding: 0.75rem 1.5rem;
+    background: white;
+    color: var(--color-primary);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* ============================================================
+   4. LIGHT MODE SPECIFIC OVERRIDES (Royal Blue Theme)
+   ============================================================ */
+html[data-color-scheme="light"] #experience .company { color: #2563EB !important; }
+html[data-color-scheme="light"] #experience .timeline-marker { 
+    background-color: #2563EB !important; 
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2) !important; 
+    border-color: #ffffff !important; 
+}
+html[data-color-scheme="light"] #experience .job-summary { border-left-color: #2563EB !important; }
+html[data-color-scheme="light"] #experience .timeline-details li::before { color: #2563EB !important; }
+html[data-color-scheme="light"] #experience .tech-stack-mini span { 
+    color: #2563EB !important; 
+    border: 1px solid rgba(37, 99, 235, 0.3) !important; 
+    background-color: rgba(37, 99, 235, 0.05) !important; 
+}
+
+/* Timeline Card Blue Theme (Light Mode) */
+html[data-color-scheme="light"] .card--timeline:hover {
+    border-color: #2563EB !important;
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25) !important;
+}
+html[data-color-scheme="light"] .card--timeline .card-summary {
+    background-color: rgba(11, 29, 53, 0.95) !important;
+}
+
+/* Technical Proficiency - Black in Light Mode */
+html[data-color-scheme="light"] .skills-section .section-subtitle {
+    color: #000000 !important;
+}
+
+/* ============================================================
+   5. DARK MODE SPECIFIC OVERRIDES (Teal/White Theme)
+   ============================================================ */
+/* Technical Proficiency - White in Dark Mode */
+html[data-color-scheme="dark"] .skills-section .section-subtitle {
+    color: #ffffff !important;
+}
+
+/* Restore Teal for Headers/Bullets in Dark Mode */
+html[data-color-scheme="dark"] .achievements-section .section-subtitle,
+html[data-color-scheme="dark"] .achievements-list li::before,
+html[data-color-scheme="dark"] .skills-text-list li::before,
+html[data-color-scheme="dark"] .skill-category {
+    color: var(--color-teal-300) !important;
+}
+
+/* ============================================================
+   6. PROJECT MODAL ALIGNMENT
+   ============================================================ */
+#projectModal .modal-content {
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#projectModal .modal-description {
+    max-width: 90%;
+    margin: 0 auto 15px auto;
+    line-height: 1.7;
+}
+#modalBtnContainer {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+    width: 100%;
+    margin-top: 10px !important;
+}
+#modalBtnContainer a.btn {
+    min-width: 200px;
+    justify-content: center;
+}
+
+/* ============================================================
+   7. MOBILE RESPONSIVENESS
+   ============================================================ */
+@media (max-width: 768px) {
+    #experience {
+        padding: var(--space-32) var(--space-16) !important;
+    }
+    .timeline {
+        margin-left: 5px;
+        padding-left: 20px;
+    }
+    .timeline-marker {
+        left: -26px;
+        width: 12px;
+        height: 12px;
+    }
+    .card--timeline .card-image {
+        height: 200px;
+    }
+    .experience-box {
+        padding: var(--space-20) var(--space-12) !important;
+    }
+}
+
+/* ============================================================
+   FINAL POLISH: BUTTON ALIGNMENT & BIGGER PILLS
+   ============================================================ */
+
+/* 1. Fix Button Alignment (Icon & Text) */
+.view-project-btn {
+    display: inline-flex !important;    /* Makes the button a flex container */
+    align-items: center !important;     /* Forces Icon and Text to align vertically */
+    justify-content: center !important; /* Centers them horizontally */
+    gap: 8px !important;                /* Adds consistent space between Icon and Text */
+    line-height: 1 !important;          /* Prevents text from sitting strangely */
+    padding: 12px 24px !important;      /* Consistent sizing */
+}
+
+/* Fix the icon size inside the button just in case */
+.view-project-btn i, 
+.view-project-btn svg {
+    position: relative !important;
+    top: 0 !important;                  /* Resets any weird positioning */
+    transform: none !important;
+}
+
+/* 2. Make Tech Stack Pills Bigger (But not OA) */
+.tech-stack-mini span {
+    font-size: 0.85rem !important;      /* Increased from 0.75rem (slightly readable) */
+    padding: 8px 18px !important;       /* Increased padding for a cleaner look */
+    border-radius: 50px !important;     /* Makes them perfectly round/pill-shaped */
+    letter-spacing: 0.3px !important;   /* Slight spacing for readability */
+    font-weight: 600 !important;
 }
