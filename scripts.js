@@ -24,19 +24,27 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 2,
-            title: "Sales Dashboard",
+            title: "360° Sales Performance Hub", // Updated Title to match Case Study
             description: "Sales Performance Analytics Dashboard (Excel)",
-            fullDescription: "Analyzed sales data to build a dynamic Excel dashboard, identifying key revenue drivers and suggesting optimized discount strategies for an e-commerce platform.",
+            // UPDATED DESCRIPTION: Matches your new Agency-Level Resume
+            fullDescription: "Engineered a data pipeline for 25,355 raw transaction records to create a single-view interactive dashboard. Identified $770k in revenue leakage due to inefficient discounting and validated a 51/49 Retail-Online split, directly supporting a strategic pricing review.",
             icon: "bar-chart-3",
             image: "images/card-1-sales.png",
+            // OPTIONAL: Link to your new Case Study PDF if you have it hosted
+            documents: [
+                { title: "View Case Study PDF", url: "docs/360_Sales_Performance_Hub.pdf" } 
+            ]
         },
         {
             id: 3,
-            title: "Pima Dataset",
-            description: "Pima Diabetes Dataset Preprocessing (JASP)",
-            fullDescription: "Cleaned and prepared the Pima Diabetes dataset for statistical analysis using JASP, applying median imputation and removing outliers to ensure data integrity.",
+            title: "Pima Diabetes Data Optimization",
+            description: "Statistical Preprocessing & Data Cleaning (Excel/JASP)",
+            fullDescription: "Addressed a critical research bottleneck where 48.7% of Insulin data was missing. Engineered a rigorous Audit & Repair pipeline using Median Imputation and IQR Outlier Detection in Excel to salvage 100% of the sample size. Standardized variables via Z-Scores, satisfying statistical assumptions for robust Logistic Regression analysis in JASP.",
             icon: "line-chart",
-            image: "images/card-3-pima.png",
+            image: "images/PIMA_INDIANS.png", // <--- UPDATED: Points to your new image
+            documents: [
+                { title: "View Methodology PDF", url: "docs/Pima Diabetes Data Optimization.pdf" }
+            ]
         },
         // "Budget Audit" has been removed as requested
         {
@@ -188,20 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ========================================================================
-    // 5. INITIALIZE SKILL PROGRESS BARS
-    // ========================================================================
-    function initializeSkillBars() {
-        const skillItems = document.querySelectorAll('.skill-item');
-        skillItems.forEach(item => {
-            const progress = item.dataset.progress;
-            const progressBar = item.querySelector('.skill-progress');
-            if (progressBar) {
-                progressBar.style.setProperty('--progress-width', `${progress}%`);
-            }
-        });
-    }
-
-    // ========================================================================
     // 6. SCROLL HANDLER WITH DEBOUNCING
     // ========================================================================
     function handleScroll() {
@@ -213,16 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Trigger animations when section comes into view
             if (rect.top < window.innerHeight * 0.75 && !section.classList.contains('visible')) {
                 section.classList.add('visible');
-
-                // Animate skills when about section becomes visible
-                if (section.id === 'about') {
-                    section.querySelectorAll('.skill-item').forEach((skill, index) => {
-                        // Stagger animation with slight delay
-                        setTimeout(() => {
-                            skill.classList.add('visible');
-                        }, index * 100);
-                    });
-                }
             }
 
             // Update active navigation item
@@ -649,7 +633,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Render dynamic content
         renderProjects();
-        initializeSkillBars();
 
         // Set up scroll listener with debouncing
         window.addEventListener('scroll', debouncedHandleScroll, { passive: true });
