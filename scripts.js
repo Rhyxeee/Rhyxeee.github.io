@@ -6,47 +6,43 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // ========================================================================
-    // 1. PROJECT DATA
+    // 1. PROJECT DATA (REORDERED STRATEGICALLY)
     // ========================================================================
     const projects = [
         {
-            id: 1, 
+            id: 3, // PIMA (MOVED TO #1)
+            title: "Pima Diabetes Data Optimization",
+            description: "Statistical Preprocessing & Data Cleaning (Excel/JASP)",
+            fullDescription: "Addressed a critical research bottleneck where 48.7% of Insulin data was missing. Engineered a rigorous Audit & Repair pipeline using Median Imputation and IQR Outlier Detection in Excel to salvage 100% of the sample size. Standardized variables via Z-Scores, satisfying statistical assumptions for robust Logistic Regression analysis in JASP.",
+            icon: "line-chart",
+            image: "images/PIMA_INDIANS.png", 
+            documents: [
+                { title: "View Methodology PDF", url: "docs/Pima Diabetes Data Optimization.pdf" }
+            ]
+        },
+        {
+            id: 1, // TMDB (MOVED TO #2)
             title: "TMDb Data Engineering",
             description: "End-to-End Pipeline & Risk Analysis (Python/Excel)",
             fullDescription: "Engineered a hybrid Python/Excel pipeline to transform raw, nested JSON data into a relational decision-support system. Automated the parsing of 100k+ personnel records, validated 4,412 films with 100% financial density.",
             icon: "database", 
             image: "images/tmdb-architecture.png",
-            // ✅ CHANGED: Now using a list for multiple files
             documents: [
                 { title: "Read Executive Summary", url: "docs/EXECUTIVE SUMMARY TMDb.pdf" },
                 { title: "Read Full Master Doc", url: "docs/TMDb Data Engineering Master Documentation.pdf" }
             ]
         },
         {
-            id: 2,
-            title: "360° Sales Performance Hub", // Updated Title to match Case Study
+            id: 2, // 360 SALES (MOVED TO #3)
+            title: "360° Sales Performance Hub", 
             description: "Sales Performance Analytics Dashboard (Excel)",
-            // UPDATED DESCRIPTION: Matches your new Agency-Level Resume
             fullDescription: "Engineered a data pipeline for 25,355 raw transaction records to create a single-view interactive dashboard. Identified $770k in revenue leakage due to inefficient discounting and validated a 51/49 Retail-Online split, directly supporting a strategic pricing review.",
             icon: "bar-chart-3",
             image: "images/360_dashboard.png",
-            // OPTIONAL: Link to your new Case Study PDF if you have it hosted
             documents: [
                 { title: "View Case Study PDF", url: "docs/360_Sales_Performance_Hub.pdf" } 
             ]
         },
-        {
-            id: 3,
-            title: "Pima Diabetes Data Optimization",
-            description: "Statistical Preprocessing & Data Cleaning (Excel/JASP)",
-            fullDescription: "Addressed a critical research bottleneck where 48.7% of Insulin data was missing. Engineered a rigorous Audit & Repair pipeline using Median Imputation and IQR Outlier Detection in Excel to salvage 100% of the sample size. Standardized variables via Z-Scores, satisfying statistical assumptions for robust Logistic Regression analysis in JASP.",
-            icon: "line-chart",
-            image: "images/PIMA_INDIANS.png", // <--- UPDATED: Points to your new image
-            documents: [
-                { title: "View Methodology PDF", url: "docs/Pima Diabetes Data Optimization.pdf" }
-            ]
-        },
-        // "Budget Audit" has been removed as requested
         {
             id: 4,
             title: "Data Structuring",
@@ -652,4 +648,3 @@ document.addEventListener('DOMContentLoaded', () => {
     initializePortfolio();
 
 }); // END DOMContentLoaded
-
