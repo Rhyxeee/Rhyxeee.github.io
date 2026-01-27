@@ -6,25 +6,36 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // ========================================================================
-    // 1. PROJECT DATA (REORDERED STRATEGICALLY)
+    // 1. PROJECT DATA (FINAL CONTENT UPGRADE)
     // ========================================================================
     const projects = [
         {
-            id: 3, // PIMA (MOVED TO #1)
-            title: "Pima Diabetes Data Optimization",
-            description: "Statistical Preprocessing & Data Cleaning (Excel/JASP)",
-            fullDescription: "Addressed a critical research bottleneck where 48.7% of Insulin data was missing. Engineered a rigorous Audit & Repair pipeline using Median Imputation and IQR Outlier Detection in Excel to salvage 100% of the sample size. Standardized variables via Z-Scores, satisfying statistical assumptions for robust Logistic Regression analysis in JASP.",
-            icon: "line-chart",
-            image: "images/PIMA_INDIANS.png", 
+            id: 5, // Card 1
+            title: "Economic Performance Analysis", 
+            description: "SQL Window Functions & Economic Trend Discovery", 
+            fullDescription: "Consolidated 6 years of fragmented government data using SQL Window Functions. Discovered a hidden 'V-Shape' recovery trend and uncovered a 230,000x output disparity between urban and island economies.",
+            icon: "database",
+            image: "images/card-4-sql.png",
             documents: [
-                { title: "View Methodology PDF", url: "docs/Pima Diabetes Data Optimization.pdf" }
+                { title: "View SQL Project PDF", url: "docs/mysql_project.pdf" }
             ]
         },
         {
-            id: 1, // TMDB (MOVED TO #2)
-            title: "TMDb Data Engineering",
-            description: "End-to-End Pipeline & Risk Analysis (Python/Excel)",
-            fullDescription: "Engineered a hybrid Python/Excel pipeline to transform raw, nested JSON data into a relational decision-support system. Automated the parsing of 100k+ personnel records, validated 4,412 films with 100% financial density.",
+            id: 2, // Card 2
+            title: "Sales Performance Hub & Revenue Tracking", 
+            description: "Interactive Dashboard & Revenue Optimization", // Shortened subtitle
+            fullDescription: "Built an interactive dashboard for a $5M+ dataset (25,000+ rows). Identified $770k in revenue leakage from inefficient discounting and guided management to reallocate resources to high-profit regions.",
+            icon: "bar-chart-3",
+            image: "images/360_dashboard.png",
+            documents: [
+                { title: "View Case Study PDF", url: "docs/360_Sales_Performance_Hub.pdf" } 
+            ]
+        },
+        {
+            id: 1, // Card 3
+            title: "Automated Data Cleaning Pipeline (TMDB)",
+            description: "Python ETL & Financial Integrity", // Shortened subtitle
+            fullDescription: "Engineered a Python ETL pipeline to clean 4,400+ records. Prioritized a 'Preservation Over Deletion' protocol to manually verify budget data, ensuring 100% financial integrity for accurate ROI analysis.",
             icon: "database", 
             image: "images/tmdb-architecture.png",
             documents: [
@@ -33,39 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         {
-            id: 2, // 360 SALES (MOVED TO #3)
-            title: "360° Sales Performance Hub", 
-            description: "Sales Performance Analytics Dashboard (Excel)",
-            fullDescription: "Engineered a data pipeline for 25,355 raw transaction records to create a single-view interactive dashboard. Identified $770k in revenue leakage due to inefficient discounting and validated a 51/49 Retail-Online split, directly supporting a strategic pricing review.",
-            icon: "bar-chart-3",
-            image: "images/360_dashboard.png",
+            id: 3, // Card 4
+            title: "Statistical Data Audit & Repair (Healthcare)",
+            description: "Salvaged 48% Missing Data", // Your Tagline
+            fullDescription: "Addressed a critical bottleneck where 48.7% of data was missing. Engineered a rigorous Audit & Repair pipeline (Median Imputation, IQR Outlier Detection) to salvage 100% of the sample size, enabling robust predictive modeling in JASP.",
+            icon: "line-chart",
+            image: "images/PIMA_INDIANS.png", 
             documents: [
-                { title: "View Case Study PDF", url: "docs/360_Sales_Performance_Hub.pdf" } 
+                { title: "View Methodology PDF", url: "docs/Pima Diabetes Data Optimization.pdf" }
             ]
-        },
-        {
-            id: 4,
-            title: "Data Structuring",
-            description: "Speech Segmentation & Genealogical Data Cleaning",
-            fullDescription: "Structured multilingual genealogical records and segmented audio using Praat, significantly increasing dataset usability and reducing downstream processing time.",
-            icon: "package",
-            image: "images/card-2-cleaning.png",
-        },
-        {
-            id: 5,
-            title: "Future SQL Project",
-            description: "Advanced database analytics",
-            fullDescription: "A planned project showcasing advanced SQL queries to extract valuable insights from large, complex relational databases using joins, aggregation, and window functions.",
-            icon: "database",
-            image: "images/card-4-sql.png",
-        },
-        {
-            id: 6,
-            title: "Future Visualization Project",
-            description: "Interactive business dashboard",
-            fullDescription: "A future project to present business metrics and user-driven filters in an interactive dashboard built with tools like Tableau or Power BI.",
-            icon: "trending-down",
-            image: "images/card-5-visualization.png",
         }
     ];
 
