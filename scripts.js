@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: "bar-chart-3",
             image: "images/360_dashboard.png",
             documents: [
-                { title: "View Case Study PDF", url: "docs/360_Sales_Performance_Hub.pdf" } 
+                { title: "View Case Study PDF", url: "docs/360° Sales Performance Hub.pdf" } 
             ]
         },
         {
@@ -635,4 +635,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initializePortfolio();
 
 }); // END DOMContentLoaded
+
 
