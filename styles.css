@@ -113,17 +113,24 @@
   --color-info-rgb: 98, 108, 113;
 
   /* Typography */
+  /* =========================================
+     UPDATED TYPOGRAPHY FOR LARGE SCREENS
+     ========================================= */
   --font-family-base: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-size-xs: 11px;
-  --font-size-sm: 12px;
-  --font-size-base: 14px;
-  --font-size-md: 14px;
-  --font-size-lg: 16px;
-  --font-size-xl: 18px;
-  --font-size-2xl: 20px;
-  --font-size-3xl: 24px;
-  --font-size-4xl: 30px;
+  
+  /* Increased Base Size from 14px to 16px (Industry Standard) */
+  --font-size-xs: 12px;   /* Was 11px */
+  --font-size-sm: 14px;   /* Was 12px */
+  --font-size-base: 16px; /* Was 14px - Primary Body Text */
+  --font-size-md: 16px;   /* Was 14px */
+  
+  /* Scaled Up Headings to match new Body Text */
+  --font-size-lg: 18px;   /* Was 16px */
+  --font-size-xl: 22px;   /* Was 18px */
+  --font-size-2xl: 28px;  /* Was 20px */
+  --font-size-3xl: 36px;  /* Was 24px */
+  --font-size-4xl: 48px;  /* Was 30px - Hero Titles will pop more */
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 550;
@@ -4677,4 +4684,16 @@ html[data-color-scheme="dark"] .skill-category {
     border-radius: 50px !important;     /* Makes them perfectly round/pill-shaped */
     letter-spacing: 0.3px !important;   /* Slight spacing for readability */
     font-weight: 600 !important;
+}
+
+/* OPTIONAL: Better Mobile Modal Buttons */
+@media (max-width: 480px) {
+    #modalBtnContainer {
+        flex-direction: column; /* Stack buttons vertically */
+        width: 100%;
+    }
+    #modalBtnContainer a.btn {
+        width: 100%; /* Full width for easy tapping */
+        margin-bottom: 5px;
+    }
 }
