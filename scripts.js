@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             description: "SQL Window Functions & Economic Trend Discovery", 
             fullDescription: "Consolidated 6 years of fragmented government data using SQL Window Functions. Discovered a hidden 'V-Shape' recovery trend and uncovered a 230,000x output disparity between urban and island economies.",
             icon: "database",
-            image: "images/card-4-sql.png",
+            image: "images/mysql_project.png",
             documents: [
                 { title: "View SQL Project PDF", url: "docs/mysql_project.pdf" }
             ]
@@ -635,3 +635,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initializePortfolio();
 
 }); // END DOMContentLoaded
+
