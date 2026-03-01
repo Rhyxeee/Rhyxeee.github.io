@@ -1,12 +1,6 @@
-// ============================================================================
-// PORTFOLIO WEBSITE - COMPLETE SCRIPTS.JS
-// ============================================================================
-// Wrapped in DOMContentLoaded for proper initialization
-// ============================================================================
-
 document.addEventListener('DOMContentLoaded', () => {
     // ========================================================================
-    // 1. PROJECT DATA (FINAL CONTENT UPGRADE)
+    // 1. PROJECT DATA
     // ========================================================================
     const projects = [
         {
@@ -72,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let scrollTimeout; // For debounced scroll handler
 
     // ========================================================================
-    // 3. VANTA.JS HERO ANIMATION (Auto System Sync)
+    // 3. VANTA.JS HERO ANIMATION
     // ========================================================================
     function initializeVantaWaves() {
         try {
@@ -91,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 2. Pick color
                     const targetColor = (mode === 'dark') ? darkColor : lightColor;
 
-                    // 3. Create new instance
+                    // 3. Create a new instance
                     vantaEffect = VANTA.WAVES({
                         el: "#hero",
                         mouseControls: true,
@@ -120,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const handleSystemChange = (e) => {
                     const newMode = e.matches ? 'dark' : 'light';
                     
-                    // A. Update the HTML tag so your CSS (Text/Cards) updates too
+                    // A. Update the HTML tag so CSS (Text/Cards) updates too
                     document.documentElement.setAttribute('data-color-scheme', newMode);
                     
                     // B. Restart Vanta with the new color
@@ -132,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
                 const initialMode = systemDark.matches ? 'dark' : 'light';
 
-                // 2. Force the HTML tag to match System Preference (Overrides your hardcoded "light")
+                // 2. Force the HTML tag to match System Preference (Overrides hardcoded "light")
                 document.documentElement.setAttribute('data-color-scheme', initialMode);
 
                 // 3. Start Vanta
@@ -245,28 +239,27 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('modalProjectTitle').textContent = project.title;
             document.getElementById('modalProjectDescription').textContent = project.fullDescription;
             
-            // --- NEW CODE: Handle Multiple Buttons ---
+            // --- Handle Multiple Buttons ---
             // 1. Clear any existing buttons from previous opens
             const existingContainer = document.getElementById('modalBtnContainer');
             if (existingContainer) existingContainer.remove();
 
-            // 2. Check if this project has a 'documents' list
+            // 2. Check if this project has a documents list
             if (project.documents && project.documents.length > 0) {
                 // Create a container to hold the buttons side-by-side
                 const btnContainer = document.createElement('div');
                 btnContainer.id = 'modalBtnContainer';
                 btnContainer.style.marginTop = "20px";
                 btnContainer.style.display = "flex";
-                btnContainer.style.gap = "15px"; // Space between buttons
-                btnContainer.style.flexWrap = "wrap"; // Wrap on mobile
+                btnContainer.style.gap = "15px";
+                btnContainer.style.flexWrap = "wrap";
 
                 // 3. Loop through the list and create a button for each
                 project.documents.forEach(doc => {
                     const btn = document.createElement('a');
                     btn.href = doc.url;
-                    btn.target = "_blank"; // Open in new tab
+                    btn.target = "_blank";
                     btn.className = "btn btn--primary";
-                    // Add a nice file icon
                     btn.innerHTML = `<i data-lucide="file-text"></i> ${doc.title}`;
                     
                     // Add to the container
@@ -635,5 +628,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializePortfolio();
 
 }); // END DOMContentLoaded
+
 
 
