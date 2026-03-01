@@ -412,7 +412,6 @@ html {
   background-color: var(--color-background);
   box-sizing: border-box;
   scroll-behavior: smooth;
-  /* --- ADD THESE LINES FOR IOS --- */
   -webkit-text-size-adjust: 100%;  /* Prevents text zooming */
   -moz-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -466,7 +465,7 @@ section {
   transform: translateY(30px);
   margin-bottom: 4rem;
   transition: all 0.6s var(--ease-standard);
-  background-color: var(--color-background); /* ADD THIS: Prevents body color from showing through */
+  background-color: var(--color-background); /* Prevents body color from showing through */
 }
 
 /* ✅ FORCE ABOUT SECTION TO BE VISIBLE ON PAGE LOAD */
@@ -4697,3 +4696,4 @@ html[data-color-scheme="dark"] .skill-category {
         margin-bottom: 5px;
     }
 }
+
