@@ -1,0 +1,278 @@
+---
+type ProjectLink = {
+  label: string;
+  href: string;
+};
+
+type Project = {
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  tags: string[];
+  links: ProjectLink[];
+};
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects = [] } = Astro.props;
+const total = projects.length;
+---
+
+<section id="projects" class="relative border-t border-white/10 bg-[#020b24]">
+  <div class="mx-auto max-w-7xl px-6 py-20 md:px-8 lg:px-10">
+    <div class="mb-10 max-w-3xl">
+      <div class="mb-4 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs uppercase tracking-[0.25em] text-sky-200">
+        Projects
+      </div>
+      <h2 class="max-w-4xl text-4xl font-semibold leading-tight text-white md:text-5xl">
+        Featured work with cleaner structure and stronger presentation.
+      </h2>
+      <p class="mt-4 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
+        One project at a time. Less clutter. Better focus. Stronger storytelling.
+      </p>
+    </div>
+
+    <div
+      class="project-carousel group relative"
+      data-carousel
+      data-total={total}
+      aria-label="Featured projects carousel"
+    >
+      <div class="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
+        <div
+          class="project-track flex transition-transform duration-500 ease-out will-change-transform"
+          data-track
+        >
+          {projects.map((project, index) => (
+            <article
+              class="min-w-full"
+              aria-roledescription="slide"
+              aria-label={`Project ${index + 1} of ${total}`}
+            >
+              <div class="grid min-h-[580px] grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]">
+                <div class="relative min-h-[280px] border-b border-white/10 bg-slate-950 lg:min-h-full lg:border-b-0 lg:border-r">
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    class="h-full w-full object-cover"
+                  />
+                  <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#020b24]/70 via-transparent to-transparent"></div>
+                  <div class="absolute left-5 top-5">
+                    <span class="rounded-full border border-white/10 bg-[#07142f]/85 px-4 py-1 text-xs font-medium text-sky-100 backdrop-blur">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex h-full flex-col justify-between p-6 md:p-8 lg:p-10">
+                  <div>
+                    <h3 class="text-3xl font-semibold leading-tight text-white md:text-4xl">
+                      {project.title}
+                    </h3>
+
+                    <p class="mt-5 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
+                      {project.description}
+                    </p>
+
+                    <div class="mt-6 flex flex-wrap gap-3">
+                      {project.tags.map((tag) => (
+                        <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div class="mt-8 flex flex-wrap gap-4">
+                    {project.links.map((link) => (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition hover:border-sky-300/40 hover:bg-sky-400/10"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        data-prev
+        aria-label="Previous project"
+        class="absolute left-3 top-1/2 z-10 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-[#07142f]/85 text-white opacity-0 shadow-lg backdrop-blur transition duration-300 hover:border-sky-300/50 hover:bg-[#0b1b3a] md:flex md:group-hover:opacity-100"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-8 w-8">
+          <path
+            d="M15 4L7 12L15 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        data-next
+        aria-label="Next project"
+        class="absolute right-3 top-1/2 z-10 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-[#07142f]/85 text-white opacity-0 shadow-lg backdrop-blur transition duration-300 hover:border-sky-300/50 hover:bg-[#0b1b3a] md:flex md:group-hover:opacity-100"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-8 w-8">
+          <path
+            d="M9 4L17 12L9 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+
+      <div class="mt-6 flex items-center justify-between gap-4">
+        <div class="text-sm font-medium tracking-[0.2em] text-slate-300">
+          <span data-current>01</span>
+          <span class="mx-2 text-slate-500">/</span>
+          <span>{String(total).padStart(2, "0")}</span>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2" data-dots>
+          {projects.map((_, index) => (
+            <button
+              type="button"
+              data-dot={index}
+              aria-label={`Go to project ${index + 1}`}
+              class={`h-2.5 rounded-full transition-all duration-300 ${
+                index === 0
+                  ? "w-10 bg-sky-400"
+                  : "w-2.5 bg-white/25 hover:bg-white/45"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector("[data-carousel]");
+    if (!root) return;
+
+    const track = root.querySelector("[data-track]");
+    const prevBtn = root.querySelector("[data-prev]");
+    const nextBtn = root.querySelector("[data-next]");
+    const currentEl = root.querySelector("[data-current]");
+    const dots = Array.from(root.querySelectorAll("[data-dot]"));
+    const total = Number(root.getAttribute("data-total") || "0");
+
+    if (!track || !prevBtn || !nextBtn || !currentEl || !total) return;
+
+    let index = 0;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    const update = () => {
+      track.style.transform = `translateX(-${index * 100}%)`;
+      currentEl.textContent = String(index + 1).padStart(2, "0");
+
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.remove("w-2.5", "bg-white/25", "hover:bg-white/45");
+          dot.classList.add("w-10", "bg-sky-400");
+          dot.setAttribute("aria-current", "true");
+        } else {
+          dot.classList.remove("w-10", "bg-sky-400");
+          dot.classList.add("w-2.5", "bg-white/25", "hover:bg-white/45");
+          dot.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    const goTo = (nextIndex) => {
+      if (nextIndex < 0) {
+        index = total - 1;
+      } else if (nextIndex >= total) {
+        index = 0;
+      } else {
+        index = nextIndex;
+      }
+      update();
+    };
+
+    prevBtn.addEventListener("click", () => goTo(index - 1));
+    nextBtn.addEventListener("click", () => goTo(index + 1));
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => goTo(i));
+    });
+
+    root.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") goTo(index + 1);
+      if (event.key === "ArrowLeft") goTo(index - 1);
+    });
+
+    root.setAttribute("tabindex", "0");
+
+    const touchStart = (x) => {
+      isDragging = true;
+      startX = x;
+      currentX = x;
+    };
+
+    const touchMove = (x) => {
+      if (!isDragging) return;
+      currentX = x;
+    };
+
+    const touchEnd = () => {
+      if (!isDragging) return;
+      const delta = currentX - startX;
+
+      if (Math.abs(delta) > 50) {
+        if (delta < 0) goTo(index + 1);
+        if (delta > 0) goTo(index - 1);
+      }
+
+      isDragging = false;
+      startX = 0;
+      currentX = 0;
+    };
+
+    root.addEventListener(
+      "touchstart",
+      (e) => {
+        touchStart(e.touches[0].clientX);
+      },
+      { passive: true }
+    );
+
+    root.addEventListener(
+      "touchmove",
+      (e) => {
+        touchMove(e.touches[0].clientX);
+      },
+      { passive: true }
+    );
+
+    root.addEventListener("touchend", touchEnd);
+
+    update();
+  })();
+</script>
