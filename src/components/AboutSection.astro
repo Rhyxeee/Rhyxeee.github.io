@@ -1,0 +1,47 @@
+---
+import { achievements, skills } from "../data/site";
+---
+<section id="about" class="section-space">
+  <div class="container-shell space-y-8">
+    <div class="max-w-3xl space-y-4">
+      <span class="eyebrow">About</span>
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">A portfolio designed like a system, not just a gallery.</h2>
+      <p class="text-base leading-8 text-slate-300 sm:text-lg">
+        Many portfolio sites stop at visuals. This one is structured to communicate how I think through messy data, accuracy problems, documentation, and practical reporting.
+      </p>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+      <div class="panel-soft p-7 sm:p-8">
+        <h3 class="text-xl font-semibold text-white">Selected achievements</h3>
+        <div class="mt-6 grid gap-4">
+          {achievements.map((item) => (
+            <div class="rounded-2xl border border-white/8 bg-slate-950/70 p-5 text-sm leading-7 text-slate-300">
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="grid gap-6">
+        <div class="panel-soft p-7">
+          <h3 class="text-xl font-semibold text-white">Core stack</h3>
+          <div class="mt-5 flex flex-wrap gap-3">
+            {skills.map((skill) => (
+              <span class="tag">{skill}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="panel-soft p-7">
+          <h3 class="text-xl font-semibold text-white">Value I bring</h3>
+          <ul class="mt-5 space-y-3 text-sm leading-7 text-slate-300">
+            <li>Turn unstructured records into usable analysis inputs</li>
+            <li>Document logic so work stays easy to verify and maintain</li>
+            <li>Design outputs for decision makers, not only for analysts</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

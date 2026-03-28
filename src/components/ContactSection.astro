@@ -1,0 +1,35 @@
+---
+import { site } from "../data/site";
+---
+<section id="contact" class="section-space">
+  <div class="container-shell">
+    <div class="panel-soft grid gap-8 p-8 sm:p-10 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+      <div class="space-y-4">
+        <span class="eyebrow">Contact</span>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Need cleaner data, stronger reporting, or a more reliable workflow?</h2>
+        <p class="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+          Reach out if you want help with data cleaning, dashboard preparation, business reporting, or structured portfolio-style analytics work.
+        </p>
+      </div>
+
+      <div class="grid gap-4">
+        <a class="btn-primary" href={`mailto:${site.email}`}>Email Me</a>
+        <a class="btn-secondary" href={site.resumeUrl} target="_blank" rel="noreferrer">Download Resume</a>
+        <button id="copy-email" class="btn-secondary" type="button" data-email={site.email}>Copy Email Address</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById("copy-email")?.addEventListener("click", async (event) => {
+    const target = event.currentTarget;
+    const email = target?.getAttribute("data-email");
+    if (!email) return;
+    await navigator.clipboard.writeText(email);
+    target.textContent = "Email copied";
+    setTimeout(() => {
+      target.textContent = "Copy Email Address";
+    }, 1600);
+  });
+</script>
