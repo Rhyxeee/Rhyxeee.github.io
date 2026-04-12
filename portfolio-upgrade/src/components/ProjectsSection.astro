@@ -1,0 +1,167 @@
+---
+// ProjectsSection.astro — Grid of premium project cards replacing the carousel
+
+import ProjectCard from './ProjectCard.astro';
+
+const projects = [
+  {
+    title: 'TMDb Data Engineering Master Documentation',
+    description:
+      'Designed a full documentation-driven movie analytics workflow with cleaned entities, structured relationships, and dashboard-ready outputs.',
+    category: 'Data Engineering',
+    accent: 'blue',
+    tags: ['Excel', 'ETL', 'JSON Parsing', 'Documentation'],
+    imageSrc: '/images/tmdb-architecture.png',
+    imageAlt: 'TMDb data engineering workflow architecture preview',
+    primaryLink:
+      'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/TMDb%20Data%20Engineering%20Master%20Documentation.pdf',
+    primaryLabel: 'View documentation',
+    secondaryLink:
+      'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/EXECUTIVE%20SUMMARY%20TMDb.pdf',
+    secondaryLabel: 'Executive summary',
+  },
+  {
+    title: '360° Sales Performance Hub',
+    description:
+      'Built a high-level sales performance dashboard for a multi-million-dollar dataset to surface inefficiencies and trends.',
+    category: 'Dashboard Analytics',
+    accent: 'amber',
+    tags: ['Dashboard', 'Sales', 'Insights', 'Excel'],
+    imageSrc: '/images/360_dashboard.png',
+    imageAlt: '360 sales performance dashboard preview',
+    primaryLink:
+      'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/360%C2%B0%20Sales%20Performance%20Hub.pdf',
+    primaryLabel: 'View PDF',
+  },
+  {
+    title: 'MySQL Retail Analytics Project',
+    description:
+      'Used SQL to answer business questions around customers, revenue, and performance patterns using a structured retail dataset.',
+    category: 'SQL Analytics',
+    accent: 'green',
+    tags: ['SQL', 'CTEs', 'Window Functions', 'Analytics'],
+    imageSrc: '/images/mysql_project.png',
+    imageAlt: 'MySQL retail analytics workflow preview',
+    primaryLink:
+      'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/mysql_project.pdf',
+    primaryLabel: 'View PDF',
+  },
+  {
+    title: 'Pima Diabetes Data Audit and Repair',
+    description:
+      'Recovered a highly incomplete healthcare dataset using a documented audit and repair workflow that preserved analytical usability.',
+    category: 'Statistical Cleaning',
+    accent: 'purple',
+    tags: ['Data Cleaning', 'Outliers', 'Imputation', 'JASP'],
+    imageSrc: '/images/PIMA_INDIANS.png',
+    imageAlt: 'Pima diabetes data audit and repair preview',
+    primaryLink:
+      'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/Pima%20Diabetes%20Data%20Optimization.pdf',
+    primaryLabel: 'Methodology PDF',
+  },
+];
+---
+
+<section id="projects" class="projects-section">
+
+  <!-- Section header -->
+  <div class="section-header" data-animate="fade-up">
+    <span class="section-eyebrow">Featured Work</span>
+    <h2 class="section-title">
+      Projects built on<br>
+      <span class="title-accent">clean data, clear systems.</span>
+    </h2>
+    <p class="section-sub">
+      One project at a time. Less clutter. Better focus. Stronger storytelling.
+    </p>
+  </div>
+
+  <!-- Cards grid -->
+  <div class="projects-grid">
+    {projects.map((project, i) => (
+      <div data-animate="fade-up" data-delay={String(i * 80)} class="card-wrapper">
+        <ProjectCard {...project} />
+      </div>
+    ))}
+  </div>
+
+</section>
+
+<style>
+  .projects-section {
+    padding: 7rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Header ---------- */
+  .section-header {
+    margin-bottom: 3.5rem;
+    max-width: 520px;
+  }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #38bdf8;
+    margin-bottom: 1rem;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .section-title {
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 650;
+    line-height: 1.15;
+    color: #f1f5f9;
+    letter-spacing: -0.025em;
+    margin: 0 0 1rem;
+  }
+
+  .title-accent {
+    color: #38bdf8;
+  }
+
+  .section-sub {
+    font-size: 15px;
+    color: rgba(226, 232, 240, 0.50);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ---------- Grid ---------- */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  /* Animate-on-scroll handled by scrollAnimations.ts */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  [data-animate].appeared {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 640px) {
+    .projects-section { padding: 4rem 1rem; }
+    .projects-grid    { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+import { experiences } from "../data/site";
+---
+<section id="experience" class="section-space">
+  <div class="container-shell space-y-8">
+    <div class="max-w-3xl space-y-4">
+      <span class="eyebrow">Experience</span>
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Work that depends on clean records and reliable outputs.</h2>
+      <p class="text-base leading-8 text-slate-300 sm:text-lg">
+        My experience is strongest where data quality, verification, and process discipline matter.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      {experiences.map((item) => (
+        <article class="panel-soft p-7 sm:p-8">
+          <div class="grid gap-6 lg:grid-cols-[0.72fr_1fr]">
+            <div class="space-y-3">
+              <p class="text-xl font-semibold text-white">{item.role}</p>
+              <p class="text-sm text-sky-200">{item.company}</p>
+              <p class="text-sm text-slate-400">{item.meta}</p>
+              <a class="inline-flex text-sm font-medium text-emerald-200 hover:text-emerald-100" href={item.link.href} target="_blank" rel="noreferrer">{item.link.label}</a>
+            </div>
+            <div class="space-y-5">
+              <p class="text-sm leading-7 text-slate-300">{item.summary}</p>
+              <ul class="space-y-3 text-sm leading-7 text-slate-300">
+                {item.bullets.map((bullet) => (
+                  <li class="rounded-2xl border border-white/8 bg-slate-950/70 px-4 py-3">{bullet}</li>
+                ))}
+              </ul>
+              <div class="flex flex-wrap gap-3">
+                {item.stack.map((tech) => (
+                  <span class="tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

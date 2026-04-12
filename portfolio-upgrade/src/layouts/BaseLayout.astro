@@ -1,0 +1,155 @@
+---
+// BaseLayout.astro — Updated layout wiring all upgrades together
+// Place this at: src/layouts/BaseLayout.astro
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Mark Anthony Nene · Data Analyst Portfolio',
+  description = 'Freelance Data Analyst. I clean, audit, and structure business data so reports, dashboards, and workflows become reliable enough for real decisions.',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#080e1a" />
+
+  <!-- Open Graph (LinkedIn preview) -->
+  <meta property="og:title"       content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type"        content="website" />
+  <meta property="og:image"       content="/images/profile.png" />
+
+  <!-- Favicons -->
+  <link rel="icon"             href="/favicon_io/favicon.ico" />
+  <link rel="icon"             href="/favicon_io/favicon-32x32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png" />
+  <link rel="manifest"         href="/site.webmanifest" />
+
+  <!-- Fonts: Geist for body, Geist Mono for code — via Fontsource (CDN fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;650&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <title>{title}</title>
+
+  <style is:global>
+    /* ── Reset ─────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ── Design tokens ──────────────────────────────── */
+    :root {
+      /* Colors */
+      --clr-bg:        #080e1a;
+      --clr-surface:   #0d1524;
+      --clr-surface-2: #111e30;
+      --clr-border:    rgba(255, 255, 255, 0.07);
+      --clr-accent:    #38bdf8;
+      --clr-accent-2:  #818cf8;
+      --clr-text-1:    #f1f5f9;
+      --clr-text-2:    rgba(226, 232, 240, 0.65);
+      --clr-text-3:    rgba(226, 232, 240, 0.38);
+
+      /* Typography */
+      --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'DM Mono', 'Fira Code', monospace;
+
+      /* Spacing */
+      --section-pad: clamp(4rem, 8vw, 7rem) 1.5rem;
+    }
+
+    /* ── Base ─────────────────────────────────────── */
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--clr-bg);
+      color: var(--clr-text-1);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Anchor offset for fixed header */
+    section[id] {
+      scroll-margin-top: 80px;
+    }
+
+    /* ── Typography defaults ──────────────────────── */
+    h1, h2, h3, h4 {
+      color: var(--clr-text-1);
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+
+    a { color: inherit; }
+
+    img { max-width: 100%; height: auto; }
+
+    /* ── Selection ────────────────────────────────── */
+    ::selection {
+      background: rgba(56, 189, 248, 0.25);
+      color: #f1f5f9;
+    }
+
+    /* ── Scrollbar ────────────────────────────────── */
+    ::-webkit-scrollbar        { width: 6px; }
+    ::-webkit-scrollbar-track  { background: #0a1120; }
+    ::-webkit-scrollbar-thumb  { background: rgba(56, 189, 248, 0.25); border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(56, 189, 248, 0.50); }
+
+    /* ── Focus ring ───────────────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--clr-accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ── Reduced motion ───────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      [data-animate], [data-animate].appeared {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <slot />
+
+  <!--
+    scrollAnimations.ts is imported here so it runs once across
+    the whole page after all DOM is painted.
+    Astro bundles and tree-shakes this automatically.
+  -->
+  <script>
+    import '../scripts/scrollAnimations.ts';
+  </script>
+</body>
+</html>
