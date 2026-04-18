@@ -45,7 +45,10 @@ export const experienceRows = [
       'Track KPI quality, spot-check outputs, and improve repeatable operating processes.',
     ],
     stack: ['Google Sheets', 'Data QA', 'Skip Tracing', 'Process Design'],
-    link: { label: 'Work sample PDF', href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/GSH_Work_Sample.pdf' },
+    link: {
+      label: 'Work sample PDF',
+      href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/GSH_Work_Sample.pdf',
+    },
   },
   {
     role: 'Administrative Support and Data Associate',
@@ -59,7 +62,10 @@ export const experienceRows = [
       'Improved speed and clarity of routine data handling tasks through structured templates and review steps.',
     ],
     stack: ['Documentation', 'Quality Checks', 'Reporting', 'Operations'],
-    link: { label: 'Experience showcase', href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/Work_Experience_Showcase_LifeWood.pdf' },
+    link: {
+      label: 'Experience showcase',
+      href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/Work_Experience_Showcase_LifeWood.pdf',
+    },
   },
 ];
 
@@ -100,25 +106,25 @@ export const proofCards = [
   {
     title: 'Applied Mathematics Foundation',
     meta: '4th year standing',
-    body: 'Built on quantitative reasoning, structured analysis, and research discipline for data-facing work.',
+    body: 'Built on quantitative reasoning, structured analysis, and academic training that supports careful data work and statistical thinking.',
     accent: 'blue',
   },
   {
     title: 'Real Estate Data Operations',
-    meta: 'GSH Investments',
-    body: 'Hands-on workflow ownership in public-record extraction, QA, enrichment, and operational reporting.',
-    accent: 'green',
-  },
-  {
-    title: 'Analytics Tooling Focus',
-    meta: 'Power BI · SQL · Python · Excel',
-    body: 'Focused on tools that turn raw records into dashboards, insights, and repeatable decision support.',
+    meta: 'Current role',
+    body: 'Hands-on workflow experience in extraction, audit checking, record cleanup, lead data preparation, and repeatable operating systems.',
     accent: 'amber',
   },
   {
-    title: 'Research + Systems Mindset',
-    meta: 'Thesis and workflow design',
-    body: 'Strong fit for work that needs clean methods, documented logic, and outputs people can trust.',
+    title: 'Analytics Toolchain',
+    meta: 'Core strength',
+    body: 'Focused on Excel, Google Sheets, SQL, Python, and dashboard-ready outputs built for practical reporting and decision support.',
+    accent: 'green',
+  },
+  {
+    title: 'Process Reliability',
+    meta: 'Working style',
+    body: 'Prioritizes structured logic, clear documentation, verifiable outputs, and cleaner systems over cluttered presentation.',
     accent: 'purple',
   },
 ];
