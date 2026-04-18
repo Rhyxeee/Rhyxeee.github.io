@@ -1,196 +1,71 @@
 ---
-import { site } from "../data/site";
+import { site } from '../data/site';
 ---
-
 <section id="contact" class="contact-section">
   <div class="contact-shell">
     <div class="contact-card" data-animate="fade-up">
       <div class="contact-copy">
         <span class="section-eyebrow">Contact</span>
-        <h2 class="section-title">
-          Need cleaner data, stronger reporting, or a more reliable workflow?
-        </h2>
+        <h2 class="section-title">Need cleaner data, stronger reporting, or a more reliable workflow?</h2>
         <p class="section-sub">
           Reach out if you want help with data cleaning, dashboard preparation,
-          business reporting, or structured portfolio-style analytics work.
+          business reporting, or structured analytics work that stays easy to verify.
         </p>
       </div>
 
       <div class="contact-actions">
         <a class="btn-primary" href={`mailto:${site.email}`}>Email Me</a>
-        <a class="btn-secondary" href={site.resumeUrl} target="_blank" rel="noreferrer">
-          Download Resume
-        </a>
-        <button id="copy-email" class="btn-secondary" type="button" data-email={site.email}>
-          Copy Email Address
-        </button>
+        <a class="btn-secondary" href={site.resumeUrl} target="_blank" rel="noreferrer">Download Resume</a>
+        <button id="copy-email" class="btn-secondary" type="button" data-email={site.email}>Copy Email Address</button>
       </div>
     </div>
   </div>
 </section>
 
 <script>
-  document.getElementById("copy-email")?.addEventListener("click", async (event) => {
+  document.getElementById('copy-email')?.addEventListener('click', async (event) => {
     const button = event.currentTarget;
-    const email = button?.getAttribute("data-email");
+    const email = button?.getAttribute('data-email');
     if (!email) return;
-
     try {
       await navigator.clipboard.writeText(email);
       const original = button.textContent;
-      button.textContent = "Email copied";
-      setTimeout(() => {
-        button.textContent = original ?? "Copy Email Address";
-      }, 1600);
+      button.textContent = 'Email copied';
+      setTimeout(() => { button.textContent = original ?? 'Copy Email Address'; }, 1600);
     } catch {
-      button.textContent = "Copy failed";
-      setTimeout(() => {
-        button.textContent = "Copy Email Address";
-      }, 1600);
+      button.textContent = 'Copy failed';
+      setTimeout(() => { button.textContent = 'Copy Email Address'; }, 1600);
     }
   });
 </script>
 
 <style>
-  .contact-section {
-    position: relative;
-    padding: 7rem 1.5rem 5rem;
-  }
-
-  .contact-shell {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
+  .contact-section { position: relative; padding: 7rem 1.5rem 4rem; }
+  .contact-shell { max-width: 1100px; margin: 0 auto; }
   .contact-card {
-    display: grid;
-    grid-template-columns: 1fr 0.82fr;
-    gap: 2rem;
-    align-items: center;
-    padding: 2rem;
-    border-radius: 28px;
-    background:
-      radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 32%),
-      linear-gradient(180deg, rgba(17, 24, 39, 0.86), rgba(10, 15, 28, 0.96));
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow:
-      0 20px 60px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.03);
-    position: relative;
-    overflow: hidden;
+    display: grid; grid-template-columns: 1fr .82fr; gap: 2rem; align-items: center;
+    padding: 2rem; border-radius: 28px;
+    background: radial-gradient(circle at top right, rgba(56,189,248,.08), transparent 32%), linear-gradient(180deg, rgba(17,24,39,.86), rgba(10,15,28,.96));
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.03);
+    position: relative; overflow: hidden;
   }
-
-  .contact-card::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(56, 189, 248, 0.32),
-      transparent
-    );
+  .contact-card::before { content:""; position:absolute; inset:0 0 auto 0; height:1px; background:linear-gradient(90deg, transparent, rgba(56,189,248,.32), transparent); }
+  .section-eyebrow { display:inline-flex; align-items:center; gap:.5rem; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#38bdf8; margin-bottom:1rem; }
+  .section-eyebrow::before { content:""; width:26px; height:1px; background:rgba(56,189,248,.75); display:inline-block; }
+  .section-title { font-size:clamp(30px,4vw,44px); line-height:1.1; letter-spacing:-.03em; color:#f8fafc; margin:0 0 1rem; font-weight:650; max-width:760px; }
+  .section-sub { margin:0; max-width:680px; font-size:17px; line-height:1.8; color:rgba(226,232,240,.68); }
+  .contact-actions { display:grid; gap:.9rem; }
+  .btn-primary, .btn-secondary {
+    display:inline-flex; justify-content:center; align-items:center; min-height:54px; padding:.95rem 1.3rem;
+    border-radius:999px; text-decoration:none; font-size:15px; font-weight:600; letter-spacing:-.01em;
+    transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease, color .22s ease;
+    cursor:pointer;
   }
-
-  .section-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #38bdf8;
-    margin-bottom: 1rem;
-  }
-
-  .section-eyebrow::before {
-    content: "";
-    width: 26px;
-    height: 1px;
-    background: rgba(56, 189, 248, 0.75);
-    display: inline-block;
-  }
-
-  .section-title {
-    font-size: clamp(30px, 4vw, 44px);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: #f8fafc;
-    margin: 0 0 1rem;
-    font-weight: 650;
-    max-width: 760px;
-  }
-
-  .section-sub {
-    margin: 0;
-    max-width: 680px;
-    font-size: 17px;
-    line-height: 1.8;
-    color: rgba(226, 232, 240, 0.68);
-  }
-
-  .contact-actions {
-    display: grid;
-    gap: 0.9rem;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 54px;
-    padding: 0.95rem 1.3rem;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
-    cursor: pointer;
-  }
-
-  .btn-primary {
-    border: 1px solid transparent;
-    background: #38bdf8;
-    color: #06111c;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    background: #7dd3fc;
-    box-shadow: 0 12px 34px rgba(56, 189, 248, 0.28);
-  }
-
-  .btn-secondary {
-    background: rgba(15, 23, 42, 0.72);
-    color: rgba(226, 232, 240, 0.88);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .btn-secondary:hover {
-    transform: translateY(-2px);
-    color: #f8fafc;
-    border-color: rgba(56, 189, 248, 0.28);
-    background: rgba(15, 23, 42, 0.95);
-  }
-
-  @media (max-width: 900px) {
-    .contact-card {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .contact-section {
-      padding: 5.5rem 1rem 4rem;
-    }
-
-    .contact-card {
-      padding: 1.3rem;
-      border-radius: 22px;
-    }
-  }
+  .btn-primary { border:1px solid transparent; background:#38bdf8; color:#06111c; }
+  .btn-primary:hover { transform:translateY(-2px); background:#7dd3fc; box-shadow:0 12px 34px rgba(56,189,248,.28); }
+  .btn-secondary { background:rgba(15,23,42,.72); color:rgba(226,232,240,.88); border:1px solid rgba(255,255,255,.1); }
+  .btn-secondary:hover { transform:translateY(-2px); color:#f8fafc; border-color:rgba(56,189,248,.28); background:rgba(15,23,42,.95); }
+  @media (max-width: 900px) { .contact-card { grid-template-columns:1fr; } }
+  @media (max-width: 640px) { .contact-section { padding:5.5rem 1rem 3rem; } .contact-card { padding:1.3rem; border-radius:22px; } }
 </style>
