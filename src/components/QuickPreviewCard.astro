@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  href: string;
+  accent?: 'blue' | 'amber' | 'green' | 'purple';
+}
+const { title, body, href, accent = 'blue' } = Astro.props;
+const accentColor = {
+  blue: 'var(--blue)', amber: 'var(--amber)', green: 'var(--green)', purple: 'var(--purple)'
+}[accent];
+---
+<div class="preview-card card" style={`--accent:${accentColor};`}>
+  <h3>{title}</h3>
+  <p>{body}</p>
+  <a href={href}>Open →</a>
+</div>
+
+<style>
+  .preview-card { padding: 1.15rem; border-left: 3px solid var(--accent); }
+  .preview-card h3 { margin: 0 0 0.65rem; font-size: 1.08rem; }
+  .preview-card p { margin: 0 0 1rem; color: var(--muted); line-height: 1.75; }
+  .preview-card a { color: var(--accent); text-decoration: none; font-weight: 600; }
+</style>

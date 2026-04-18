@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { site } from '../../data/site';
+import { projects } from '../../data/portfolio';
+---
+
+<BaseLayout title={`Projects · ${site.name}`} description="Project library" currentPath="/projects">
+  <section class="container page-shell">
+    <div class="page-header">
+      <span class="eyebrow">Projects</span>
+      <h1 class="section-title">A dedicated page for the work, so users do not have to dig through everything else first.</h1>
+      <p class="lead">Each card opens into a cleaner case-study page. The goal is faster scanning, stronger storytelling, and less exhausting navigation.</p>
+    </div>
+    <div class="grid-3">
+      {projects.map((project) => (
+        <ProjectCard {...project} href={`/projects/${project.slug}`} links={project.links} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

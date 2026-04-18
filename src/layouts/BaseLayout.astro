@@ -1,39 +1,31 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 interface Props {
-  title?: string;
+  title: string;
   description?: string;
+  currentPath?: string;
 }
 
-const {
-  title = 'Mark Anthony Nene · Data Systems Portfolio',
-  description = 'Freelance data analyst portfolio focused on data cleaning, dashboards, reporting, documentation, and decision-ready systems.',
-} = Astro.props;
+const { title, description = 'Analytics systems portfolio', currentPath = '/' } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#080e1a" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://rhyxeee.github.io" />
-    <meta property="og:image" content="/images/profile.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
-    <slot />
-    <script>
-      import '../scripts/scrollAnimations.ts';
-    </script>
+    <Header currentPath={currentPath} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, proofCards, achievements, stats } from '../data/site';
+---
+
+<BaseLayout title={`Proof · ${site.name}`} description="Proof and focus" currentPath="/proof">
+  <section class="container page-shell">
+    <div class="page-header">
+      <span class="eyebrow">Proof</span>
+      <h1 class="section-title">A cleaner place for achievements, capabilities, and the signals that build trust.</h1>
+      <p class="lead">This page replaces the old “everything in one scroll” approach with grouped credibility. It reads faster and feels more intentional.</p>
+    </div>
+
+    <div class="grid-4">
+      {stats.map((item) => (
+        <div class="panel panel-pad">
+          <div class={`accent-${item.accent}`} style="font-size:2rem; font-weight:700; letter-spacing:-0.04em;">{item.value}</div>
+          <div class="muted" style="margin-top:0.35rem;">{item.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="spacer-2"></div>
+
+    <div class="grid-2">
+      <div class="panel panel-pad-lg">
+        <span class="eyebrow">Selected achievements</span>
+        <ul class="list-clean" style="display:grid; gap:0.95rem;">
+          {achievements.map((item, index) => (
+            <li class="card" style="padding:1rem; display:grid; grid-template-columns:44px 1fr; gap:1rem; align-items:start;">
+              <span class="pill" style="border-color:rgba(56,189,248,0.25); color:var(--blue); background:rgba(56,189,248,0.08);">0{index + 1}</span>
+              <span class="muted">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="panel panel-pad-lg">
+        <span class="eyebrow">Capability focus</span>
+        <div class="grid-3" style="grid-template-columns:1fr; gap:0.9rem;">
+          {proofCards.map((item) => (
+            <div class="card" style="padding:1rem;">
+              <strong>{item.title}</strong>
+              <div class={`accent-${item.accent}`} style="margin-top:0.3rem; font-size:0.92rem;">{item.meta}</div>
+              <p class="muted" style="margin:0.75rem 0 0;">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,5 +1,3 @@
 node_modules
 dist
 .astro
-.vscode
-.DS_Store

@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TechStackMarquee from '../components/TechStackMarquee.astro';
+import { site, experienceRows, achievements } from '../data/site';
+---
+
+<BaseLayout title={`About · ${site.name}`} description="About and experience" currentPath="/about">
+  <section class="container page-shell">
+    <div class="page-header">
+      <span class="eyebrow">About</span>
+      <h1 class="section-title">A better page for story, process, and experience instead of burying everything beneath the hero.</h1>
+      <p class="lead">This page is where your background, strengths, and work style live. It gives users the context they need without forcing them to scroll through unrelated sections first.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel panel-pad-lg">
+        <h2 style="margin:0 0 1rem; font-size:1.65rem;">How I work</h2>
+        <p class="muted">I focus on structured logic, documentation, cleaner systems, and outputs people can actually use. The goal is not just analysis. The goal is work that survives handoff, review, and real decision making.</p>
+        <div class="spacer-1"></div>
+        <ul class="list-clean" style="display:grid; gap:0.9rem;">
+          <li class="card" style="padding:1rem;">Accuracy first</li>
+          <li class="card" style="padding:1rem;">Repeatable workflow design</li>
+          <li class="card" style="padding:1rem;">Clear documentation and reviewability</li>
+          <li class="card" style="padding:1rem;">Business-ready reporting outputs</li>
+        </ul>
+      </div>
+      <div class="panel panel-pad-lg">
+        <h2 style="margin:0 0 1rem; font-size:1.65rem;">Selected strengths</h2>
+        <ul class="list-clean" style="display:grid; gap:0.9rem;">
+          {achievements.slice(0, 3).map((item) => (
+            <li class="card" style="padding:1rem; color:var(--muted); line-height:1.75;">{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <TechStackMarquee />
+
+  <section class="container page-shell" style="padding-top:1rem;">
+    <div class="page-header">
+      <span class="eyebrow">Experience</span>
+      <h2 class="section-title">Work that depends on clean records and reliable outputs.</h2>
+      <p class="lead">Your experience belongs on its own destination page instead of fighting for space on the home page.</p>
+    </div>
+
+    <div style="display:grid; gap:1.2rem;">
+      {experienceRows.map((item) => (
+        <article class="panel panel-pad-lg">
+          <div class="grid-2" style="grid-template-columns:0.72fr 1fr;">
+            <div>
+              <span class="eyebrow" style="margin-bottom:0.8rem;">Role</span>
+              <h3 style="margin:0; font-size:1.7rem; letter-spacing:-0.03em;">{item.role}</h3>
+              <div class="accent-blue" style="margin-top:0.7rem;">{item.company}</div>
+              <div class="muted" style="margin-top:0.35rem;">{item.meta}</div>
+              <div class="spacer-1"></div>
+              <a href={item.link.href} target="_blank" rel="noreferrer" class="btn-ghost">{item.link.label}</a>
+            </div>
+            <div>
+              <p class="muted" style="margin-top:0;">{item.summary}</p>
+              <ul class="list-clean" style="display:grid; gap:0.75rem; margin-top:1rem;">
+                {item.bullets.map((bullet) => (
+                  <li class="card" style="padding:0.95rem 1rem; color:var(--muted); line-height:1.75;">{bullet}</li>
+                ))}
+              </ul>
+              <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1rem;">
+                {item.stack.map((tech) => (
+                  <span class="tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

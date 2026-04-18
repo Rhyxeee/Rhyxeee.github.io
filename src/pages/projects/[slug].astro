@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects } from '../../data/portfolio';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout title={`${project.title} · ${site.name}`} description={project.description} currentPath="/projects">
+  <section class="container page-shell">
+    <div class="page-header">
+      <a href="/projects" class="btn-ghost" style="margin-bottom:1rem;">← Back to projects</a>
+      <span class="eyebrow">{project.category}</span>
+      <h1 class="section-title">{project.title}</h1>
+      <p class="lead">{project.summary}</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel panel-pad-lg">
+        <img src={project.imageSrc} alt={project.imageAlt} style="border-radius:18px; border:1px solid rgba(255,255,255,0.08);" />
+      </div>
+      <div class="panel panel-pad-lg">
+        <h2 style="margin:0 0 0.8rem; font-size:1.55rem;">Project framing</h2>
+        <div class="card" style="padding:1rem; margin-bottom:1rem;">
+          <strong>Problem</strong>
+          <p class="muted" style="margin:0.55rem 0 0;">{project.problem}</p>
+        </div>
+        <div class="card" style="padding:1rem; margin-bottom:1rem;">
+          <strong>Outcome</strong>
+          <p class="muted" style="margin:0.55rem 0 0;">{project.outcome}</p>
+        </div>
+        <div class="project-tags" style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1rem;">
+          {project.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="spacer-2"></div>
+
+    <div class="grid-2">
+      <div class="panel panel-pad-lg">
+        <span class="eyebrow">How it was approached</span>
+        <ul class="list-clean" style="display:grid; gap:0.9rem;">
+          {project.approach.map((item) => (
+            <li class="card" style="padding:1rem; color:var(--muted); line-height:1.8;">{item}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="panel panel-pad-lg">
+        <span class="eyebrow">Links</span>
+        <div style="display:grid; gap:0.9rem;">
+          {project.links.map((item) => (
+            <a href={item.href} target="_blank" rel="noreferrer" class="btn-ghost">{item.label}</a>
+          ))}
+          <a href="/contact" class="btn">Discuss this kind of work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

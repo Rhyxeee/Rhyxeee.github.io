@@ -1,6 +1,6 @@
 export const site = {
   name: 'Mark Anthony Nene',
-  title: 'Data Systems Portfolio',
+  title: 'Analytics Systems Portfolio',
   role: 'Freelance Data Analyst',
   tagline: 'I turn messy records into decision-ready systems.',
   description:
@@ -13,22 +13,35 @@ export const site = {
   socialLinks: [
     { label: 'GitHub', href: 'https://github.com/Rhyxeee' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com' },
-    { label: 'Email', href: 'mailto:markanthonynene@gmail.com' },
+    { label: 'Email', href: 'mailto:markanthonynene@gmail.com' }
   ],
+  nav: [
+    { label: 'Home', href: '/' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Proof', href: '/proof' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' }
+  ]
 };
 
 export const stats = [
   { value: '4,400+', label: 'Records cleaned', accent: 'blue' },
   { value: '₱2M+', label: 'Budget audited', accent: 'amber' },
   { value: '$5M+', label: 'Sales analyzed', accent: 'green' },
-  { value: '100%', label: 'Accuracy focus', accent: 'purple' },
+  { value: '100%', label: 'Accuracy focus', accent: 'purple' }
 ];
 
 export const achievements = [
   'Uncovered a 230,000x output disparity between urban and island economies, revealing a hidden V-shaped recovery trend.',
   'Built a dashboard for a $5M+ sales dataset that surfaced discount inefficiencies and helped guide resource allocation.',
   'Engineered a Python pipeline to clean 4,400+ records while preserving auditability and financial accuracy.',
-  'Served as audit delegate for a ₱2M+ budget with strict reconciliation and compliance checks.',
+  'Served as audit delegate for a ₱2M+ budget with strict reconciliation and compliance checks.'
+];
+
+export const marqueeRows = [
+  ['Power BI', 'Excel', 'Google Sheets', 'SQL', 'Python', 'Data Cleaning', 'Reporting', 'Audit Workflow'],
+  ['Dashboards', 'KPI Design', 'JSON Parsing', 'ETL', 'Documentation', 'Automation', 'QA', 'Business Analysis'],
+  ['Window Functions', 'Forecasting', 'Data Validation', 'Process Design', 'Operational Accuracy', 'Skip Tracing', 'Structured Systems', 'Decision Support']
 ];
 
 export const experienceRows = [
@@ -42,13 +55,10 @@ export const experienceRows = [
       'Pull county foreclosure, probate, and tax data from public portals and prepare it for downstream use.',
       'Clean, deduplicate, standardize, and audit records in Google Sheets-based workflows.',
       'Use AI-assisted research and manual verification to enrich owner data and improve lead quality.',
-      'Track KPI quality, spot-check outputs, and improve repeatable operating processes.',
+      'Track KPI quality, spot-check outputs, and improve repeatable operating processes.'
     ],
     stack: ['Google Sheets', 'Data QA', 'Skip Tracing', 'Process Design'],
-    link: {
-      label: 'Work sample PDF',
-      href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/GSH_Work_Sample.pdf',
-    },
+    link: { label: 'Work sample PDF', href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/GSH_Work_Sample.pdf' }
   },
   {
     role: 'Administrative Support and Data Associate',
@@ -59,72 +69,36 @@ export const experienceRows = [
     bullets: [
       'Maintained operational records and assisted in cross-checking documents for completeness and consistency.',
       'Prepared organized data outputs that were easier to review, monitor, and report.',
-      'Improved speed and clarity of routine data handling tasks through structured templates and review steps.',
+      'Improved speed and clarity of routine data handling tasks through structured templates and review steps.'
     ],
     stack: ['Documentation', 'Quality Checks', 'Reporting', 'Operations'],
-    link: {
-      label: 'Experience showcase',
-      href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/Work_Experience_Showcase_LifeWood.pdf',
-    },
-  },
-];
-
-export const marqueeRows = [
-  [
-    'Power BI',
-    'Excel',
-    'Google Sheets',
-    'SQL',
-    'Python',
-    'Data Cleaning',
-    'Reporting',
-    'Audit Workflow',
-  ],
-  [
-    'Dashboards',
-    'KPI Design',
-    'JSON Parsing',
-    'ETL',
-    'Documentation',
-    'Automation',
-    'QA',
-    'Business Analysis',
-  ],
-  [
-    'Window Functions',
-    'Forecasting',
-    'Data Validation',
-    'Process Design',
-    'Operational Accuracy',
-    'Skip Tracing',
-    'Structured Systems',
-    'Decision Support',
-  ],
+    link: { label: 'Experience showcase', href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/Work_Experience_Showcase_LifeWood.pdf' }
+  }
 ];
 
 export const proofCards = [
   {
     title: 'Applied Mathematics Foundation',
     meta: '4th year standing',
-    body: 'Built on quantitative reasoning, structured analysis, and academic training that supports careful data work and statistical thinking.',
-    accent: 'blue',
+    body: 'Built on quantitative reasoning, structured analysis, and research discipline for data-facing work.',
+    accent: 'blue'
   },
   {
     title: 'Real Estate Data Operations',
     meta: 'Current role',
-    body: 'Hands-on workflow experience in extraction, audit checking, record cleanup, lead data preparation, and repeatable operating systems.',
-    accent: 'amber',
+    body: 'Hands-on workflow ownership in public-record extraction, QA, enrichment, and operational reporting.',
+    accent: 'amber'
   },
   {
-    title: 'Analytics Toolchain',
-    meta: 'Core strength',
-    body: 'Focused on Excel, Google Sheets, SQL, Python, and dashboard-ready outputs built for practical reporting and decision support.',
-    accent: 'green',
+    title: 'Analytics Tooling Focus',
+    meta: 'Power BI · SQL · Python · Excel',
+    body: 'Focused on tools that turn raw records into dashboards, insights, and repeatable decision support.',
+    accent: 'green'
   },
   {
-    title: 'Process Reliability',
-    meta: 'Working style',
-    body: 'Prioritizes structured logic, clear documentation, verifiable outputs, and cleaner systems over cluttered presentation.',
-    accent: 'purple',
-  },
+    title: 'Research + Systems Mindset',
+    meta: 'Thesis and workflow design',
+    body: 'Strong fit for work that needs clean methods, documented logic, and outputs people can trust.',
+    accent: 'purple'
+  }
 ];
