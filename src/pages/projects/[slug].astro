@@ -11,32 +11,40 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+const accentMap: Record<string, string> = {
+  blue: 'var(--blue)',
+  amber: 'var(--amber)',
+  green: 'var(--green)',
+  purple: 'var(--purple)'
+};
 ---
 
 <BaseLayout title={`${project.title} · ${site.name}`} description={project.description} currentPath="/projects">
-  <section class="container page-shell">
-    <div class="page-header">
-      <a href="/projects" class="btn-ghost" style="margin-bottom:1rem;">← Back to projects</a>
+  <section class="container page-shell project-page">
+    <div class="page-header project-page__header">
+      <a href="/projects" class="btn-ghost project-page__back">← Back to projects</a>
       <span class="eyebrow">{project.category}</span>
       <h1 class="section-title">{project.title}</h1>
       <p class="lead">{project.summary}</p>
     </div>
 
-    <div class="grid-2">
-      <div class="panel panel-pad-lg">
-        <img src={project.imageSrc} alt={project.imageAlt} style="border-radius:18px; border:1px solid rgba(255,255,255,0.08);" />
+    <div class="grid-2 project-hero-grid">
+      <div class="panel panel-pad-lg project-hero-grid__visual">
+        <img src={project.imageSrc} alt={project.imageAlt} class="project-hero-grid__image" />
       </div>
-      <div class="panel panel-pad-lg">
-        <h2 style="margin:0 0 0.8rem; font-size:1.55rem;">Project framing</h2>
-        <div class="card" style="padding:1rem; margin-bottom:1rem;">
-          <strong>Problem</strong>
-          <p class="muted" style="margin:0.55rem 0 0;">{project.problem}</p>
+      <div class="panel panel-pad-lg project-overview" style={`--project-accent:${accentMap[project.accent]};`}>
+        <span class="eyebrow">Project framing</span>
+        <div class="project-overview__stack">
+          <div class="card project-overview__block">
+            <strong>Problem</strong>
+            <p class="muted">{project.problem}</p>
+          </div>
+          <div class="card project-overview__block">
+            <strong>Outcome</strong>
+            <p class="muted">{project.outcome}</p>
+          </div>
         </div>
-        <div class="card" style="padding:1rem; margin-bottom:1rem;">
-          <strong>Outcome</strong>
-          <p class="muted" style="margin:0.55rem 0 0;">{project.outcome}</p>
-        </div>
-        <div class="project-tags" style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1rem;">
+        <div class="project-overview__tags">
           {project.tags.map((tag) => (
             <span class="tag">{tag}</span>
           ))}
@@ -46,18 +54,23 @@ const { project } = Astro.props;
 
     <div class="spacer-2"></div>
 
-    <div class="grid-2">
+    <div class="grid-2 project-detail-grid">
       <div class="panel panel-pad-lg">
-        <span class="eyebrow">How it was approached</span>
-        <ul class="list-clean" style="display:grid; gap:0.9rem;">
-          {project.approach.map((item) => (
-            <li class="card" style="padding:1rem; color:var(--muted); line-height:1.8;">{item}</li>
+        <span class="eyebrow">Approach</span>
+        <h2 class="project-detail-title">How the work was approached</h2>
+        <ul class="list-clean project-step-list">
+          {project.approach.map((item, index) => (
+            <li class="card project-step-list__item">
+              <span class="project-step-list__index">0{index + 1}</span>
+              <span>{item}</span>
+            </li>
           ))}
         </ul>
       </div>
       <div class="panel panel-pad-lg">
-        <span class="eyebrow">Links</span>
-        <div style="display:grid; gap:0.9rem;">
+        <span class="eyebrow">Actions</span>
+        <h2 class="project-detail-title">Open the supporting files</h2>
+        <div class="project-link-grid">
           {project.links.map((item) => (
             <a href={item.href} target="_blank" rel="noreferrer" class="btn-ghost">{item.label}</a>
           ))}
@@ -67,3 +80,61 @@ const { project } = Astro.props;
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .project-page__back { margin-bottom: 1rem; }
+  .project-hero-grid__image {
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .project-overview__stack {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 0.55rem;
+  }
+  .project-overview__block { padding: 1rem; }
+  .project-overview__block p { margin: 0.65rem 0 0; }
+  .project-overview__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+  .project-detail-title {
+    margin: 0 0 1rem;
+    font-size: 1.55rem;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+  }
+  .project-step-list {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .project-step-list__item {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1rem;
+    align-items: start;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .project-step-list__index {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    border: 1px solid rgba(56,189,248,0.18);
+    background: rgba(56,189,248,0.08);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+  }
+  .project-link-grid {
+    display: grid;
+    gap: 0.9rem;
+  }
+</style>

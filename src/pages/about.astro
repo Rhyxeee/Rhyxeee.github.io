@@ -8,27 +8,30 @@ import { site, experienceRows, achievements } from '../data/site';
   <section class="container page-shell">
     <div class="page-header">
       <span class="eyebrow">About</span>
-      <h1 class="section-title">A better page for story, process, and experience instead of burying everything beneath the hero.</h1>
-      <p class="lead">This page is where your background, strengths, and work style live. It gives users the context they need without forcing them to scroll through unrelated sections first.</p>
+      <h1 class="section-title">A better place to understand how I work, what I optimize for, and why the outputs stay usable.</h1>
+      <p class="lead">This page is where the operating style sits: structured logic, cleaner systems, clearer review paths, and work built to survive handoff instead of collapsing after one use.</p>
     </div>
 
-    <div class="grid-2">
+    <div class="grid-2 about-top-grid">
       <div class="panel panel-pad-lg">
-        <h2 style="margin:0 0 1rem; font-size:1.65rem;">How I work</h2>
-        <p class="muted">I focus on structured logic, documentation, cleaner systems, and outputs people can actually use. The goal is not just analysis. The goal is work that survives handoff, review, and real decision making.</p>
+        <h2 class="about-subtitle">How I work</h2>
+        <p class="muted">I focus on building clean data workflows that hold up under review, handoff, and real decision-making pressure. The point is not just analysis. The point is reliability.</p>
         <div class="spacer-1"></div>
-        <ul class="list-clean" style="display:grid; gap:0.9rem;">
-          <li class="card" style="padding:1rem;">Accuracy first</li>
-          <li class="card" style="padding:1rem;">Repeatable workflow design</li>
-          <li class="card" style="padding:1rem;">Clear documentation and reviewability</li>
-          <li class="card" style="padding:1rem;">Business-ready reporting outputs</li>
+        <ul class="list-clean about-principles">
+          <li class="card">Accuracy first</li>
+          <li class="card">Repeatable workflow design</li>
+          <li class="card">Clear documentation and reviewability</li>
+          <li class="card">Business-ready reporting outputs</li>
         </ul>
       </div>
       <div class="panel panel-pad-lg">
-        <h2 style="margin:0 0 1rem; font-size:1.65rem;">Selected strengths</h2>
-        <ul class="list-clean" style="display:grid; gap:0.9rem;">
-          {achievements.slice(0, 3).map((item) => (
-            <li class="card" style="padding:1rem; color:var(--muted); line-height:1.75;">{item}</li>
+        <h2 class="about-subtitle">Selected strengths</h2>
+        <ul class="list-clean about-strengths">
+          {achievements.slice(0, 3).map((item, index) => (
+            <li class="card about-strengths__item">
+              <span class="about-strengths__index">0{index + 1}</span>
+              <span>{item}</span>
+            </li>
           ))}
         </ul>
       </div>
@@ -37,33 +40,33 @@ import { site, experienceRows, achievements } from '../data/site';
 
   <TechStackMarquee />
 
-  <section class="container page-shell" style="padding-top:1rem;">
+  <section class="container page-shell" style="padding-top:1.25rem;">
     <div class="page-header">
       <span class="eyebrow">Experience</span>
-      <h2 class="section-title">Work that depends on clean records and reliable outputs.</h2>
-      <p class="lead">Your experience belongs on its own destination page instead of fighting for space on the home page.</p>
+      <h2 class="section-title">Work that depends on clean records, reliable process, and outputs people can actually use.</h2>
+      <p class="lead">The experience section should not fight for space under the hero. It should stand on its own as proof of operating discipline and practical delivery.</p>
     </div>
 
-    <div style="display:grid; gap:1.2rem;">
+    <div class="experience-stack">
       {experienceRows.map((item) => (
-        <article class="panel panel-pad-lg">
-          <div class="grid-2" style="grid-template-columns:0.72fr 1fr;">
+        <article class="panel panel-pad-lg experience-entry">
+          <div class="grid-2 experience-entry__grid" style="grid-template-columns:0.72fr 1fr;">
             <div>
-              <span class="eyebrow" style="margin-bottom:0.8rem;">Role</span>
-              <h3 style="margin:0; font-size:1.7rem; letter-spacing:-0.03em;">{item.role}</h3>
-              <div class="accent-blue" style="margin-top:0.7rem;">{item.company}</div>
-              <div class="muted" style="margin-top:0.35rem;">{item.meta}</div>
+              <span class="eyebrow experience-entry__eyebrow">Role</span>
+              <h3 class="experience-entry__title">{item.role}</h3>
+              <div class="accent-blue experience-entry__company">{item.company}</div>
+              <div class="muted experience-entry__meta">{item.meta}</div>
               <div class="spacer-1"></div>
               <a href={item.link.href} target="_blank" rel="noreferrer" class="btn-ghost">{item.link.label}</a>
             </div>
             <div>
-              <p class="muted" style="margin-top:0;">{item.summary}</p>
-              <ul class="list-clean" style="display:grid; gap:0.75rem; margin-top:1rem;">
+              <p class="muted experience-entry__summary">{item.summary}</p>
+              <ul class="list-clean experience-entry__bullets">
                 {item.bullets.map((bullet) => (
-                  <li class="card" style="padding:0.95rem 1rem; color:var(--muted); line-height:1.75;">{bullet}</li>
+                  <li class="card">{bullet}</li>
                 ))}
               </ul>
-              <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1rem;">
+              <div class="experience-entry__tags">
                 {item.stack.map((tech) => (
                   <span class="tag">{tech}</span>
                 ))}
@@ -75,3 +78,70 @@ import { site, experienceRows, achievements } from '../data/site';
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .about-top-grid { align-items: stretch; }
+  .about-subtitle {
+    margin: 0 0 1rem;
+    font-size: 1.65rem;
+    letter-spacing: -0.03em;
+  }
+  .about-principles,
+  .about-strengths {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .about-principles li {
+    padding: 1rem;
+  }
+  .about-strengths__item {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0.95rem;
+    align-items: start;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .about-strengths__index {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    border: 1px solid rgba(56,189,248,0.18);
+    background: rgba(56,189,248,0.08);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+  }
+  .experience-stack { display: grid; gap: 1.25rem; }
+  .experience-entry__eyebrow { margin-bottom: 0.85rem; }
+  .experience-entry__title {
+    margin: 0;
+    font-size: clamp(1.8rem, 2.8vw, 2.3rem);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+  .experience-entry__company { margin-top: 0.72rem; }
+  .experience-entry__meta { margin-top: 0.35rem; }
+  .experience-entry__summary { margin-top: 0; }
+  .experience-entry__bullets {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  .experience-entry__bullets li {
+    padding: 0.95rem 1rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .experience-entry__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+</style>

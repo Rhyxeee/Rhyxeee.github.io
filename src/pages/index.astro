@@ -15,44 +15,45 @@ const featuredProof = proofCards.slice(0, 3);
   <HeroHome />
   <TechStackMarquee />
 
-  <section class="container page-shell" style="padding-top:1rem;">
-    <div class="page-header">
+  <section class="container page-shell home-section home-projects">
+    <div class="page-header page-header--tight">
       <span class="eyebrow">Featured projects</span>
       <h2 class="section-title">Projects built on clean data, clear systems, and practical reporting.</h2>
-      <p class="lead">The home page only previews the best pieces. The full project library lives on its own page so people do not have to fight through one long scroll.</p>
+      <p class="lead">These are the strongest public-facing pieces. The full project library lives on its own page so recruiters and clients can go straight to the work.</p>
     </div>
     <div class="grid-3">
       {featuredProjects.map((project) => (
         <ProjectCard {...project} href={`/projects/${project.slug}`} links={project.links} />
       ))}
     </div>
-    <div class="spacer-2"></div>
-    <a class="btn-ghost" href="/projects">Open all projects</a>
+    <div class="section-actions">
+      <a class="btn-ghost" href="/projects">Open all projects</a>
+    </div>
   </section>
 
-  <section class="container page-shell" style="padding-top:2rem;">
-    <div class="grid-2">
+  <section class="container page-shell home-section home-routing">
+    <div class="grid-2 home-routing-grid">
       <div>
-        <div class="page-header">
-          <span class="eyebrow">Why this structure</span>
-          <h2 class="section-title">A home page for impact, not for endless scrolling.</h2>
-          <p class="lead">This redesign moves the site closer to a cleaner analytics app. Home gives the overview. Other pages handle their own job properly.</p>
+        <div class="page-header page-header--tight">
+          <span class="eyebrow">Explore faster</span>
+          <h2 class="section-title">The homepage should sell the value. The deeper pages should handle the detail.</h2>
+          <p class="lead">This layout keeps the first impression focused, then routes people to the exact page they care about next.</p>
         </div>
-        <div class="grid-3" style="grid-template-columns:1fr;">
-          <QuickPreviewCard title="About" body="Your strengths, work style, experience, and process live on a dedicated page instead of getting buried below the fold." href="/about" accent="blue" />
-          <QuickPreviewCard title="Proof" body="Achievements, capabilities, and trust-building signals are grouped together so credibility is easier to scan." href="/proof" accent="amber" />
-          <QuickPreviewCard title="Contact" body="A shorter, cleaner page for email, links, resume access, and action-focused next steps." href="/contact" accent="green" />
+        <div class="grid-3 routing-cards">
+          <QuickPreviewCard title="About" body="See how I work, what I optimize for, and where my operating style creates cleaner outcomes." href="/about" accent="blue" />
+          <QuickPreviewCard title="Proof" body="Open the credibility layer: achievements, current focus, and the trust signals behind the work." href="/proof" accent="amber" />
+          <QuickPreviewCard title="Contact" body="Go straight to the next step without digging through extra sections or filler content." href="/contact" accent="green" />
         </div>
       </div>
-      <div class="panel panel-pad-lg">
+      <div class="panel panel-pad-lg proof-preview">
         <span class="eyebrow">Selected proof</span>
-        <h3 style="margin:0 0 1rem; font-size:1.8rem; letter-spacing:-0.03em;">A cleaner way to show credibility.</h3>
-        <div class="grid-3" style="grid-template-columns:1fr; gap:0.9rem;">
+        <h3 class="proof-preview__title">A cleaner way to show credibility.</h3>
+        <div class="proof-preview__grid">
           {featuredProof.map((item) => (
-            <div class="card" style="padding:1rem;">
+            <div class="card proof-preview__card">
               <strong>{item.title}</strong>
-              <div class={`accent-${item.accent}`} style="margin-top:0.3rem; font-size:0.92rem;">{item.meta}</div>
-              <p class="muted" style="margin:0.65rem 0 0;">{item.body}</p>
+              <div class={`accent-${item.accent} proof-preview__meta`}>{item.meta}</div>
+              <p class="muted proof-preview__body">{item.body}</p>
             </div>
           ))}
         </div>
@@ -60,28 +61,93 @@ const featuredProof = proofCards.slice(0, 3);
     </div>
   </section>
 
-  <section class="container page-shell" style="padding-top:1rem;">
-    <div class="grid-2">
-      <div class="panel panel-pad-lg">
+  <section class="container page-shell home-section home-lower">
+    <div class="grid-2 home-lower-grid">
+      <div class="panel panel-pad-lg experience-preview">
         <span class="eyebrow">Current work</span>
-        <h3 style="margin:0 0 1rem; font-size:1.8rem; letter-spacing:-0.03em;">Experience preview</h3>
-        <div class="card" style="padding:1rem;">
+        <h3 class="experience-preview__title">Experience preview</h3>
+        <div class="card experience-preview__card">
           <strong>{experienceRows[0].role}</strong>
-          <div class="muted" style="margin-top:0.4rem;">{experienceRows[0].company} · {experienceRows[0].meta}</div>
-          <p class="muted" style="margin:0.85rem 0 0;">{experienceRows[0].summary}</p>
+          <div class="muted experience-preview__meta">{experienceRows[0].company} · {experienceRows[0].meta}</div>
+          <p class="muted experience-preview__body">{experienceRows[0].summary}</p>
         </div>
-        <div class="spacer-1"></div>
-        <a href="/about" class="btn-ghost">Open about and experience</a>
+        <div class="experience-preview__action">
+          <a href="/about" class="btn-ghost">Open about and experience</a>
+        </div>
       </div>
-      <div class="panel panel-pad-lg">
+      <div class="panel panel-pad-lg highlights-panel">
         <span class="eyebrow">Highlights</span>
-        <h3 style="margin:0 0 1rem; font-size:1.8rem; letter-spacing:-0.03em;">Four quick proof points</h3>
-        <ul class="list-clean" style="display:grid; gap:0.9rem;">
-          {achievements.map((item) => (
-            <li class="card" style="padding:1rem; color:var(--muted); line-height:1.8;">{item}</li>
+        <h3 class="highlights-panel__title">Four quick proof points</h3>
+        <ul class="list-clean highlights-panel__list">
+          {achievements.map((item, index) => (
+            <li class="card highlights-panel__item">
+              <span class="highlights-panel__index">0{index + 1}</span>
+              <span>{item}</span>
+            </li>
           ))}
         </ul>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .home-section { padding-top: 2.4rem; }
+  .page-header--tight { margin-bottom: 1.8rem; }
+  .section-actions { margin-top: 1.65rem; }
+  .home-routing-grid,
+  .home-lower-grid { align-items: stretch; }
+  .routing-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .proof-preview__title,
+  .experience-preview__title,
+  .highlights-panel__title {
+    margin: 0 0 1rem;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+  .proof-preview__grid {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .proof-preview__card { padding: 1rem; }
+  .proof-preview__meta {
+    margin-top: 0.32rem;
+    font-size: 0.92rem;
+  }
+  .proof-preview__body { margin: 0.7rem 0 0; }
+  .experience-preview__card { padding: 1.2rem; }
+  .experience-preview__meta { margin-top: 0.45rem; }
+  .experience-preview__body { margin: 0.9rem 0 0; line-height: 1.85; }
+  .experience-preview__action { margin-top: 1.15rem; }
+  .highlights-panel__list {
+    display: grid;
+    gap: 0.85rem;
+  }
+  .highlights-panel__item {
+    padding: 1rem 1rem 1rem 0.95rem;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0.95rem;
+    align-items: start;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .highlights-panel__index {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    border: 1px solid rgba(56,189,248,0.18);
+    background: rgba(56,189,248,0.08);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+  }
+</style>

@@ -8,44 +8,96 @@ import { site, proofCards, achievements, stats } from '../data/site';
     <div class="page-header">
       <span class="eyebrow">Proof</span>
       <h1 class="section-title">A cleaner place for achievements, capabilities, and the signals that build trust.</h1>
-      <p class="lead">This page replaces the old “everything in one scroll” approach with grouped credibility. It reads faster and feels more intentional.</p>
+      <p class="lead">This page works like a credibility dashboard: quick metrics first, stronger evidence next, then the capability focus behind the work.</p>
     </div>
 
-    <div class="grid-4">
+    <div class="grid-4 proof-metric-grid">
       {stats.map((item) => (
-        <div class="panel panel-pad">
-          <div class={`accent-${item.accent}`} style="font-size:2rem; font-weight:700; letter-spacing:-0.04em;">{item.value}</div>
-          <div class="muted" style="margin-top:0.35rem;">{item.label}</div>
+        <div class={`panel panel-pad proof-metric proof-metric--${item.accent}`}>
+          <div class={`accent-${item.accent} proof-metric__value`}>{item.value}</div>
+          <div class="muted proof-metric__label">{item.label}</div>
         </div>
       ))}
     </div>
 
     <div class="spacer-2"></div>
 
-    <div class="grid-2">
+    <div class="grid-2 proof-grid">
       <div class="panel panel-pad-lg">
         <span class="eyebrow">Selected achievements</span>
-        <ul class="list-clean" style="display:grid; gap:0.95rem;">
+        <h2 class="proof-subtitle">Evidence that the work translates into usable results.</h2>
+        <ul class="list-clean proof-list">
           {achievements.map((item, index) => (
-            <li class="card" style="padding:1rem; display:grid; grid-template-columns:44px 1fr; gap:1rem; align-items:start;">
-              <span class="pill" style="border-color:rgba(56,189,248,0.25); color:var(--blue); background:rgba(56,189,248,0.08);">0{index + 1}</span>
-              <span class="muted">{item}</span>
+            <li class="card proof-list__item">
+              <span class="proof-list__index">0{index + 1}</span>
+              <span>{item}</span>
             </li>
           ))}
         </ul>
       </div>
       <div class="panel panel-pad-lg">
         <span class="eyebrow">Capability focus</span>
-        <div class="grid-3" style="grid-template-columns:1fr; gap:0.9rem;">
+        <h2 class="proof-subtitle">The operating strengths behind the portfolio.</h2>
+        <div class="proof-capability-grid">
           {proofCards.map((item) => (
-            <div class="card" style="padding:1rem;">
+            <div class="card proof-capability-card">
               <strong>{item.title}</strong>
-              <div class={`accent-${item.accent}`} style="margin-top:0.3rem; font-size:0.92rem;">{item.meta}</div>
-              <p class="muted" style="margin:0.75rem 0 0;">{item.body}</p>
+              <div class={`accent-${item.accent} proof-capability-card__meta`}>{item.meta}</div>
+              <p class="muted proof-capability-card__body">{item.body}</p>
             </div>
           ))}
         </div>
       </div>
     </div>
   </section>
-</BaseLayout>
+
+<style>
+  .proof-metric-grid,
+  .proof-grid { align-items: stretch; }
+  .proof-metric__value {
+    font-size: 2.15rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+  .proof-metric__label { margin-top: 0.4rem; }
+  .proof-subtitle {
+    margin: 0 0 1rem;
+    font-size: 1.55rem;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+  .proof-list,
+  .proof-capability-grid {
+    display: grid;
+    gap: 0.95rem;
+  }
+  .proof-list__item {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1rem;
+    align-items: start;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .proof-list__index {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    border: 1px solid rgba(56,189,248,0.18);
+    background: rgba(56,189,248,0.08);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+  }
+  .proof-capability-card { padding: 1rem; }
+  .proof-capability-card__meta {
+    margin-top: 0.32rem;
+    font-size: 0.92rem;
+  }
+  .proof-capability-card__body { margin: 0.72rem 0 0; }
+</style>
