@@ -32,6 +32,7 @@ a { color: inherit; }
 img { max-width: 100%; display: block; }
 button, input, textarea { font: inherit; }
 main { min-height: calc(100svh - 180px); }
+[data-route-shell] { will-change: opacity, transform; }
 
 .container {
   width: min(var(--max), calc(100% - 2rem));
@@ -39,7 +40,7 @@ main { min-height: calc(100svh - 180px); }
 }
 
 .page-shell {
-  padding: 7.2rem 0 4.6rem;
+  padding: 7rem 0 4rem;
 }
 
 .eyebrow {
@@ -62,16 +63,16 @@ main { min-height: calc(100svh - 180px); }
 
 .display-title {
   margin: 0;
-  font-size: clamp(2.3rem, 5vw, 4.6rem);
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
   line-height: 1.02;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.05em;
 }
 
 .section-title {
   margin: 0 0 1rem;
-  font-size: clamp(2.1rem, 4vw, 3.45rem);
+  font-size: clamp(2rem, 4vw, 3.3rem);
   line-height: 1.08;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.04em;
 }
 
 .section-copy,
@@ -82,7 +83,7 @@ main { min-height: calc(100svh - 180px); }
 }
 
 .lead {
-  font-size: 1.06rem;
+  font-size: 1.05rem;
   max-width: 760px;
 }
 
@@ -162,7 +163,7 @@ main { min-height: calc(100svh - 180px); }
 .btn-cta:hover { transform: translateY(-2px); border-color: rgba(56, 189, 248, 0.36); }
 
 .page-header {
-  margin-bottom: 2.35rem;
+  margin-bottom: 2.25rem;
 }
 
 .list-clean { list-style: none; margin: 0; padding: 0; }
@@ -189,6 +190,7 @@ main { min-height: calc(100svh - 180px); }
 
 @media (max-width: 720px) {
   .page-shell { padding: 6rem 0 3rem; }
+  .lead { font-size: 1rem; }
   .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .panel-pad, .panel-pad-lg { padding: 1.2rem; }
   .container { width: min(var(--max), calc(100% - 1rem)); }

@@ -7,97 +7,97 @@ import { site, proofCards, achievements, stats } from '../data/site';
   <section class="container page-shell">
     <div class="page-header">
       <span class="eyebrow">Proof</span>
-      <h1 class="section-title">A cleaner place for achievements, capabilities, and the signals that build trust.</h1>
-      <p class="lead">This page works like a credibility dashboard: quick metrics first, stronger evidence next, then the capability focus behind the work.</p>
+      <h1 class="section-title">Credibility signals that support the work behind the portfolio.</h1>
+      <p class="lead">This page groups the strongest metrics, outcomes, and capability markers so recruiters and clients can judge the work faster.</p>
     </div>
 
-    <div class="grid-4 proof-metric-grid">
+    <div class="grid-4 proof-metrics">
       {stats.map((item) => (
-        <div class={`panel panel-pad proof-metric proof-metric--${item.accent}`}>
-          <div class={`accent-${item.accent} proof-metric__value`}>{item.value}</div>
-          <div class="muted proof-metric__label">{item.label}</div>
+        <div class={`panel panel-pad metric metric-${item.accent}`}>
+          <div class={`accent-${item.accent} metric-value`}>{item.value}</div>
+          <div class="muted metric-label">{item.label}</div>
         </div>
       ))}
     </div>
 
     <div class="spacer-2"></div>
 
-    <div class="grid-2 proof-grid">
+    <div class="grid-2 proof-layout">
       <div class="panel panel-pad-lg">
-        <span class="eyebrow">Selected achievements</span>
-        <h2 class="proof-subtitle">Evidence that the work translates into usable results.</h2>
-        <ul class="list-clean proof-list">
+        <span class="eyebrow">Selected outcomes</span>
+        <h2 class="proof-title">Recent results worth verifying.</h2>
+        <ul class="list-clean proof-outcomes">
           {achievements.map((item, index) => (
-            <li class="card proof-list__item">
-              <span class="proof-list__index">0{index + 1}</span>
-              <span>{item}</span>
+            <li class="card proof-outcome-item">
+              <span class="proof-index">0{index + 1}</span>
+              <span class="muted">{item}</span>
             </li>
           ))}
         </ul>
       </div>
       <div class="panel panel-pad-lg">
-        <span class="eyebrow">Capability focus</span>
-        <h2 class="proof-subtitle">The operating strengths behind the portfolio.</h2>
-        <div class="proof-capability-grid">
+        <span class="eyebrow">Capability markers</span>
+        <h2 class="proof-title">What the portfolio is signaling.</h2>
+        <div class="proof-card-stack">
           {proofCards.map((item) => (
-            <div class="card proof-capability-card">
+            <div class={`card capability capability-${item.accent}`}>
               <strong>{item.title}</strong>
-              <div class={`accent-${item.accent} proof-capability-card__meta`}>{item.meta}</div>
-              <p class="muted proof-capability-card__body">{item.body}</p>
+              <div class={`accent-${item.accent} capability-meta`}>{item.meta}</div>
+              <p class="muted">{item.body}</p>
             </div>
           ))}
         </div>
       </div>
     </div>
   </section>
+</BaseLayout>
 
 <style>
-  .proof-metric-grid,
-  .proof-grid { align-items: stretch; }
-  .proof-metric__value {
-    font-size: 2.15rem;
+  .metric { border-top: 3px solid transparent; }
+  .metric-blue { border-top-color: rgba(56,189,248,0.8); }
+  .metric-amber { border-top-color: rgba(245,158,11,0.78); }
+  .metric-green { border-top-color: rgba(34,197,94,0.8); }
+  .metric-purple { border-top-color: rgba(168,85,247,0.82); }
+  .metric-value {
+    font-size: clamp(1.8rem, 2.8vw, 2.4rem);
     font-weight: 700;
     letter-spacing: -0.04em;
   }
-  .proof-metric__label { margin-top: 0.4rem; }
-  .proof-subtitle {
+  .metric-label { margin-top: 0.35rem; }
+  .proof-title {
     margin: 0 0 1rem;
-    font-size: 1.55rem;
-    line-height: 1.15;
+    font-size: clamp(1.6rem, 2.2vw, 2rem);
     letter-spacing: -0.03em;
   }
-  .proof-list,
-  .proof-capability-grid {
-    display: grid;
-    gap: 0.95rem;
-  }
-  .proof-list__item {
+  .proof-outcomes, .proof-card-stack { display: grid; gap: 0.95rem; }
+  .proof-outcome-item {
     padding: 1rem;
     display: grid;
-    grid-template-columns: 48px 1fr;
+    grid-template-columns: 44px 1fr;
     gap: 1rem;
     align-items: start;
-    color: var(--muted);
-    line-height: 1.8;
   }
-  .proof-list__index {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
+  .proof-index {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: rgba(56,189,248,0.09);
+    border: 1px solid rgba(56,189,248,0.22);
     color: var(--blue);
-    border: 1px solid rgba(56,189,248,0.18);
-    background: rgba(56,189,248,0.08);
-    font-size: 0.88rem;
+    font-size: 0.84rem;
     font-weight: 700;
-    letter-spacing: 0.07em;
   }
-  .proof-capability-card { padding: 1rem; }
-  .proof-capability-card__meta {
-    margin-top: 0.32rem;
-    font-size: 0.92rem;
+  .capability {
+    padding: 1rem;
+    border-left: 3px solid transparent;
   }
-  .proof-capability-card__body { margin: 0.72rem 0 0; }
+  .capability-blue { border-left-color: rgba(56,189,248,0.8); }
+  .capability-amber { border-left-color: rgba(245,158,11,0.78); }
+  .capability-green { border-left-color: rgba(34,197,94,0.8); }
+  .capability-purple { border-left-color: rgba(168,85,247,0.82); }
+  .capability-meta { margin-top: 0.35rem; font-size: 0.92rem; }
+  .capability p { margin: 0.75rem 0 0; }
 </style>

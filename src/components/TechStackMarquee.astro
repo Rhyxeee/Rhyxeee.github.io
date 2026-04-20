@@ -2,42 +2,47 @@
 import { marqueeRows } from '../data/site';
 const directions = ['normal', 'reverse', 'normal'];
 
-const iconMap: Record<string, string> = {
-  'Power BI': 'chart',
-  'Excel': 'sheet',
-  'Google Sheets': 'sheet',
-  'SQL': 'database',
-  'Python': 'code',
-  'Data Cleaning': 'sparkles',
-  'Reporting': 'report',
-  'Audit Workflow': 'shield',
-  'Dashboards': 'panel',
-  'KPI Design': 'target',
-  'JSON Parsing': 'braces',
-  'ETL': 'arrows',
-  'Documentation': 'file',
-  'Automation': 'zap',
-  'QA': 'check',
-  'Business Analysis': 'briefcase',
-  'Window Functions': 'sliders',
-  'Forecasting': 'trend',
-  'Data Validation': 'check',
-  'Process Design': 'workflow',
-  'Operational Accuracy': 'shield',
-  'Skip Tracing': 'search',
-  'Structured Systems': 'layers',
-  'Decision Support': 'compass'
+const iconMap = {
+  'Power BI': { accent: 'amber', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18.5h2.5V9.75H5V18.5Zm5.75 0h2.5V5.5h-2.5v13Zm5.75 0H19V12h-2.5v6.5Z" fill="currentColor"/></svg>` },
+  'Excel': { accent: 'green', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3H7a2 2 0 0 0-2 2v14.01A1.99 1.99 0 0 0 7 21h10a2 2 0 0 0 2-1.99V9l-6-6Zm1 2.5L17.5 9H14V5.5ZM8.5 12.2h1.76l1.02 1.79 1.03-1.8h1.69l-1.88 2.94 1.98 3.07h-1.76l-1.1-1.88-1.08 1.88H8.39l1.97-3.02-1.86-2.98Z" fill="currentColor"/></svg>` },
+  'Google Sheets': { accent: 'green', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7l-4-4Zm0 1.75L16.25 7H14V4.75ZM9 11h6v1.5H9V11Zm0 3h6v1.5H9V14Zm0 3h4.5v1.5H9V17Z" fill="currentColor"/></svg>` },
+  'SQL': { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4C8.13 4 5 5.34 5 7v10c0 1.66 3.13 3 7 3s7-1.34 7-3V7c0-1.66-3.13-3-7-3Zm0 1.5c3.46 0 5.5 1.02 5.5 1.5s-2.04 1.5-5.5 1.5S6.5 7.48 6.5 7s2.04-1.5 5.5-1.5Zm0 5c2.25 0 4.23-.34 5.5-.92V12c0 .48-2.04 1.5-5.5 1.5S6.5 12.48 6.5 12V9.58c1.27.58 3.25.92 5.5.92Zm0 5c2.25 0 4.23-.34 5.5-.92V17c0 .48-2.04 1.5-5.5 1.5S6.5 17.48 6.5 17v-2.42c1.27.58 3.25.92 5.5.92Z" fill="currentColor"/></svg>` },
+  'Python': { accent: 'amber', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.1 3c-4 0-3.74 1.73-3.74 1.73l.01 1.8h3.8v.54H7.87S4 6.62 4 12c0 5.38 3.38 5.19 3.38 5.19H9.4v-2.91s-.1-3.38 3.34-3.38h5.74S22 11.18 22 7.9 20.06 3 16.6 3h-4.5Zm-2.1 1.3a.96.96 0 1 1 0 1.93.96.96 0 0 1 0-1.93Zm4 16.7c4 0 3.74-1.73 3.74-1.73l-.01-1.8h-3.8v-.54h4.3S20 17.38 20 12c0-5.38-3.38-5.19-3.38-5.19H14.6v2.91s.1 3.38-3.34 3.38H5.52S2 12.82 2 16.1 3.94 21 7.4 21h6.6Zm.96-1.3a.96.96 0 1 1 0-1.93.96.96 0 0 1 0 1.93Z" fill="currentColor"/></svg>` },
+  'Dashboards': { accent: 'amber', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h7v5H4v-5Zm9 0h7v8h-7v-8ZM4 12.5h7V19H4v-6.5Zm9 3h7V19h-7v-3.5Z" fill="currentColor"/></svg>` },
+  'Documentation': { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h6l4 4v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm5 1.75V8h3.25L13 4.75ZM9 11h6v1.5H9V11Zm0 3h6v1.5H9V14Zm0 3h4v1.5H9V17Z" fill="currentColor"/></svg>` },
+  'Automation': { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13.3 3.1 1.8.63.36 2.08c.34.13.66.31.96.51l1.97-.77 1.28 1.28-.77 1.97c.2.3.38.62.51.96l2.08.36.63 1.8-1.7 1.18v1.2l1.7 1.18-.63 1.8-2.08.36c-.13.34-.31.66-.51.96l.77 1.97-1.28 1.28-1.97-.77c-.3.2-.62.38-.96.51l-.36 2.08-1.8.63-1.18-1.7h-1.2L10.92 22l-1.8-.63-.36-2.08a6.97 6.97 0 0 1-.96-.51l-1.97.77-1.28-1.28.77-1.97a6.97 6.97 0 0 1-.51-.96l-2.08-.36-.63-1.8L3.8 12V10.8L2.1 9.62l.63-1.8 2.08-.36c.13-.34.31-.66.51-.96l-.77-1.97 1.28-1.28 1.97.77c.3-.2.62-.38.96-.51l.36-2.08 1.8-.63L12.1 4.8h1.2l1.18-1.7ZM12 8.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z" fill="currentColor"/></svg>` },
+  'Reporting': { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h9l3 3v13H6a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2Zm0 14h10.5v-9H13V5.5H6V18Zm2-7h6v1.5H8V11Zm0 3h6v1.5H8V14Z" fill="currentColor"/></svg>` },
+  'Data Cleaning': { accent: 'purple', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4V5Zm2 4h12v2H6V9Zm3 4h6v2H9v-2Zm-2 4h10v2H7v-2Z" fill="currentColor"/></svg>` },
+  'QA': { accent: 'green', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10.2 16.4-3.6-3.6 1.06-1.06 2.54 2.54 6.14-6.14 1.06 1.06-7.2 7.2ZM12 2l7.5 3v6.4c0 4.6-3.2 8.86-7.5 10.1-4.3-1.24-7.5-5.5-7.5-10.1V5L12 2Z" fill="currentColor"/></svg>` },
+  'JSON Parsing': { accent: 'purple', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.1 5.5c-1.4 0-2.1.7-2.1 2.07v1.28c0 .92-.34 1.52-1.02 1.8.68.29 1.02.89 1.02 1.81v1.28c0 1.38.7 2.07 2.1 2.07h1.4v1.5H8.1c-2.36 0-3.6-1.23-3.6-3.57v-1.05c0-.95-.39-1.42-1.2-1.42v-1.25c.81 0 1.2-.47 1.2-1.42V7.57C4.5 5.23 5.74 4 8.1 4h1.4v1.5H8.1Zm7.8 0H14.5V4h1.4c2.36 0 3.6 1.23 3.6 3.57v1.05c0 .95.39 1.42 1.2 1.42v1.25c-.81 0-1.2.47-1.2 1.42v1.05c0 2.34-1.24 3.57-3.6 3.57h-1.4v-1.5h1.4c1.4 0 2.1-.69 2.1-2.07v-1.28c0-.92.34-1.52 1.02-1.81-.68-.28-1.02-.88-1.02-1.8V7.57c0-1.37-.7-2.07-2.1-2.07Z" fill="currentColor"/></svg>` },
+  'ETL': { accent: 'amber', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h6v4H5V6Zm8 0h6v4h-6V6ZM9 14h6v4H9v-4Zm-2.25-2.1H8.2l2.9-2.9 1.06 1.06-1.1 1.09h1.88v1.5H11.1l1.1 1.1-1.06 1.06-2.89-2.9H6.75v-1.5Zm10.5 0v1.5h-1.7l-2.89 2.9-1.06-1.06 1.1-1.1h-1.88v-1.5h1.88l-1.1-1.09 1.06-1.06 2.9 2.9h1.69Z" fill="currentColor"/></svg>` },
+  'KPI Design': { accent: 'amber', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a9 9 0 1 0 9 9h-2a7 7 0 1 1-7-7V4Zm1 1v7h7A7 7 0 0 0 13 5Zm-1.7 7.1 4.75-2.1-2.1 4.75a1.5 1.5 0 1 1-2.65-2.65Z" fill="currentColor"/></svg>` },
+  'Business Analysis': { accent: 'green', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19h14v1.5H5V19Zm1-2.5V8h2v8.5H6Zm5 0V4h2v12.5h-2Zm5 0v-6h2v6h-2Z" fill="currentColor"/></svg>` },
+  'Forecasting': { accent: 'green', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18.5h14V20H3.5V5H5v13.5Zm2.5-3.5 3.2-3.2 2.3 2.3 4.5-5 1.12 1-5.56 6.19-2.37-2.37-2.14 2.14-1.05-1.06Z" fill="currentColor"/></svg>` },
+  'Data Validation': { accent: 'green', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10.3 15.9-2.8-2.8 1.06-1.06 1.74 1.74 4.84-4.84 1.06 1.06-5.9 5.9ZM5 4h14v16H5V4Zm1.5 1.5v13h11v-13h-11Z" fill="currentColor"/></svg>` },
+  'Process Design': { accent: 'purple', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4A2.5 2.5 0 1 1 4 6.5 2.5 2.5 0 0 1 6.5 4Zm11 0A2.5 2.5 0 1 1 15 6.5 2.5 2.5 0 0 1 17.5 4Zm-11 11A2.5 2.5 0 1 1 4 17.5 2.5 2.5 0 0 1 6.5 15Zm11 0A2.5 2.5 0 1 1 15 17.5 2.5 2.5 0 0 1 17.5 15ZM9 6h6v1.5H9V6Zm-1 2.5h1.5V15H8V8.5Zm7.5 0H17V15h-1.5V8.5ZM9 16.75h6v1.5H9v-1.5Z" fill="currentColor"/></svg>` },
+  'Operational Accuracy': { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4.5 5v6.4c0 4.6 3.2 8.86 7.5 10.1 4.3-1.24 7.5-5.5 7.5-10.1V5L12 2Zm0 1.62 6 2.4v5.38c0 3.82-2.57 7.42-6 8.55-3.43-1.13-6-4.73-6-8.55V6.02l6-2.4Zm-1.1 11.92-2.54-2.54-1.06 1.06 3.6 3.6 6.3-6.3-1.06-1.06-5.24 5.24Z" fill="currentColor"/></svg>` },
+  'Skip Tracing': { accent: 'purple', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 4a6.5 6.5 0 1 0 4.17 11.48l4.43 4.43 1.06-1.06-4.43-4.43A6.5 6.5 0 0 0 10.5 4Zm0 1.5A5 5 0 1 1 5.5 10.5a5 5 0 0 1 5-5Zm-.75 2.5h1.5v3.19l2.1 1.21-.75 1.3-2.85-1.65V8Z" fill="currentColor"/></svg>` },
+  'Structured Systems': { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4ZM4 13h7v7H4v-7Zm9 3h7v1.5h-7V16Zm0-3h7v1.5h-7V13Zm0 6h7V20h-7v-1.5Z" fill="currentColor"/></svg>` },
+  'Decision Support': { accent: 'green', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-9 9c0 3.13 1.6 5.7 4 7.33V21h10v-1.67A8.98 8.98 0 0 0 21 12a9 9 0 0 0-9-9Zm0 1.5A7.5 7.5 0 0 1 19.5 12a7.45 7.45 0 0 1-3.48 6.32l-.52.34V19.5h-7v-.84l-.52-.34A7.45 7.45 0 0 1 4.5 12 7.5 7.5 0 0 1 12 4.5Zm-1.25 2.75v4.1l-1.9 1.9 1.06 1.06 2.34-2.34V7.25h-1.5Z" fill="currentColor"/></svg>` }
 };
 
-const icon = (name: string) => iconMap[name] ?? 'dot';
+const accentClasses = {
+  blue: 'is-blue',
+  amber: 'is-amber',
+  green: 'is-green',
+  purple: 'is-purple'
+};
+
+const fallback = { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>` };
 ---
 
 <section class="marquee-section">
   <div class="container">
-    <div class="page-header marquee-intro">
+    <div class="page-header toolbelt-intro">
       <span class="eyebrow">Toolbelt</span>
-      <h2 class="section-title">A cleaner interface for the stack behind the work.</h2>
-      <p class="lead">The goal is faster scanning and stronger visual memory. Each row carries the same quiet dashboard rhythm, just with better signal.</p>
+      <h2 class="section-title">Core tools and systems behind the work.</h2>
+      <p class="lead">The stack is grouped here so recruiters and clients can scan it quickly without digging through long paragraphs.</p>
     </div>
 
     <div class="marquee-shell panel panel-pad-lg">
@@ -46,35 +51,15 @@ const icon = (name: string) => iconMap[name] ?? 'dot';
         return (
           <div class:list={["marquee-row", directions[index] === 'reverse' && 'is-reverse']}>
             <div class="marquee-track">
-              {doubled.map((item) => (
-                <span class="marquee-pill">
-                  <span class="marquee-icon" data-icon={icon(item)} aria-hidden="true">
-                    {
-                      icon(item) === 'sheet' ? <svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 3v5h5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg> :
-                      icon(item) === 'database' ? <svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg> :
-                      icon(item) === 'code' ? <svg viewBox="0 0 24 24"><path d="M8 8 4 12l4 4M16 8l4 4-4 4M14 5l-4 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> :
-                      icon(item) === 'sparkles' ? <svg viewBox="0 0 24 24"><path d="m12 3 1.4 3.6L17 8l-3.6 1.4L12 13l-1.4-3.6L7 8l3.6-1.4ZM5 15l.8 2.2L8 18l-2.2.8L5 21l-.8-2.2L2 18l2.2-.8ZM18 14l1 2.5L21.5 18 19 19l-1 2.5L17 19l-2.5-1.5L17 16.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> :
-                      icon(item) === 'report' ? <svg viewBox="0 0 24 24"><path d="M7 4h10v16H7z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9h4M10 13h4M10 17h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> :
-                      icon(item) === 'shield' ? <svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 5 3.3 7.9 7 9 3.7-1.1 7-4 7-9V6z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m9.5 12 1.8 1.8L15.5 9.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> :
-                      icon(item) === 'panel' ? <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 5v14M14 12h6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg> :
-                      icon(item) === 'target' ? <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v3M22 12h-3M12 22v-3M2 12h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> :
-                      icon(item) === 'braces' ? <svg viewBox="0 0 24 24"><path d="M9 4c-2 0-3 1.5-3 3.5V10c0 1.1-.4 2-1.5 2 1.1 0 1.5.9 1.5 2v2.5C6 18.5 7 20 9 20M15 4c2 0 3 1.5 3 3.5V10c0 1.1.4 2 1.5 2-1.1 0-1.5.9-1.5 2v2.5c0 2-1 3.5-3 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> :
-                      icon(item) === 'arrows' ? <svg viewBox="0 0 24 24"><path d="M4 7h11M11 3l4 4-4 4M20 17H9M13 13l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> :
-                      icon(item) === 'file' ? <svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 3v5h5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 13h6M10 17h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> :
-                      icon(item) === 'zap' ? <svg viewBox="0 0 24 24"><path d="m13 2-8 11h6l-1 9 9-12h-6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> :
-                      icon(item) === 'check' ? <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12.5 2.3 2.3 4.9-5.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> :
-                      icon(item) === 'briefcase' ? <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3 12h18" fill="none" stroke="currentColor" stroke-width="1.8"/></svg> :
-                      icon(item) === 'sliders' ? <svg viewBox="0 0 24 24"><path d="M5 7h14M5 17h14M9 7v10M15 7v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> :
-                      icon(item) === 'trend' ? <svg viewBox="0 0 24 24"><path d="M4 16l5-5 4 4 7-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> :
-                      icon(item) === 'workflow' ? <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="6" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 6h8M6 8v8M8 18h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> :
-                      icon(item) === 'layers' ? <svg viewBox="0 0 24 24"><path d="m12 5 8 4-8 4-8-4 8-4ZM4 14l8 4 8-4M4 18l8 4 8-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> :
-                      icon(item) === 'compass' ? <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m10 10 5-2-2 5-5 2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> :
-                      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
-                    }
+              {doubled.map((item) => {
+                const icon = iconMap[item] ?? fallback;
+                return (
+                  <span class:list={["marquee-pill", accentClasses[icon.accent]]}>
+                    <span class="marquee-icon" set:html={icon.svg}></span>
+                    <span>{item}</span>
                   </span>
-                  <span>{item}</span>
-                </span>
-              ))}
+                );
+              })}
             </div>
           </div>
         );
@@ -84,61 +69,70 @@ const icon = (name: string) => iconMap[name] ?? 'dot';
 </section>
 
 <style>
-  .marquee-section { padding: 1rem 0 4.6rem; }
-  .marquee-intro { margin-bottom: 1.8rem; }
-  .marquee-shell { display: grid; gap: 1.05rem; overflow: hidden; }
-  .marquee-row {
-    overflow: hidden;
-    border-radius: 20px;
-    background: linear-gradient(180deg, rgba(5,10,21,0.68), rgba(7,12,24,0.46));
-    border: 1px solid rgba(255,255,255,0.04);
-    position: relative;
-  }
-  .marquee-row::before,
-  .marquee-row::after {
-    content: '';
+  .marquee-section { padding: 0.5rem 0 4rem; }
+  .toolbelt-intro { margin-bottom: 1.7rem; }
+  .marquee-shell { display: grid; gap: 1rem; overflow: hidden; }
+  .marquee-shell::after,
+  .marquee-shell::before {
+    content: "";
     position: absolute;
-    inset: 0 auto 0 0;
-    width: 72px;
+    top: 0;
+    bottom: 0;
+    width: 54px;
     z-index: 2;
     pointer-events: none;
-    background: linear-gradient(90deg, rgba(8, 14, 28, 0.98), transparent);
   }
-  .marquee-row::after {
-    inset: 0 0 0 auto;
-    background: linear-gradient(270deg, rgba(8, 14, 28, 0.98), transparent);
+  .marquee-shell::before {
+    left: 0;
+    background: linear-gradient(90deg, rgba(8, 13, 25, 0.96), transparent);
+  }
+  .marquee-shell::after {
+    right: 0;
+    background: linear-gradient(270deg, rgba(8, 13, 25, 0.96), transparent);
+  }
+  .marquee-row {
+    overflow: hidden;
+    border-radius: 18px;
+    background: rgba(6,10,20,0.42);
+    border: 1px solid rgba(255,255,255,0.04);
   }
   .marquee-track {
     display: flex;
     width: max-content;
-    gap: 0.85rem;
-    padding: 1.05rem 0.95rem;
-    animation: marquee-left 32s linear infinite;
+    gap: 0.8rem;
+    padding: 0.95rem 0.9rem;
+    animation: marquee-left 34s linear infinite;
   }
   .marquee-row.is-reverse .marquee-track { animation-name: marquee-right; }
   .marquee-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.74rem 1rem;
+    gap: 0.65rem;
+    padding: 0.68rem 1rem;
     border-radius: 999px;
     background: rgba(15,23,42,0.88);
-    border: 1px solid rgba(56,189,248,0.15);
-    color: rgba(226,232,240,0.92);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(226,232,240,0.9);
     font-size: 0.95rem;
     white-space: nowrap;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
   }
   .marquee-icon {
-    width: 16px;
-    height: 16px;
-    color: var(--blue);
+    width: 18px;
+    height: 18px;
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
+    color: inherit;
+    opacity: 0.95;
   }
-  .marquee-icon svg { width: 16px; height: 16px; }
+  .marquee-icon :global(svg) {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+  .marquee-pill.is-blue { color: #8bdcff; border-color: rgba(56,189,248,0.16); }
+  .marquee-pill.is-amber { color: #f8cf6b; border-color: rgba(245,158,11,0.16); }
+  .marquee-pill.is-green { color: #7ee1a0; border-color: rgba(34,197,94,0.16); }
+  .marquee-pill.is-purple { color: #c792ff; border-color: rgba(168,85,247,0.16); }
   @keyframes marquee-left {
     from { transform: translateX(0); }
     to { transform: translateX(-33.333%); }

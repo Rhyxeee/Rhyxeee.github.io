@@ -32,8 +32,8 @@ export const stats = [
 ];
 
 export const achievements = [
-  'Uncovered a 230,000x output disparity between urban and island economies, revealing a hidden V-shaped recovery trend.',
-  'Built a dashboard for a $5M+ sales dataset that surfaced discount inefficiencies and helped guide resource allocation.',
+  'Surfaced a 230,000x output disparity between urban and island economies, revealing a hidden V-shaped recovery pattern.',
+  'Built a dashboard for a $5M+ sales dataset that exposed discount inefficiencies and supported clearer resource decisions.',
   'Engineered a Python pipeline to clean 4,400+ records while preserving auditability and financial accuracy.',
   'Served as audit delegate for a ₱2M+ budget with strict reconciliation and compliance checks.'
 ];
@@ -79,8 +79,8 @@ export const experienceRows = [
 export const proofCards = [
   {
     title: 'Applied Mathematics Foundation',
-    meta: '4th year standing',
-    body: 'Built on quantitative reasoning, structured analysis, and research discipline for data-facing work.',
+    meta: 'Quantitative training',
+    body: 'Built on structured reasoning, statistical discipline, and research habits that support careful data work.',
     accent: 'blue'
   },
   {
@@ -96,9 +96,9 @@ export const proofCards = [
     accent: 'green'
   },
   {
-    title: 'Research + Systems Mindset',
-    meta: 'Thesis and workflow design',
-    body: 'Strong fit for work that needs clean methods, documented logic, and outputs people can trust.',
+    title: 'Documentation + QA Discipline',
+    meta: 'Review-friendly outputs',
+    body: 'Strong fit for work that needs clean methods, documented logic, and outputs people can verify with confidence.',
     accent: 'purple'
   }
 ];

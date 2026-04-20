@@ -15,45 +15,76 @@ const featuredProof = proofCards.slice(0, 3);
   <HeroHome />
   <TechStackMarquee />
 
-  <section class="container page-shell home-section home-projects">
-    <div class="page-header page-header--tight">
+  <section class="container page-shell" style="padding-top:1rem;">
+    <div class="page-header">
       <span class="eyebrow">Featured projects</span>
-      <h2 class="section-title">Projects built on clean data, clear systems, and practical reporting.</h2>
-      <p class="lead">These are the strongest public-facing pieces. The full project library lives on its own page so recruiters and clients can go straight to the work.</p>
+      <h2 class="section-title">Selected case studies built for cleaner data, clearer systems, and stronger reporting.</h2>
+      <p class="lead">These are the strongest portfolio pieces to open first. Each project page covers the problem, the working method, and the outcome.</p>
     </div>
     <div class="grid-3">
       {featuredProjects.map((project) => (
         <ProjectCard {...project} href={`/projects/${project.slug}`} links={project.links} />
       ))}
     </div>
-    <div class="section-actions">
-      <a class="btn-ghost" href="/projects">Open all projects</a>
+    <div class="spacer-2"></div>
+    <a class="btn-ghost" href="/projects">Open all projects</a>
+  </section>
+
+  <section class="container page-shell" style="padding-top:1.5rem;">
+    <div class="page-header cluster-head">
+      <span class="eyebrow">What clients can scan quickly</span>
+      <h2 class="section-title">The site is grouped around what people usually want first.</h2>
+      <p class="lead">Instead of burying everything in one long scroll, the home page points to the key areas that help people decide whether to keep reading.</p>
+    </div>
+
+    <div class="grid-3 cluster-grid">
+      <QuickPreviewCard
+        title="About + Experience"
+        kicker="Background"
+        body="Who I am, how I work, and the environments where I am strongest all live on a dedicated page."
+        href="/about"
+        accent="blue"
+      />
+      <QuickPreviewCard
+        title="Proof + Credibility"
+        kicker="Signals"
+        body="Results, capability markers, and trust-building evidence are grouped so people can verify the work fast."
+        href="/proof"
+        accent="amber"
+      />
+      <QuickPreviewCard
+        title="Contact + Resume"
+        kicker="Next step"
+        body="Direct ways to reach out, review my resume, and move from browsing into a real conversation."
+        href="/contact"
+        accent="green"
+      />
     </div>
   </section>
 
-  <section class="container page-shell home-section home-routing">
-    <div class="grid-2 home-routing-grid">
-      <div>
-        <div class="page-header page-header--tight">
-          <span class="eyebrow">Explore faster</span>
-          <h2 class="section-title">The homepage should sell the value. The deeper pages should handle the detail.</h2>
-          <p class="lead">This layout keeps the first impression focused, then routes people to the exact page they care about next.</p>
+  <section class="container page-shell" style="padding-top:1rem;">
+    <div class="grid-2 home-proof-grid">
+      <div class="panel panel-pad-lg home-stack-card">
+        <span class="eyebrow">Current role snapshot</span>
+        <h3 class="home-subtitle">Work built around messy records, cleaner workflows, and dependable outputs.</h3>
+        <div class="card role-snapshot">
+          <strong>{experienceRows[0].role}</strong>
+          <div class="muted role-meta">{experienceRows[0].company} · {experienceRows[0].meta}</div>
+          <p class="muted role-copy">{experienceRows[0].summary}</p>
         </div>
-        <div class="grid-3 routing-cards">
-          <QuickPreviewCard title="About" body="See how I work, what I optimize for, and where my operating style creates cleaner outcomes." href="/about" accent="blue" />
-          <QuickPreviewCard title="Proof" body="Open the credibility layer: achievements, current focus, and the trust signals behind the work." href="/proof" accent="amber" />
-          <QuickPreviewCard title="Contact" body="Go straight to the next step without digging through extra sections or filler content." href="/contact" accent="green" />
-        </div>
+        <div class="spacer-1"></div>
+        <a href="/about" class="btn-ghost">Open about and experience</a>
       </div>
-      <div class="panel panel-pad-lg proof-preview">
+
+      <div class="panel panel-pad-lg home-proof-card">
         <span class="eyebrow">Selected proof</span>
-        <h3 class="proof-preview__title">A cleaner way to show credibility.</h3>
-        <div class="proof-preview__grid">
+        <h3 class="home-subtitle">Signals that make the work easier to trust.</h3>
+        <div class="proof-stack">
           {featuredProof.map((item) => (
-            <div class="card proof-preview__card">
+            <div class={`card proof-item proof-${item.accent}`}>
               <strong>{item.title}</strong>
-              <div class={`accent-${item.accent} proof-preview__meta`}>{item.meta}</div>
-              <p class="muted proof-preview__body">{item.body}</p>
+              <div class={`accent-${item.accent} proof-meta`}>{item.meta}</div>
+              <p class="muted">{item.body}</p>
             </div>
           ))}
         </div>
@@ -61,93 +92,85 @@ const featuredProof = proofCards.slice(0, 3);
     </div>
   </section>
 
-  <section class="container page-shell home-section home-lower">
-    <div class="grid-2 home-lower-grid">
-      <div class="panel panel-pad-lg experience-preview">
-        <span class="eyebrow">Current work</span>
-        <h3 class="experience-preview__title">Experience preview</h3>
-        <div class="card experience-preview__card">
-          <strong>{experienceRows[0].role}</strong>
-          <div class="muted experience-preview__meta">{experienceRows[0].company} · {experienceRows[0].meta}</div>
-          <p class="muted experience-preview__body">{experienceRows[0].summary}</p>
-        </div>
-        <div class="experience-preview__action">
-          <a href="/about" class="btn-ghost">Open about and experience</a>
-        </div>
-      </div>
-      <div class="panel panel-pad-lg highlights-panel">
-        <span class="eyebrow">Highlights</span>
-        <h3 class="highlights-panel__title">Four quick proof points</h3>
-        <ul class="list-clean highlights-panel__list">
-          {achievements.map((item, index) => (
-            <li class="card highlights-panel__item">
-              <span class="highlights-panel__index">0{index + 1}</span>
-              <span>{item}</span>
-            </li>
+  <section class="container page-shell" style="padding-top:1rem;">
+    <div class="grid-2 lower-cluster">
+      <div class="panel panel-pad-lg">
+        <span class="eyebrow">Recent outcomes</span>
+        <h3 class="home-subtitle">Four quick proof points worth knowing.</h3>
+        <ul class="list-clean outcome-list">
+          {achievements.map((item) => (
+            <li class="card">{item}</li>
           ))}
         </ul>
+      </div>
+      <div class="panel panel-pad-lg">
+        <span class="eyebrow">What teams usually need</span>
+        <h3 class="home-subtitle">The recurring problems this portfolio is built to solve.</h3>
+        <div class="need-grid">
+          <div class="card need-card need-blue">
+            <strong>Messy records</strong>
+            <p class="muted">Inputs that need cleanup, structure, and enough discipline to support later reporting.</p>
+          </div>
+          <div class="card need-card need-amber">
+            <strong>Weak visibility</strong>
+            <p class="muted">Datasets that hide patterns until the right dashboard, KPI view, or business framing is built.</p>
+          </div>
+          <div class="card need-card need-green">
+            <strong>Fragile handoff</strong>
+            <p class="muted">Work that needs clearer documentation, repeatable logic, and outputs other people can actually use.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .home-section { padding-top: 2.4rem; }
-  .page-header--tight { margin-bottom: 1.8rem; }
-  .section-actions { margin-top: 1.65rem; }
-  .home-routing-grid,
-  .home-lower-grid { align-items: stretch; }
-  .routing-cards {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  .proof-preview__title,
-  .experience-preview__title,
-  .highlights-panel__title {
+  .cluster-head { margin-bottom: 1.8rem; }
+  .cluster-grid { align-items: stretch; }
+  .home-proof-grid, .lower-cluster { align-items: stretch; }
+  .home-subtitle {
     margin: 0 0 1rem;
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-size: clamp(1.7rem, 2.4vw, 2.2rem);
     letter-spacing: -0.03em;
-    line-height: 1.08;
+    line-height: 1.15;
   }
-  .proof-preview__grid {
+  .role-snapshot {
+    padding: 1rem;
+    display: grid;
+    gap: 0.45rem;
+  }
+  .role-meta { font-size: 0.96rem; }
+  .role-copy { margin: 0.3rem 0 0; }
+  .proof-stack {
     display: grid;
     gap: 0.9rem;
   }
-  .proof-preview__card { padding: 1rem; }
-  .proof-preview__meta {
-    margin-top: 0.32rem;
-    font-size: 0.92rem;
+  .proof-item {
+    padding: 1rem;
+    border-left: 3px solid transparent;
   }
-  .proof-preview__body { margin: 0.7rem 0 0; }
-  .experience-preview__card { padding: 1.2rem; }
-  .experience-preview__meta { margin-top: 0.45rem; }
-  .experience-preview__body { margin: 0.9rem 0 0; line-height: 1.85; }
-  .experience-preview__action { margin-top: 1.15rem; }
-  .highlights-panel__list {
+  .proof-blue { border-left-color: rgba(56,189,248,0.8); }
+  .proof-amber { border-left-color: rgba(245,158,11,0.78); }
+  .proof-green { border-left-color: rgba(34,197,94,0.8); }
+  .proof-meta { margin-top: 0.35rem; font-size: 0.92rem; }
+  .proof-item p { margin: 0.65rem 0 0; }
+  .outcome-list {
     display: grid;
-    gap: 0.85rem;
+    gap: 0.9rem;
   }
-  .highlights-panel__item {
-    padding: 1rem 1rem 1rem 0.95rem;
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 0.95rem;
-    align-items: start;
+  .outcome-list li {
+    padding: 1rem;
     color: var(--muted);
-    line-height: 1.8;
+    line-height: 1.78;
   }
-  .highlights-panel__index {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--blue);
-    border: 1px solid rgba(56,189,248,0.18);
-    background: rgba(56,189,248,0.08);
-    font-size: 0.88rem;
-    font-weight: 700;
-    letter-spacing: 0.07em;
+  .need-grid { display: grid; gap: 0.9rem; }
+  .need-card {
+    padding: 1rem;
+    border-left: 3px solid transparent;
   }
+  .need-card p { margin: 0.55rem 0 0; }
+  .need-blue { border-left-color: rgba(56,189,248,0.8); }
+  .need-amber { border-left-color: rgba(245,158,11,0.78); }
+  .need-green { border-left-color: rgba(34,197,94,0.8); }
 </style>

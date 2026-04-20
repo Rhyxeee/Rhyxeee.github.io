@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -15,20 +14,67 @@ const { title, description = 'Analytics systems portfolio', currentPath = '/' } 
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-route-state="ready">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <ClientRouter />
   </head>
   <body>
     <Header currentPath={currentPath} />
-    <main transition:animate="slide">
+    <main data-route-shell>
       <slot />
     </main>
     <Footer />
+
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+
+        const enter = () => {
+          root.setAttribute('data-route-state', 'enter');
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => root.setAttribute('data-route-state', 'ready'));
+          });
+        };
+
+        const samePageHash = (url) => {
+          return url.origin === window.location.origin &&
+            url.pathname === window.location.pathname &&
+            url.search === window.location.search &&
+            url.hash;
+        };
+
+        window.addEventListener('pageshow', enter);
+        enter();
+
+        document.addEventListener('click', (event) => {
+          if (event.defaultPrevented || event.button !== 0) return;
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+          const anchor = event.target instanceof Element ? event.target.closest('a') : null;
+          if (!anchor) return;
+          if (anchor.hasAttribute('download')) return;
+          if (anchor.target && anchor.target !== '_self') return;
+          if (anchor.getAttribute('rel')?.includes('external')) return;
+
+          const href = anchor.getAttribute('href');
+          if (!href || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+
+          const url = new URL(href, window.location.href);
+          if (url.origin !== window.location.origin) return;
+          if (samePageHash(url)) return;
+          if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+
+          event.preventDefault();
+          root.setAttribute('data-route-state', 'leaving');
+          window.setTimeout(() => {
+            window.location.href = url.href;
+          }, 165);
+        });
+      })();
+    </script>
   </body>
 </html>

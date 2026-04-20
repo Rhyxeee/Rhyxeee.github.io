@@ -15,8 +15,8 @@ const accentMap: Record<string, string> = {
       <span class="eyebrow">Freelance Data Analyst · Open to work</span>
       <h1 class="display-title">I turn messy records into <span class="accent-blue">decision-ready systems.</span></h1>
       <p class="lead">
-        I clean, audit, and structure business data so dashboards, reports, and workflows become usable,
-        reliable, and easier to trust.
+        I clean, audit, and structure business data so dashboards, reports, and workflows become
+        easier to review, easier to trust, and easier to use in real decisions.
       </p>
       <div class="hero-actions">
         <a href="/projects" class="btn">View Projects</a>
@@ -40,15 +40,18 @@ const accentMap: Record<string, string> = {
       <div class="hero-side-copy">
         <span class="pill accent-border-blue">Available for work</span>
         <h2>{site.name}</h2>
-        <p>{site.role} focused on data cleaning, analytics, reporting, and audit-ready workflow design.</p>
+        <p>
+          Freelance data analyst focused on data cleaning, reporting systems, analytics support,
+          and audit-friendly workflow design.
+        </p>
         <div class="hero-mini-grid">
           <div class="mini-card card">
             <strong>Primary focus</strong>
-            <span>Data cleaning, reporting systems, operational QA, portfolio-ready analysis.</span>
+            <span>Data cleaning, reporting workflows, operational QA, and decision-ready outputs.</span>
           </div>
           <div class="mini-card card">
             <strong>Working style</strong>
-            <span>Accuracy first. Clear documentation. Repeatable systems. Practical outputs.</span>
+            <span>Clear logic, cleaner handoff, practical reporting, and outputs that survive review.</span>
           </div>
         </div>
       </div>
@@ -60,19 +63,19 @@ const accentMap: Record<string, string> = {
   .hero-grid {
     display: grid;
     grid-template-columns: 1.08fr 0.92fr;
-    gap: 1.5rem;
-    align-items: stretch;
+    gap: 1.6rem;
+    align-items: start;
   }
-  .hero-copy { padding-top: 1rem; }
-  .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; margin: 2rem 0; }
+  .hero-copy { padding-top: 1.25rem; }
+  .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; margin: 2rem 0 2.15rem; }
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.9rem;
-    margin-top: 1rem;
+    margin-top: 0.25rem;
   }
   .stat-card {
-    padding: 1rem 1rem 0.95rem;
+    padding: 1.05rem 1rem 0.95rem;
     border-color: color-mix(in srgb, var(--accent) 28%, rgba(255,255,255,0.08));
     position: relative;
     overflow: hidden;
@@ -85,10 +88,20 @@ const accentMap: Record<string, string> = {
     height: 3px;
     background: var(--accent);
   }
-  .stat-value { display: block; font-size: 2rem; font-weight: 700; letter-spacing: -0.04em; margin-bottom: 0.25rem; }
+  .stat-value {
+    display: block;
+    font-size: clamp(1.8rem, 2vw, 2.05rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.24rem;
+  }
   .stat-label { color: var(--muted-2); font-size: 0.95rem; }
-  .hero-side { display: grid; gap: 1.2rem; align-content: start; }
-  .hero-avatar-wrap { position: relative; width: min(100%, 360px); margin: 0 auto; }
+  .hero-side {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+  .hero-avatar-wrap { position: relative; width: min(100%, 320px); margin: 0 auto; }
   .avatar-ring {
     position: absolute;
     inset: -12px;
@@ -104,9 +117,18 @@ const accentMap: Record<string, string> = {
     border: 3px solid rgba(56,189,248,0.34);
     background: #d4d4d8;
   }
-  .hero-side-copy h2 { margin: 0.75rem 0 0.45rem; font-size: 1.75rem; }
-  .hero-side-copy p { margin: 0; color: var(--muted); line-height: 1.8; }
-  .hero-mini-grid { display: grid; gap: 0.9rem; margin-top: 1rem; }
+  .hero-side-copy h2 {
+    margin: 0.7rem 0 0.45rem;
+    font-size: 1.9rem;
+    letter-spacing: -0.03em;
+  }
+  .hero-side-copy p { margin: 0; color: var(--muted); line-height: 1.78; }
+  .hero-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin-top: 1rem;
+  }
   .mini-card { padding: 1rem; display: grid; gap: 0.35rem; }
   .mini-card strong { font-size: 0.98rem; }
   .mini-card span { color: var(--muted); line-height: 1.7; }
@@ -115,5 +137,6 @@ const accentMap: Record<string, string> = {
   }
   @media (max-width: 720px) {
     .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .hero-mini-grid { grid-template-columns: 1fr; }
   }
 </style>
