@@ -1,7 +1,7 @@
 export const site = {
   name: 'Mark Anthony Nene',
   title: 'Analytics Systems Portfolio',
-  role: 'Data Manager · Analytics and Reporting',
+  role: 'Data Manager · Reporting Systems',
   tagline: 'I turn messy records into decision-ready systems.',
   description:
     'Portfolio of Mark Anthony Nene, focused on data cleaning, analytics, dashboards, reporting, and audit-ready workflow design.',

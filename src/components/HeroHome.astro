@@ -14,9 +14,9 @@ const accentMap: Record<string, string> = {
     <div class="hero-copy">
       <span class="eyebrow">Data Manager · Analytics and Reporting</span>
       <h1 class="display-title">I turn messy records into <span class="accent-blue">decision-ready systems.</span></h1>
-      <p class="lead">
+      <p class="lead hero-lead">
         I clean, audit, and structure business data so dashboards, reports, and workflows stay
-        reliable, usable, and ready for real decisions.
+        reliable and ready for real decisions.
       </p>
       <div class="hero-actions">
         <a href="/projects" class="btn">View Projects</a>
@@ -41,8 +41,7 @@ const accentMap: Record<string, string> = {
         <span class="pill accent-border-blue">Currently at GSH Investments</span>
         <h2>{site.name}</h2>
         <p>
-          Data manager focused on data cleaning, reporting systems, analytics support, and
-          audit-ready workflow design.
+          Data manager focused on reporting systems, analytics support, and audit-ready workflow design.
         </p>
         <div class="hero-mini-grid">
           <div class="mini-card card">
@@ -51,7 +50,7 @@ const accentMap: Record<string, string> = {
           </div>
           <div class="mini-card card">
             <strong>Working style</strong>
-            <span>Clear logic, clean handoff, practical reporting, and outputs that hold up under review.</span>
+            <span>Clear logic, clean handoff, practical reporting, and review-ready outputs.</span>
           </div>
         </div>
       </div>
@@ -60,28 +59,43 @@ const accentMap: Record<string, string> = {
 </section>
 
 <style>
-  .hero-home {
-    padding-top: 5.2rem;
-  }
   .hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
-    gap: 1.35rem;
-    align-items: start;
+    grid-template-columns: 1.08fr 0.92fr;
+    gap: 1.6rem;
+    align-items: stretch;
   }
-  .hero-copy { padding-top: 0.35rem; }
-  .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; margin: 1.75rem 0 1.9rem; }
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding-top: 0.35rem;
+  }
+  .hero-lead {
+    max-width: 42rem;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    margin: 1.7rem 0 1.65rem;
+  }
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.85rem;
-    margin-top: 0.2rem;
+    gap: 0.9rem;
+    margin-top: auto;
+    align-items: stretch;
   }
   .stat-card {
-    padding: 0.95rem 0.95rem 0.9rem;
+    min-height: 122px;
+    padding: 1.05rem 1rem 0.95rem;
     border-color: color-mix(in srgb, var(--accent) 28%, rgba(255,255,255,0.08));
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
   .stat-card::before {
     content: "";
@@ -93,25 +107,22 @@ const accentMap: Record<string, string> = {
   }
   .stat-value {
     display: block;
-    font-size: clamp(1.75rem, 2vw, 2rem);
+    font-size: clamp(1.8rem, 2vw, 2.05rem);
     font-weight: 700;
     letter-spacing: -0.04em;
-    margin-bottom: 0.18rem;
+    margin-bottom: 0.24rem;
   }
-  .stat-label { color: var(--muted-2); font-size: 0.92rem; }
+  .stat-label { color: var(--muted-2); font-size: 0.95rem; }
   .hero-side {
-    display: grid;
-    gap: 0.8rem;
-    align-content: start;
-    max-width: 560px;
-    width: 100%;
-    margin-left: auto;
-    padding: 1.45rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+    min-height: 100%;
   }
   .hero-avatar-wrap { position: relative; width: min(100%, 280px); margin: 0 auto; }
   .avatar-ring {
     position: absolute;
-    inset: -12px;
+    inset: -11px;
     border-radius: 50%;
     border: 1px solid rgba(56,189,248,0.18);
     box-shadow: 0 0 0 12px rgba(56,189,248,0.04), 0 0 0 22px rgba(56,189,248,0.02);
@@ -124,36 +135,38 @@ const accentMap: Record<string, string> = {
     border: 3px solid rgba(56,189,248,0.34);
     background: #d4d4d8;
   }
+  .hero-side-copy {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
   .hero-side-copy h2 {
-    margin: 0.55rem 0 0.35rem;
-    font-size: 1.7rem;
-    line-height: 1.08;
+    margin: 0.65rem 0 0.35rem;
+    font-size: 1.72rem;
     letter-spacing: -0.03em;
   }
-  .hero-side-copy p {
-    margin: 0;
-    color: var(--muted);
-    line-height: 1.68;
-    font-size: 0.98rem;
-  }
+  .hero-side-copy p { margin: 0; color: var(--muted); line-height: 1.72; }
   .hero-mini-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-top: 0.85rem;
+    gap: 0.9rem;
+    margin-top: auto;
+    align-items: stretch;
   }
-  .mini-card { padding: 0.85rem 0.9rem; display: grid; gap: 0.28rem; }
-  .mini-card strong { font-size: 0.96rem; }
-  .mini-card span { color: var(--muted); line-height: 1.58; font-size: 0.92rem; }
+  .mini-card {
+    min-height: 150px;
+    padding: 1rem;
+    display: grid;
+    gap: 0.35rem;
+  }
+  .mini-card strong { font-size: 0.98rem; }
+  .mini-card span { color: var(--muted); line-height: 1.68; }
   @media (max-width: 1024px) {
-    .hero-home { padding-top: 4.4rem; }
-    .hero-grid { grid-template-columns: 1fr; gap: 1.1rem; }
-    .hero-side { margin-left: 0; max-width: none; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-copy { padding-top: 0; }
   }
   @media (max-width: 720px) {
-    .hero-home { padding-top: 3.7rem; }
     .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .hero-mini-grid { grid-template-columns: 1fr; }
-    .hero-avatar-wrap { width: min(100%, 240px); }
   }
 </style>
