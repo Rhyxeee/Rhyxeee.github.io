@@ -9,53 +9,69 @@ const accentMap: Record<string, string> = {
 };
 ---
 
-<section class="hero-home page-shell">
-  <div class="container hero-grid">
+<section class="hero-section">
+  <div class="hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Data Manager · Analytics and Reporting</span>
-      <h1 class="display-title">I turn messy records into <span class="accent-blue">decision-ready systems.</span></h1>
-      <p class="lead">
-        I clean, audit, and structure business data so dashboards, reports, and workflows stay
-        reliable, usable, and ready for real decisions.
+      <p class="hero-eyebrow">DATA MANAGER · ANALYTICS AND REPORTING</p>
+
+      <h1 class="hero-title">
+        I turn messy records into <span>decision-ready systems.</span>
+      </h1>
+
+      <p class="hero-lead">
+        I clean, audit, and structure business data so dashboards, reports, and workflows stay reliable and ready for real decisions.
       </p>
+
       <div class="hero-actions">
-        <a href="/projects" class="btn">View Projects</a>
-        <a href={site.resumeUrl} target="_blank" rel="noreferrer" class="btn-ghost">Download Resume</a>
+        <a href="/projects" class="btn btn-primary">View Projects</a>
+        <a href="/resume.pdf" class="btn btn-secondary">Download Resume</a>
       </div>
-      <div class="stats-grid">
-        {stats.map((item) => (
-          <div class="stat-card card" style={`--accent:${accentMap[item.accent]};`}>
-            <span class="stat-value">{item.value}</span>
-            <span class="stat-label">{item.label}</span>
-          </div>
-        ))}
+
+      <div class="hero-stats">
+        <article class="stat-card stat-card--blue">
+          <h3>4,400+</h3>
+          <p>Records cleaned</p>
+        </article>
+        <article class="stat-card stat-card--amber">
+          <h3>₱2M+</h3>
+          <p>Budget audited</p>
+        </article>
+        <article class="stat-card stat-card--green">
+          <h3>$5M+</h3>
+          <p>Sales analyzed</p>
+        </article>
+        <article class="stat-card stat-card--purple">
+          <h3>100%</h3>
+          <p>Accuracy focus</p>
+        </article>
       </div>
     </div>
 
-    <div class="hero-side panel panel-pad-lg">
-      <div class="hero-avatar-wrap">
-        <div class="avatar-ring"></div>
-        <img src={site.profileImage} alt={site.name} class="hero-avatar" width="320" height="320" />
+    <aside class="hero-card">
+      <div class="hero-card__image-wrap">
+        <img src="/images/profile.png" alt="Mark Anthony Nene" class="hero-card__image" />
       </div>
-      <div class="hero-side-copy">
-        <span class="pill accent-border-blue">Currently at GSH Investments</span>
-        <h2>{site.name}</h2>
-        <p>
-          Data manager focused on data cleaning, reporting systems, analytics support, and
-          audit-ready workflow design.
-        </p>
-        <div class="hero-mini-grid">
-          <div class="mini-card card">
-            <strong>Primary focus</strong>
-            <span>Data cleaning, reporting workflows, operational QA, and decision-ready outputs.</span>
-          </div>
-          <div class="mini-card card">
-            <strong>Working style</strong>
-            <span>Clear logic, clean handoff, practical reporting, and outputs that hold up under review.</span>
-          </div>
-        </div>
+
+      <span class="hero-card__badge">Currently at GSH Investments</span>
+
+      <h2 class="hero-card__name">Mark Anthony Nene</h2>
+
+      <p class="hero-card__summary">
+        Data manager focused on reporting systems, analytics support, and audit-ready workflow design.
+      </p>
+
+      <div class="hero-card__mini-grid">
+        <article class="hero-card__mini">
+          <h3>Primary focus</h3>
+          <p>Data cleaning, reporting workflows, operational QA, and decision-ready outputs.</p>
+        </article>
+
+        <article class="hero-card__mini">
+          <h3>Working style</h3>
+          <p>Clear logic, clean handoff, practical reporting, and review-ready outputs.</p>
+        </article>
       </div>
-    </div>
+    </aside>
   </div>
 </section>
 
