@@ -4,18 +4,22 @@ import { projects } from '../../data/portfolio';
 import { site } from '../../data/site';
 
 export async function getStaticPaths() {
-  return projects.map((project) => ({
+  return projects.map((project, index) => ({
     params: { slug: project.slug },
-    props: { project }
+    props: {
+      project,
+      prev: projects[(index - 1 + projects.length) % projects.length],
+      next: projects[(index + 1) % projects.length]
+    }
   }));
 }
 
-const { project } = Astro.props;
+const { project, prev, next } = Astro.props;
 ---
 
-<BaseLayout title={`${project.title} · ${site.name}`} description={project.description} currentPath="/projects">
+<BaseLayout title={`${project.title} · ${site.name}`} description={project.description} currentPath="/projects" image={project.imageSrc}>
   <section class="container page-shell">
-    <div class="page-header">
+    <div class="page-header" data-animate="fade-up">
       <a href="/projects" class="btn-ghost" style="margin-bottom:1rem;">← Back to projects</a>
       <span class="eyebrow">{project.category}</span>
       <h1 class="section-title">{project.title}</h1>
@@ -23,10 +27,10 @@ const { project } = Astro.props;
     </div>
 
     <div class="grid-2">
-      <div class="panel panel-pad-lg">
-        <img src={project.imageSrc} alt={project.imageAlt} style="border-radius:18px; border:1px solid rgba(255,255,255,0.08);" />
+      <div class="panel panel-pad-lg" data-animate="fade-up">
+        <img src={project.imageSrc} alt={project.imageAlt} loading="lazy" style="border-radius:18px; border:1px solid var(--border);" />
       </div>
-      <div class="panel panel-pad-lg detail-stack">
+      <div class="panel panel-pad-lg detail-stack" data-animate="fade-up" data-delay="80">
         <h2 class="detail-title">Project framing</h2>
         <div class="card detail-card">
           <strong>Problem</strong>
@@ -42,12 +46,8 @@ const { project } = Astro.props;
           ))}
         </div>
       </div>
-    </div>
 
-    <div class="spacer-2"></div>
-
-    <div class="grid-2 detail-grid">
-      <div class="panel panel-pad-lg">
+      <div class="panel panel-pad-lg" data-animate="fade-up">
         <span class="eyebrow">Working method</span>
         <h2 class="detail-title">How the project was approached.</h2>
         <ul class="list-clean detail-list">
@@ -56,7 +56,7 @@ const { project } = Astro.props;
           ))}
         </ul>
       </div>
-      <div class="panel panel-pad-lg">
+      <div class="panel panel-pad-lg" data-animate="fade-up" data-delay="80">
         <span class="eyebrow">Next actions</span>
         <h2 class="detail-title">Open the source material or continue the conversation.</h2>
         <div class="detail-links">
@@ -67,15 +67,24 @@ const { project } = Astro.props;
         </div>
       </div>
     </div>
+
+    <div class="spacer-2"></div>
+
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href={`/projects/${prev.slug}`} class="panel panel-pad project-nav-link">
+        <span class="project-nav-dir">← Previous</span>
+        <span class="project-nav-title">{prev.title}</span>
+      </a>
+      <a href={`/projects/${next.slug}`} class="panel panel-pad project-nav-link project-nav-link--next">
+        <span class="project-nav-dir">Next →</span>
+        <span class="project-nav-title">{next.title}</span>
+      </a>
+    </nav>
   </section>
 </BaseLayout>
 
 <style>
-  .detail-title {
-    margin: 0 0 1rem;
-    font-size: clamp(1.55rem, 2vw, 2rem);
-    letter-spacing: -0.03em;
-  }
+  .detail-title { margin: 0 0 1rem; font-size: clamp(1.55rem, 2vw, 2rem); letter-spacing: -0.03em; }
   .detail-stack { display: grid; align-content: start; gap: 1rem; }
   .detail-card { padding: 1rem; }
   .detail-card p { margin: 0.65rem 0 0; line-height: 1.8; }
@@ -83,4 +92,18 @@ const { project } = Astro.props;
   .detail-list { display: grid; gap: 0.9rem; }
   .detail-list li { padding: 1rem; color: var(--muted); line-height: 1.8; }
   .detail-links { display: grid; gap: 0.9rem; }
+
+  .project-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .project-nav-link {
+    display: grid; gap: 0.4rem; text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .project-nav-link:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--blue) 35%, transparent); }
+  .project-nav-link--next { text-align: right; }
+  .project-nav-dir { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); font-weight: 700; }
+  .project-nav-title { color: var(--text); font-weight: 600; line-height: 1.3; }
+  @media (max-width: 720px) {
+    .project-nav { grid-template-columns: 1fr; }
+    .project-nav-link--next { text-align: left; }
+  }
 </style>

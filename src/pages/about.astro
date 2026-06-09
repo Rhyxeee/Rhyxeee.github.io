@@ -7,18 +7,18 @@ import { site, experienceRows, achievements } from '../data/site';
 <BaseLayout title={`About · ${site.name}`} description="About and experience" currentPath="/about">
   <section class="container page-shell">
     <div class="page-header">
-      <span class="eyebrow">About</span>
-      <h1 class="section-title">Data-facing work built around structure, reviewability, and practical outputs.</h1>
-      <p class="lead">I work best where raw records need discipline, teams need cleaner reporting, and the final output has to stand up to review instead of just looking impressive for one minute.</p>
+      <span class="eyebrow" data-animate="fade-up">About</span>
+      <h1 class="section-title" data-animate="fade-up" data-delay="80">Data-facing work built around structure, reviewability, and practical outputs.</h1>
+      <p class="lead" data-animate="fade-up" data-delay="160">I work best where raw records need discipline, teams need cleaner reporting, and the final output has to stand up to review instead of just looking impressive for one minute.</p>
     </div>
 
-    <div class="grid-3 about-cluster">
-      <div class="panel panel-pad-lg about-card">
+    <div class="grid-3 about-cluster" data-stagger-parent="90">
+      <div class="panel panel-pad-lg about-card" data-animate="fade-up">
         <span class="eyebrow">What I bring</span>
         <h2 class="about-title">Analytical work with cleaner handoff.</h2>
         <p class="muted">My focus is not just getting an answer. It is building a workflow other people can review, reuse, and trust after I leave the file.</p>
       </div>
-      <div class="panel panel-pad-lg about-card">
+      <div class="panel panel-pad-lg about-card" data-animate="fade-up">
         <span class="eyebrow">How I work</span>
         <ul class="list-clean about-list">
           <li class="card">Accuracy first</li>
@@ -27,7 +27,7 @@ import { site, experienceRows, achievements } from '../data/site';
           <li class="card">Business-ready reporting outputs</li>
         </ul>
       </div>
-      <div class="panel panel-pad-lg about-card">
+      <div class="panel panel-pad-lg about-card" data-animate="fade-up">
         <span class="eyebrow">Selected strengths</span>
         <ul class="list-clean about-list about-list-copy">
           {achievements.slice(0, 3).map((item) => (

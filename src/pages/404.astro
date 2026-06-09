@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title={`Page not found · ${site.name}`} description="The page you were looking for could not be found.">
+  <section class="container page-shell not-found">
+    <div class="panel panel-pad-lg nf-card" data-animate="scale-up">
+      <span class="eyebrow">Error 404</span>
+      <h1 class="display-title nf-code">404</h1>
+      <h2 class="nf-title">This page took a wrong turn in the dataset.</h2>
+      <p class="lead">The link may be broken or the page may have moved. Let's get you back to something useful.</p>
+      <div class="nf-actions">
+        <a href="/" class="btn">Back to home</a>
+        <a href="/projects" class="btn-ghost">Browse projects</a>
+        <a href="/contact" class="btn-ghost">Contact</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found { display: grid; place-items: center; min-height: 60vh; }
+  .nf-card { max-width: 640px; text-align: center; }
+  .nf-code {
+    font-size: clamp(4rem, 12vw, 7rem);
+    line-height: 1;
+    margin: 0.4rem 0;
+    background: linear-gradient(120deg, var(--blue), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .nf-card .eyebrow { justify-content: center; }
+  .nf-title { margin: 0 0 0.75rem; font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -0.03em; }
+  .nf-card .lead { margin-inline: auto; }
+  .nf-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+</style>

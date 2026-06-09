@@ -1,6 +1,9 @@
 ---
 import { site } from '../data/site';
 const { currentPath = '/' } = Astro.props;
+
+const isActive = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 ---
 
 <header class="site-header">
@@ -13,14 +16,32 @@ const { currentPath = '/' } = Astro.props;
       </span>
     </a>
 
-    <nav class="nav-links" aria-label="Primary">
-      {site.nav.map((item) => (
-        <a href={item.href} class:list={["nav-link", currentPath === item.href && 'is-active']}>
-          {item.label}
-        </a>
-      ))}
-      <a href={site.resumeUrl} target="_blank" rel="noreferrer" class="resume-link">Resume</a>
-    </nav>
+    <div class="nav-cluster">
+      <nav id="primary-nav" class="nav-links" aria-label="Primary">
+        {site.nav.map((item) => (
+          <a href={item.href} class:list={['nav-link', isActive(item.href) && 'is-active']}>
+            {item.label}
+          </a>
+        ))}
+        <a href={site.resumeUrl} target="_blank" rel="noreferrer" class="resume-link">Resume</a>
+      </nav>
+
+      <button id="theme-toggle" class="icon-btn theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" fill="currentColor" />
+          <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7" />
+          </g>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M20 14.2A8 8 0 1 1 9.8 4 6.4 6.4 0 0 0 20 14.2Z" fill="currentColor" />
+        </svg>
+      </button>
+
+      <button id="nav-toggle" class="icon-btn nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -28,77 +49,101 @@ const { currentPath = '/' } = Astro.props;
   .site-header {
     position: sticky;
     top: 0;
-    z-index: 30;
-    background: rgba(5, 9, 20, 0.8);
+    z-index: 60;
+    background: var(--header-bg);
     backdrop-filter: blur(16px) saturate(145%);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid var(--border);
   }
   .nav-wrap {
-    min-height: 78px;
+    min-height: 74px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.15rem;
+    gap: 1rem;
   }
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.95rem;
-    text-decoration: none;
-  }
+  .brand { display: inline-flex; align-items: center; gap: 0.85rem; text-decoration: none; }
   .brand-mark {
-    width: 46px;
-    height: 46px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    width: 46px; height: 46px;
+    display: inline-flex; align-items: center; justify-content: center;
     border-radius: 15px;
     color: var(--blue);
-    border: 1px solid rgba(56,189,248,0.26);
-    background: rgba(56,189,248,0.1);
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    border: 1px solid color-mix(in srgb, var(--blue) 26%, transparent);
+    background: color-mix(in srgb, var(--blue) 10%, transparent);
+    font-weight: 700; letter-spacing: 0.08em;
   }
   .brand-copy { display: grid; gap: 0.14rem; }
   .brand-name { font-weight: 650; }
   .brand-role { color: var(--muted-2); font-size: 0.82rem; }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
+
+  .nav-cluster { display: flex; align-items: center; gap: 0.5rem; }
+  .nav-links { display: flex; align-items: center; gap: 0.4rem; }
   .nav-link, .resume-link {
     text-decoration: none;
-    color: rgba(226,232,240,0.74);
-    padding: 0.72rem 1rem;
+    color: var(--nav-link);
+    padding: 0.6rem 0.95rem;
     border-radius: 999px;
     font-size: 0.95rem;
-    transition: all 0.22s ease;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     border: 1px solid transparent;
   }
-  .nav-link:hover, .resume-link:hover {
-    color: var(--text);
-    background: rgba(255,255,255,0.04);
-  }
+  .nav-link:hover, .resume-link:hover { color: var(--text); background: var(--hover-soft); }
   .nav-link.is-active {
     color: var(--blue);
-    background: rgba(56,189,248,0.08);
-    border-color: rgba(56,189,248,0.18);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    background: color-mix(in srgb, var(--blue) 9%, transparent);
+    border-color: color-mix(in srgb, var(--blue) 20%, transparent);
   }
-  .resume-link {
+  .resume-link { color: var(--text); border-color: color-mix(in srgb, var(--blue) 28%, transparent); }
+
+  .icon-btn {
+    width: 42px; height: 42px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--hover-soft);
     color: var(--text);
-    border-color: rgba(56,189,248,0.28);
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
   }
-  @media (max-width: 880px) {
-    .nav-wrap {
-      padding-top: 0.95rem;
-      padding-bottom: 0.95rem;
-      align-items: flex-start;
+  .icon-btn:hover { border-color: color-mix(in srgb, var(--blue) 35%, transparent); transform: translateY(-1px); }
+
+  .theme-toggle .icon-sun { display: none; }
+  .theme-toggle .icon-moon { display: block; }
+  :root[data-theme='light'] .theme-toggle .icon-sun { display: block; }
+  :root[data-theme='light'] .theme-toggle .icon-moon { display: none; }
+
+  .nav-toggle { display: none; }
+  .nav-toggle-bars { display: grid; gap: 4px; }
+  .nav-toggle-bars span {
+    display: block; width: 18px; height: 2px; border-radius: 2px;
+    background: currentColor; transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+  .nav-toggle[aria-expanded='true'] .nav-toggle-bars span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded='true'] .nav-toggle-bars span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded='true'] .nav-toggle-bars span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  @media (max-width: 860px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-links {
+      position: fixed;
+      inset: 74px 0 auto 0;
       flex-direction: column;
+      align-items: stretch;
+      gap: 0.25rem;
+      padding: 1rem;
+      background: var(--panel-strong);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transform: translateY(-12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.25s ease, opacity 0.25s ease;
     }
-    .nav-links { width: 100%; }
+    .nav-links.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .nav-link, .resume-link { padding: 0.85rem 1rem; font-size: 1rem; }
+    .resume-link { margin-top: 0.35rem; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .icon-btn, .nav-links, .nav-toggle-bars span { transition: none; }
   }
 </style>

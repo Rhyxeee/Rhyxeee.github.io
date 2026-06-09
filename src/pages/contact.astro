@@ -6,25 +6,27 @@ import { site } from '../data/site';
 <BaseLayout title={`Contact · ${site.name}`} description="Contact" currentPath="/contact">
   <section class="container page-shell">
     <div class="page-header">
-      <span class="eyebrow">Contact</span>
-      <h1 class="section-title">Need cleaner data, stronger reporting, or a more reliable workflow?</h1>
-      <p class="lead">This page keeps the next step simple. If the work fits what you need, here are the fastest ways to reach me or review my background.</p>
+      <span class="eyebrow" data-animate="fade-up">Contact</span>
+      <h1 class="section-title" data-animate="fade-up" data-delay="80">Need cleaner data, stronger reporting, or a more reliable workflow?</h1>
+      <p class="lead" data-animate="fade-up" data-delay="160">This page keeps the next step simple. If the work fits what you need, here are the fastest ways to reach me or review my background.</p>
     </div>
 
-    <div class="grid-3 contact-grid">
-      <div class="panel panel-pad-lg contact-card contact-blue">
+    <div class="grid-3 contact-grid" data-stagger-parent="90">
+      <div class="panel panel-pad-lg contact-card contact-blue" data-animate="fade-up">
         <h2>Email</h2>
         <p class="muted">Best for direct work inquiries, portfolio questions, and project discussions.</p>
         <div class="spacer-1"></div>
         <a class="btn" href={`mailto:${site.email}`}>{site.email}</a>
+        <div class="spacer-1"></div>
+        <button type="button" class="btn-ghost" data-copy={site.email}>Copy email address</button>
       </div>
-      <div class="panel panel-pad-lg contact-card contact-green">
+      <div class="panel panel-pad-lg contact-card contact-green" data-animate="fade-up">
         <h2>GitHub</h2>
         <p class="muted">Repositories, source work, and the portfolio codebase.</p>
         <div class="spacer-1"></div>
-        <a class="btn-ghost" href="https://github.com/Rhyxeee" target="_blank" rel="noreferrer">Open GitHub</a>
+        <a class="btn-ghost" href={site.githubUrl} target="_blank" rel="noreferrer">Open GitHub</a>
       </div>
-      <div class="panel panel-pad-lg contact-card contact-amber">
+      <div class="panel panel-pad-lg contact-card contact-amber" data-animate="fade-up">
         <h2>Resume</h2>
         <p class="muted">Quick access for applications, recruiter review, and screening calls.</p>
         <div class="spacer-1"></div>

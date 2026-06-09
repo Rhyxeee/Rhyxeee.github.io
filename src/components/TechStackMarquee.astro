@@ -84,17 +84,17 @@ const fallback = { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="t
   }
   .marquee-shell::before {
     left: 0;
-    background: linear-gradient(90deg, rgba(8, 13, 25, 0.96), transparent);
+    background: linear-gradient(90deg, var(--panel-strong), transparent);
   }
   .marquee-shell::after {
     right: 0;
-    background: linear-gradient(270deg, rgba(8, 13, 25, 0.96), transparent);
+    background: linear-gradient(270deg, var(--panel-strong), transparent);
   }
   .marquee-row {
     overflow: hidden;
     border-radius: 18px;
-    background: rgba(6,10,20,0.42);
-    border: 1px solid rgba(255,255,255,0.04);
+    background: var(--hover-soft);
+    border: 1px solid var(--border-soft);
   }
   .marquee-track {
     display: flex;

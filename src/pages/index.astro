@@ -17,13 +17,13 @@ const featuredProof = proofCards.slice(0, 3);
 
   <section class="container page-shell" style="padding-top:1rem;">
     <div class="page-header">
-      <span class="eyebrow">Featured projects</span>
-      <h2 class="section-title">Selected case studies built for cleaner data, clearer systems, and stronger reporting.</h2>
-      <p class="lead">These are the strongest portfolio pieces to open first. Each project page covers the problem, the working method, and the outcome.</p>
+      <span class="eyebrow" data-animate="fade-up">Featured projects</span>
+      <h2 class="section-title" data-animate="fade-up" data-delay="80">Selected case studies built for cleaner data, clearer systems, and stronger reporting.</h2>
+      <p class="lead" data-animate="fade-up" data-delay="160">These are the strongest portfolio pieces to open first. Each project page covers the problem, the working method, and the outcome.</p>
     </div>
-    <div class="grid-3">
+    <div class="grid-3" data-stagger-parent="90">
       {featuredProjects.map((project) => (
-        <ProjectCard {...project} href={`/projects/${project.slug}`} links={project.links} />
+        <div data-animate="fade-up"><ProjectCard {...project} href={`/projects/${project.slug}`} links={project.links} /></div>
       ))}
     </div>
     <div class="spacer-2"></div>
@@ -32,12 +32,12 @@ const featuredProof = proofCards.slice(0, 3);
 
   <section class="container page-shell" style="padding-top:1.5rem;">
     <div class="page-header cluster-head">
-      <span class="eyebrow">What clients can scan quickly</span>
-      <h2 class="section-title">The site is grouped around what people usually want first.</h2>
-      <p class="lead">Instead of burying everything in one long scroll, the home page points to the key areas that help people decide whether to keep reading.</p>
+      <span class="eyebrow" data-animate="fade-up">What clients can scan quickly</span>
+      <h2 class="section-title" data-animate="fade-up" data-delay="80">The site is grouped around what people usually want first.</h2>
+      <p class="lead" data-animate="fade-up" data-delay="160">Instead of burying everything in one long scroll, the home page points to the key areas that help people decide whether to keep reading.</p>
     </div>
 
-    <div class="grid-3 cluster-grid">
+    <div class="grid-3 cluster-grid" data-stagger-parent="90" data-animate-children>
       <QuickPreviewCard
         title="About + Experience"
         kicker="Background"

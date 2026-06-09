@@ -1,80 +1,129 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
+import { site } from '../data/site';
 import '../styles/global.css';
-import '../styles/transitions.css';
+import '../styles/animations.css';
 
 interface Props {
   title: string;
   description?: string;
   currentPath?: string;
+  image?: string;
 }
 
-const { title, description = 'Analytics systems portfolio', currentPath = '/' } = Astro.props;
+const {
+  title,
+  description = site.description,
+  currentPath = '/',
+  image = site.ogImage
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImageUrl = new URL(image, site.url).href;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: site.jobTitle,
+  url: site.url,
+  image: ogImageUrl,
+  email: `mailto:${site.email}`,
+  address: { '@type': 'PostalAddress', addressCountry: site.location },
+  sameAs: [site.githubUrl, site.linkedinUrl],
+  knowsAbout: ['Data Cleaning', 'Data Analytics', 'Power BI', 'SQL', 'Python', 'Reporting Systems', 'Dashboards']
+};
 ---
 
 <!doctype html>
-<html lang="en" data-route-state="ready">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  </head>
-  <body>
-    <Header currentPath={currentPath} />
-    <main data-route-shell>
-      <slot />
-    </main>
-    <Footer />
+    <meta name="author" content={site.name} />
+    <meta name="robots" content="index, follow" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
 
+    <!-- Theme color reacts to the active theme via the inline script below -->
+    <meta name="theme-color" content="#060b16" id="theme-color-meta" />
+
+    <!-- Favicons / PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+    <!-- Anti-FOUC theme bootstrap: runs before first paint and after each view transition -->
     <script is:inline>
       (() => {
-        const root = document.documentElement;
-
-        const enter = () => {
-          root.setAttribute('data-route-state', 'enter');
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => root.setAttribute('data-route-state', 'ready'));
-          });
+        document.documentElement.classList.add('js');
+        const applyTheme = () => {
+          try {
+            const stored = localStorage.getItem('theme');
+            const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+            document.documentElement.dataset.theme = stored || (prefersLight ? 'light' : 'dark');
+          } catch (e) {
+            document.documentElement.dataset.theme = 'dark';
+          }
         };
-
-        const samePageHash = (url) => {
-          return url.origin === window.location.origin &&
-            url.pathname === window.location.pathname &&
-            url.search === window.location.search &&
-            url.hash;
-        };
-
-        window.addEventListener('pageshow', enter);
-        enter();
-
-        document.addEventListener('click', (event) => {
-          if (event.defaultPrevented || event.button !== 0) return;
-          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
-          const anchor = event.target instanceof Element ? event.target.closest('a') : null;
-          if (!anchor) return;
-          if (anchor.hasAttribute('download')) return;
-          if (anchor.target && anchor.target !== '_self') return;
-          if (anchor.getAttribute('rel')?.includes('external')) return;
-
-          const href = anchor.getAttribute('href');
-          if (!href || href.startsWith('mailto:') || href.startsWith('tel:')) return;
-
-          const url = new URL(href, window.location.href);
-          if (url.origin !== window.location.origin) return;
-          if (samePageHash(url)) return;
-          if (url.pathname === window.location.pathname && url.search === window.location.search) return;
-
-          event.preventDefault();
-          root.setAttribute('data-route-state', 'leaving');
-          window.setTimeout(() => {
-            window.location.href = url.href;
-          }, 165);
-        });
+        applyTheme();
+        // Re-apply immediately after Astro swaps the DOM during a view transition.
+        document.addEventListener('astro:after-swap', applyTheme);
       })();
     </script>
+
+    <ClientRouter />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress__bar" id="scroll-progress-bar"></span></div>
+
+    <Header currentPath={currentPath} />
+
+    <main id="main-content" data-route-shell>
+      <slot />
+    </main>
+
+    <Footer />
+
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" hidden>
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M12 5v14M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <script src="../scripts/enhancements.ts"></script>
   </body>
 </html>

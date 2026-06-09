@@ -3,19 +3,38 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { site } from '../../data/site';
 import { projects } from '../../data/portfolio';
+
+const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))];
 ---
 
 <BaseLayout title={`Projects · ${site.name}`} description="Project library" currentPath="/projects">
   <section class="container page-shell">
     <div class="page-header">
-      <span class="eyebrow">Projects</span>
-      <h1 class="section-title">Project pages built for faster scanning and stronger case-study reading.</h1>
-      <p class="lead">Each card leads to a cleaner detail page that explains the business problem, the working method, and the outcome without forcing everything into one crowded screen.</p>
+      <span class="eyebrow" data-animate="fade-up">Projects</span>
+      <h1 class="section-title" data-animate="fade-up" data-delay="80">Project pages built for faster scanning and stronger case-study reading.</h1>
+      <p class="lead" data-animate="fade-up" data-delay="160">Each card leads to a cleaner detail page that explains the business problem, the working method, and the outcome without forcing everything into one crowded screen.</p>
     </div>
-    <div class="grid-3">
-      {projects.map((project) => (
-        <ProjectCard {...project} href={`/projects/${project.slug}`} links={project.links} />
-      ))}
+
+    <div data-filterable>
+      <div class="filter-bar" role="group" aria-label="Filter projects by category" data-animate="fade-up" data-delay="200">
+        {categories.map((cat, i) => (
+          <button
+            type="button"
+            class:list={['filter-chip', i === 0 && 'is-active']}
+            data-filter={i === 0 ? 'all' : cat}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div class="grid-3" data-stagger-parent="90">
+        {projects.map((project) => (
+          <div class="filter-card" data-category={project.category} data-animate="fade-up">
+            <ProjectCard {...project} href={`/projects/${project.slug}`} links={project.links} />
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 </BaseLayout>

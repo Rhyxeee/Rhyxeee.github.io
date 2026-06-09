@@ -7,12 +7,20 @@ export const site = {
     'Portfolio of Mark Anthony Nene, focused on data cleaning, analytics, dashboards, reporting, and audit-ready workflow design.',
   url: 'https://rhyxeee.github.io',
   email: 'markanthonynene@gmail.com',
+  // Used for Open Graph / Twitter share previews and JSON-LD structured data.
+  location: 'Philippines',
+  jobTitle: 'Data Manager',
+  // 1200x630 social share image. Falls back to the profile image if absent.
+  ogImage: '/images/profile.png',
+  githubUrl: 'https://github.com/Rhyxeee',
+  // TODO: replace with your real LinkedIn profile URL (the old link pointed to the generic homepage).
+  linkedinUrl: 'https://www.linkedin.com/in/markanthonynene',
   resumeUrl:
     'https://drive.google.com/uc?export=download&id=1ACO5c7FdHgKfljXX8RD0ES_2o2T1r2Wi',
   profileImage: '/images/profile.png',
   socialLinks: [
     { label: 'GitHub', href: 'https://github.com/Rhyxeee' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/markanthonynene' },
     { label: 'Email', href: 'mailto:markanthonynene@gmail.com' }
   ],
   nav: [

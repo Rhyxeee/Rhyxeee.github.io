@@ -6,15 +6,15 @@ import { site, proofCards, achievements, stats } from '../data/site';
 <BaseLayout title={`Proof · ${site.name}`} description="Proof and focus" currentPath="/proof">
   <section class="container page-shell">
     <div class="page-header">
-      <span class="eyebrow">Proof</span>
-      <h1 class="section-title">Credibility signals that support the work behind the portfolio.</h1>
-      <p class="lead">This page groups the strongest metrics, outcomes, and capability markers so recruiters and clients can judge the work faster.</p>
+      <span class="eyebrow" data-animate="fade-up">Proof</span>
+      <h1 class="section-title" data-animate="fade-up" data-delay="80">Credibility signals that support the work behind the portfolio.</h1>
+      <p class="lead" data-animate="fade-up" data-delay="160">This page groups the strongest metrics, outcomes, and capability markers so recruiters and clients can judge the work faster.</p>
     </div>
 
-    <div class="grid-4 proof-metrics">
+    <div class="grid-4 proof-metrics" data-stagger-parent="80">
       {stats.map((item) => (
-        <div class={`panel panel-pad metric metric-${item.accent}`}>
-          <div class={`accent-${item.accent} metric-value`}>{item.value}</div>
+        <div class={`panel panel-pad metric metric-${item.accent}`} data-animate="fade-up">
+          <div class={`accent-${item.accent} metric-value`} data-count={item.value.replace(/[^0-9.]/g, '')} data-prefix={item.value.startsWith('₱') ? '₱' : item.value.startsWith('$') ? '$' : ''} data-suffix={item.value.includes('M+') ? 'M+' : item.value.includes('%') ? '%' : '+'}>{item.value}</div>
           <div class="muted metric-label">{item.label}</div>
         </div>
       ))}

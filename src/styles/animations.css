@@ -64,7 +64,7 @@
 
 /* ============================================================
    2. DELAY UTILITIES  (add data-delay="N" on the element
-      and scrollAnimations.ts reads it; OR use these CSS classes
+      and enhancements.ts reads it; OR use these CSS classes
       if you prefer class-based delays)
    ============================================================ */
 
@@ -289,5 +289,22 @@ div[id] {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   8. SAFETY NET
+   Never permanently hide content. Reveal only kicks in when JS
+   is available AND motion is allowed; otherwise show everything.
+   ============================================================ */
+html:not(.js) [data-animate] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

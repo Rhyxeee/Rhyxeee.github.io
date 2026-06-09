@@ -12,27 +12,34 @@ const accentMap: Record<string, string> = {
 <section class="hero-home page-shell">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Data Manager · Analytics and Reporting</span>
-      <h1 class="display-title">I turn messy records into <span class="accent-blue">decision-ready systems.</span></h1>
-      <p class="lead hero-lead">
+      <span class="eyebrow" data-animate="fade-up">
+        <span class="status-dot" aria-hidden="true"></span>Data Manager · Analytics and Reporting
+      </span>
+      <h1 class="display-title" data-animate="fade-up" data-delay="80">I turn messy records into <span class="accent-blue">decision-ready systems.</span></h1>
+      <p class="lead hero-lead" data-animate="fade-up" data-delay="160">
         I clean, audit, and structure business data so dashboards, reports, and workflows stay
         reliable and ready for real decisions.
       </p>
-      <div class="hero-actions">
+      <div class="hero-actions" data-animate="fade-up" data-delay="240">
         <a href="/projects" class="btn">View Projects</a>
         <a href={site.resumeUrl} target="_blank" rel="noreferrer" class="btn-ghost">Download Resume</a>
       </div>
-      <div class="stats-grid">
-        {stats.map((item) => (
-          <div class="stat-card card" style={`--accent:${accentMap[item.accent]};`}>
-            <span class="stat-value">{item.value}</span>
-            <span class="stat-label">{item.label}</span>
-          </div>
-        ))}
+      <div class="stats-grid" data-animate="fade-up" data-delay="320">
+        {stats.map((item) => {
+          const count = item.value.replace(/[^0-9.]/g, '');
+          const prefix = item.value.startsWith('₱') ? '₱' : item.value.startsWith('$') ? '$' : '';
+          const suffix = item.value.includes('M+') ? 'M+' : item.value.includes('%') ? '%' : '+';
+          return (
+            <div class="stat-card card" style={`--accent:${accentMap[item.accent]};`}>
+              <span class="stat-value" data-count={count} data-prefix={prefix} data-suffix={suffix}>{item.value}</span>
+              <span class="stat-label">{item.label}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
 
-    <div class="hero-side panel panel-pad-lg">
+    <div class="hero-side panel panel-pad-lg" data-animate="fade-left" data-delay="200">
       <div class="hero-avatar-wrap">
         <div class="avatar-ring"></div>
         <img src={site.profileImage} alt={site.name} class="hero-avatar" width="320" height="320" />
