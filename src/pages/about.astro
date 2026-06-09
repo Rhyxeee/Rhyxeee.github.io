@@ -8,25 +8,27 @@ import { site, experienceRows, achievements } from '../data/site';
   <section class="container page-shell">
     <div class="page-header">
       <span class="eyebrow" data-animate="fade-up">About</span>
-      <h1 class="section-title" data-animate="fade-up" data-delay="80">Data-facing work built around structure, reviewability, and practical outputs.</h1>
-      <p class="lead" data-animate="fade-up" data-delay="160">I work best where raw records need discipline, teams need cleaner reporting, and the final output has to stand up to review instead of just looking impressive for one minute.</p>
+      <h1 class="section-title" data-animate="fade-up" data-delay="80">Data work built on structure, accuracy, and clean handoff.</h1>
+      <p class="lead" data-animate="fade-up" data-delay="160">I focus on data work that needs careful cleaning, clear logic, documentation, and outputs that other people can review and reuse.</p>
     </div>
 
     <div class="grid-3 about-cluster" data-stagger-parent="90">
       <div class="panel panel-pad-lg about-card" data-animate="fade-up">
         <span class="eyebrow">What I bring</span>
-        <h2 class="about-title">Analytical work with cleaner handoff.</h2>
-        <p class="muted">My focus is not just getting an answer. It is building a workflow other people can review, reuse, and trust after I leave the file.</p>
+        <h2 class="about-title">Structured analysis with practical reporting value.</h2>
+        <p class="muted">My focus is not only the final answer, but also the process behind it: clean inputs, repeatable steps, documented logic, and outputs that are easy to review.</p>
       </div>
+
       <div class="panel panel-pad-lg about-card" data-animate="fade-up">
         <span class="eyebrow">How I work</span>
         <ul class="list-clean about-list">
           <li class="card">Accuracy first</li>
           <li class="card">Repeatable workflow design</li>
-          <li class="card">Clear documentation and reviewability</li>
+          <li class="card">Clear documentation and reviewable outputs</li>
           <li class="card">Business-ready reporting outputs</li>
         </ul>
       </div>
+
       <div class="panel panel-pad-lg about-card" data-animate="fade-up">
         <span class="eyebrow">Selected strengths</span>
         <ul class="list-clean about-list about-list-copy">
@@ -43,8 +45,8 @@ import { site, experienceRows, achievements } from '../data/site';
   <section class="container page-shell" style="padding-top:1rem;">
     <div class="page-header">
       <span class="eyebrow">Experience</span>
-      <h2 class="section-title">Experience in roles where clean records and reliable outputs matter.</h2>
-      <p class="lead">The common thread across the work is structured handling of messy information, operational checking, and outputs built for real use instead of presentation alone.</p>
+      <h2 class="section-title">Experience in data operations, QA, reporting support, and workflow documentation.</h2>
+      <p class="lead">My experience is centered on organizing raw information, checking data quality, improving repeatable processes, and preparing outputs for real operational use.</p>
     </div>
 
     <div class="experience-stack">
@@ -59,6 +61,7 @@ import { site, experienceRows, achievements } from '../data/site';
               <div class="spacer-1"></div>
               <a href={item.link.href} target="_blank" rel="noreferrer" class="btn-ghost">{item.link.label}</a>
             </div>
+
             <div>
               <p class="muted" style="margin-top:0;">{item.summary}</p>
               <ul class="list-clean experience-bullets">
@@ -66,6 +69,7 @@ import { site, experienceRows, achievements } from '../data/site';
                   <li class="card">{bullet}</li>
                 ))}
               </ul>
+
               <div class="experience-tags">
                 {item.stack.map((tech) => (
                   <span class="tag">{tech}</span>
@@ -81,37 +85,45 @@ import { site, experienceRows, achievements } from '../data/site';
 
 <style>
   .about-cluster { align-items: stretch; }
+
   .about-title {
     margin: 0 0 0.75rem;
     font-size: clamp(1.45rem, 2vw, 1.8rem);
     letter-spacing: -0.03em;
     line-height: 1.18;
   }
+
   .about-list { display: grid; gap: 0.8rem; }
   .about-list li { padding: 1rem; }
   .about-list-copy li { color: var(--muted); line-height: 1.72; }
+
   .experience-stack { display: grid; gap: 1.2rem; }
+
   .experience-title {
     margin: 0;
     font-size: clamp(1.45rem, 2vw, 1.85rem);
     letter-spacing: -0.03em;
   }
+
   .experience-bullets {
     display: grid;
     gap: 0.75rem;
     margin-top: 1rem;
   }
+
   .experience-bullets li {
     padding: 0.95rem 1rem;
     color: var(--muted);
     line-height: 1.75;
   }
+
   .experience-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
     margin-top: 1rem;
   }
+
   @media (max-width: 1024px) {
     .about-cluster { grid-template-columns: 1fr; }
   }

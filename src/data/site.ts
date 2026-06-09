@@ -1,10 +1,10 @@
 export const site = {
   name: 'Mark Anthony Nene',
   title: 'Analytics Systems Portfolio',
-  role: 'Data Manager · Reporting Systems',
-  tagline: 'I turn messy records into decision-ready systems.',
+  role: 'Data Manager · Data Quality & Reporting Systems',
+  tagline: 'Cleaner data. Clearer reporting. Workflows teams can trust.',
   description:
-    'Portfolio of Mark Anthony Nene, focused on data cleaning, analytics, dashboards, reporting, and audit-ready workflow design.',
+    'Portfolio of Mark Anthony Nene, focused on data quality, reporting workflows, analytics support, and audit-ready documentation.',
   url: 'https://rhyxeee.github.io',
   email: 'markanthonynene@gmail.com',
   // Used for Open Graph / Twitter share previews and JSON-LD structured data.
@@ -15,8 +15,7 @@ export const site = {
   githubUrl: 'https://github.com/Rhyxeee',
   // TODO: replace with your real LinkedIn profile URL (the old link pointed to the generic homepage).
   linkedinUrl: 'https://www.linkedin.com/in/markanthonynene',
-  resumeUrl:
-    'https://drive.google.com/uc?export=download&id=1ACO5c7FdHgKfljXX8RD0ES_2o2T1r2Wi',
+  resumeUrl: 'https://drive.google.com/uc?export=download&id=1ACO5c7FdHgKfljXX8RD0ES_2o2T1r2Wi',
   profileImage: '/images/profile.png',
   socialLinks: [
     { label: 'GitHub', href: 'https://github.com/Rhyxeee' },
@@ -26,24 +25,24 @@ export const site = {
   nav: [
     { label: 'Home', href: '/' },
     { label: 'Projects', href: '/projects' },
-    { label: 'Proof', href: '/proof' },
+    { label: 'Results', href: '/proof' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' }
   ]
 };
 
 export const stats = [
-  { value: '4,400+', label: 'Records cleaned', accent: 'blue' },
-  { value: '₱2M+', label: 'Budget audited', accent: 'amber' },
-  { value: '$5M+', label: 'Sales analyzed', accent: 'green' },
-  { value: '100%', label: 'Accuracy focus', accent: 'purple' }
+  { value: '4,400+', label: 'Records cleaned and documented', accent: 'blue' },
+  { value: '₱2M+', label: 'Budget reviewed for audit and reconciliation', accent: 'amber' },
+  { value: '$5M+', label: 'Sales dataset analyzed', accent: 'green' },
+  { value: 'QA', label: 'Focused workflows', accent: 'purple' }
 ];
 
 export const achievements = [
-  'Surfaced a 230,000x output disparity between urban and island economies, revealing a hidden V-shaped recovery pattern.',
-  'Built a dashboard for a $5M+ sales dataset that exposed discount inefficiencies and supported clearer resource decisions.',
-  'Engineered a Python pipeline to clean 4,400+ records while preserving auditability and financial accuracy.',
-  'Served as audit delegate for a ₱2M+ budget with strict reconciliation and compliance checks.'
+  'Identified a 230,000x output gap between urban and island economies and documented the pattern for clearer economic analysis.',
+  'Built a dashboard for a $5M+ sales dataset to review discount behavior, category performance, and revenue trends.',
+  'Created a Python cleaning workflow for 4,400+ records with documented checks and audit-friendly outputs.',
+  'Supported audit and reconciliation work for a ₱2M+ budget with organized documentation and compliance checks.'
 ];
 
 export const marqueeRows = [
@@ -58,55 +57,61 @@ export const experienceRows = [
     company: 'GSH Investments',
     meta: 'Remote · Feb 2026 to Present',
     summary:
-      'Lead daily extraction, structuring, skip tracing, and QA workflows for public-record real estate data used in prospecting and marketing.',
+      'Manage daily public-record data workflows for real estate prospecting, including extraction, cleaning, skip tracing, verification, and QA.',
     bullets: [
-      'Pull county foreclosure, probate, and tax data from public portals and prepare it for downstream use.',
+      'Pull foreclosure, probate, tax, and property records from public county sources for downstream use.',
       'Clean, deduplicate, standardize, and audit records in Google Sheets-based workflows.',
-      'Use AI-assisted research and manual verification to enrich owner data and improve lead quality.',
-      'Track KPI quality, spot-check outputs, and improve repeatable operating processes.'
+      'Use research tools and manual verification to enrich owner information and improve lead quality.',
+      'Track data-quality issues, spot-check outputs, and improve repeatable operating processes.'
     ],
     stack: ['Google Sheets', 'Data QA', 'Skip Tracing', 'Process Design'],
-    link: { label: 'Work sample PDF', href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/GSH_Work_Sample.pdf' }
+    link: {
+      label: 'Work sample PDF',
+      href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/GSH_Work_Sample.pdf'
+    }
   },
   {
     role: 'Administrative Support and Data Associate',
     company: 'Lifewood Data Technology',
     meta: 'Sep 2023 to Jan 2026',
     summary:
-      'Supported data operations, validation, reporting, and process accuracy in a structured business environment.',
+      'Supported data operations, document checking, validation, reporting, and process accuracy in a structured business environment.',
     bullets: [
-      'Maintained operational records and assisted in cross-checking documents for completeness and consistency.',
-      'Prepared organized data outputs that were easier to review, monitor, and report.',
-      'Improved speed and clarity of routine data handling tasks through structured templates and review steps.'
+      'Maintained operational records and checked documents for completeness and consistency.',
+      'Prepared organized data outputs for review, monitoring, and reporting.',
+      'Improved routine data-handling tasks through structured templates and review steps.'
     ],
     stack: ['Documentation', 'Quality Checks', 'Reporting', 'Operations'],
-    link: { label: 'Experience showcase', href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/Work_Experience_Showcase_LifeWood.pdf' }
+    link: {
+      label: 'Experience showcase',
+      href: 'https://github.com/Rhyxeee/Rhyxeee.github.io/blob/main/docs/Work_Experience_Showcase_LifeWood.pdf'
+    }
   }
 ];
 
 export const proofCards = [
   {
-    title: 'Applied Mathematics Foundation',
+    title: 'Applied Mathematics Background',
     meta: 'Quantitative training',
-    body: 'Built on structured reasoning, statistical discipline, and research habits that support careful data work.',
+    body: 'Quantitative training that supports careful data review, statistical thinking, and structured analysis.',
     accent: 'blue'
   },
   {
     title: 'Real Estate Data Operations',
     meta: 'Current role',
-    body: 'Hands-on workflow ownership in public-record extraction, QA, enrichment, and operational reporting.',
+    body: 'Hands-on experience in public-record extraction, data cleaning, skip tracing, QA, and workflow improvement.',
     accent: 'amber'
   },
   {
-    title: 'Analytics Tooling Focus',
+    title: 'Analytics & Reporting Tools',
     meta: 'Power BI · SQL · Python · Excel',
-    body: 'Focused on tools that turn raw records into dashboards, insights, and repeatable decision support.',
+    body: 'Practical use of Power BI, SQL, Python, Excel, and Google Sheets for reporting and analysis workflows.',
     accent: 'green'
   },
   {
     title: 'Documentation + QA Discipline',
     meta: 'Review-friendly outputs',
-    body: 'Strong fit for work that needs clean methods, documented logic, and outputs people can verify with confidence.',
+    body: 'Clean methods, documented logic, and outputs that can be reviewed with confidence.',
     accent: 'purple'
   }
 ];

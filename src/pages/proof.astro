@@ -3,29 +3,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { site, proofCards, achievements, stats } from '../data/site';
 ---
 
-<BaseLayout title={`Proof · ${site.name}`} description="Proof and focus" currentPath="/proof">
+<BaseLayout title={`Results · ${site.name}`} description="Results and credibility markers" currentPath="/proof">
   <section class="container page-shell">
     <div class="page-header">
-      <span class="eyebrow" data-animate="fade-up">Proof</span>
-      <h1 class="section-title" data-animate="fade-up" data-delay="80">Credibility signals that support the work behind the portfolio.</h1>
-      <p class="lead" data-animate="fade-up" data-delay="160">This page groups the strongest metrics, outcomes, and capability markers so recruiters and clients can judge the work faster.</p>
+      <span class="eyebrow" data-animate="fade-up">Results</span>
+      <h1 class="section-title" data-animate="fade-up" data-delay="80">Results and credibility markers.</h1>
+      <p class="lead" data-animate="fade-up" data-delay="160">A focused summary of measurable work, selected outcomes, and strengths that support my data roles.</p>
     </div>
 
     <div class="grid-4 proof-metrics" data-stagger-parent="80">
-      {stats.map((item) => (
-        <div class={`panel panel-pad metric metric-${item.accent}`} data-animate="fade-up">
-          <div class={`accent-${item.accent} metric-value`} data-count={item.value.replace(/[^0-9.]/g, '')} data-prefix={item.value.startsWith('₱') ? '₱' : item.value.startsWith('$') ? '$' : ''} data-suffix={item.value.includes('M+') ? 'M+' : item.value.includes('%') ? '%' : '+'}>{item.value}</div>
-          <div class="muted metric-label">{item.label}</div>
-        </div>
-      ))}
+      {stats.map((item) => {
+        const count = item.value.replace(/[^0-9.]/g, '');
+        const hasCount = count.length > 0;
+        const prefix = hasCount ? (item.value.startsWith('₱') ? '₱' : item.value.startsWith('$') ? '$' : '') : undefined;
+        const suffix = hasCount ? (item.value.includes('M+') ? 'M+' : item.value.includes('%') ? '%' : '+') : undefined;
+
+        return (
+          <div class={`panel panel-pad metric metric-${item.accent}`} data-animate="fade-up">
+            <div class={`accent-${item.accent} metric-value`} data-count={hasCount ? count : undefined} data-prefix={prefix} data-suffix={suffix}>{item.value}</div>
+            <div class="muted metric-label">{item.label}</div>
+          </div>
+        );
+      })}
     </div>
 
     <div class="spacer-2"></div>
-
     <div class="grid-2 proof-layout">
       <div class="panel panel-pad-lg">
         <span class="eyebrow">Selected outcomes</span>
-        <h2 class="proof-title">Recent results worth verifying.</h2>
+        <h2 class="proof-title">Recent results across data cleaning, analytics, reporting, and audit work.</h2>
         <ul class="list-clean proof-outcomes">
           {achievements.map((item, index) => (
             <li class="card proof-outcome-item">
@@ -35,9 +41,10 @@ import { site, proofCards, achievements, stats } from '../data/site';
           ))}
         </ul>
       </div>
+
       <div class="panel panel-pad-lg">
-        <span class="eyebrow">Capability markers</span>
-        <h2 class="proof-title">What the portfolio is signaling.</h2>
+        <span class="eyebrow">Core strengths</span>
+        <h2 class="proof-title">Core strengths behind the results.</h2>
         <div class="proof-card-stack">
           {proofCards.map((item) => (
             <div class={`card capability capability-${item.accent}`}>
@@ -58,18 +65,23 @@ import { site, proofCards, achievements, stats } from '../data/site';
   .metric-amber { border-top-color: rgba(245,158,11,0.78); }
   .metric-green { border-top-color: rgba(34,197,94,0.8); }
   .metric-purple { border-top-color: rgba(168,85,247,0.82); }
+
   .metric-value {
     font-size: clamp(1.8rem, 2.8vw, 2.4rem);
     font-weight: 700;
     letter-spacing: -0.04em;
   }
+
   .metric-label { margin-top: 0.35rem; }
+
   .proof-title {
     margin: 0 0 1rem;
     font-size: clamp(1.6rem, 2.2vw, 2rem);
     letter-spacing: -0.03em;
   }
+
   .proof-outcomes, .proof-card-stack { display: grid; gap: 0.95rem; }
+
   .proof-outcome-item {
     padding: 1rem;
     display: grid;
@@ -77,6 +89,7 @@ import { site, proofCards, achievements, stats } from '../data/site';
     gap: 1rem;
     align-items: start;
   }
+
   .proof-index {
     display: inline-flex;
     align-items: center;
@@ -90,10 +103,12 @@ import { site, proofCards, achievements, stats } from '../data/site';
     font-size: 0.84rem;
     font-weight: 700;
   }
+
   .capability {
     padding: 1rem;
     border-left: 3px solid transparent;
   }
+
   .capability-blue { border-left-color: rgba(56,189,248,0.8); }
   .capability-amber { border-left-color: rgba(245,158,11,0.78); }
   .capability-green { border-left-color: rgba(34,197,94,0.8); }

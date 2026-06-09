@@ -2,7 +2,10 @@
 import { marqueeRows } from '../data/site';
 const directions = ['normal', 'reverse', 'normal'];
 
-const iconMap = {
+type Accent = 'blue' | 'amber' | 'green' | 'purple';
+type IconItem = { accent: Accent; svg: string };
+
+const iconMap: Record<string, IconItem> = {
   'Power BI': { accent: 'amber', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18.5h2.5V9.75H5V18.5Zm5.75 0h2.5V5.5h-2.5v13Zm5.75 0H19V12h-2.5v6.5Z" fill="currentColor"/></svg>` },
   'Excel': { accent: 'green', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3H7a2 2 0 0 0-2 2v14.01A1.99 1.99 0 0 0 7 21h10a2 2 0 0 0 2-1.99V9l-6-6Zm1 2.5L17.5 9H14V5.5ZM8.5 12.2h1.76l1.02 1.79 1.03-1.8h1.69l-1.88 2.94 1.98 3.07h-1.76l-1.1-1.88-1.08 1.88H8.39l1.97-3.02-1.86-2.98Z" fill="currentColor"/></svg>` },
   'Google Sheets': { accent: 'green', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7l-4-4Zm0 1.75L16.25 7H14V4.75ZM9 11h6v1.5H9V11Zm0 3h6v1.5H9V14Zm0 3h4.5v1.5H9V17Z" fill="currentColor"/></svg>` },
@@ -27,32 +30,34 @@ const iconMap = {
   'Decision Support': { accent: 'green', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-9 9c0 3.13 1.6 5.7 4 7.33V21h10v-1.67A8.98 8.98 0 0 0 21 12a9 9 0 0 0-9-9Zm0 1.5A7.5 7.5 0 0 1 19.5 12a7.45 7.45 0 0 1-3.48 6.32l-.52.34V19.5h-7v-.84l-.52-.34A7.45 7.45 0 0 1 4.5 12 7.5 7.5 0 0 1 12 4.5Zm-1.25 2.75v4.1l-1.9 1.9 1.06 1.06 2.34-2.34V7.25h-1.5Z" fill="currentColor"/></svg>` }
 };
 
-const accentClasses = {
+const accentClasses: Record<Accent, string> = {
   blue: 'is-blue',
   amber: 'is-amber',
   green: 'is-green',
   purple: 'is-purple'
 };
 
-const fallback = { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>` };
+const fallback: IconItem = { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>` };
 ---
 
 <section class="marquee-section">
   <div class="container">
     <div class="page-header toolbelt-intro">
-      <span class="eyebrow">Toolbelt</span>
-      <h2 class="section-title">Core tools and systems behind the work.</h2>
-      <p class="lead">The stack is grouped here so recruiters and clients can scan it quickly without digging through long paragraphs.</p>
+      <span class="eyebrow">Tools & Focus Areas</span>
+      <h2 class="section-title">Practical tools for data cleaning, reporting, QA, and analytics support.</h2>
+      <p class="lead">Grouped for quick review without turning the tools section into a long paragraph.</p>
     </div>
 
     <div class="marquee-shell panel panel-pad-lg">
       {marqueeRows.map((row, index) => {
         const doubled = [...row, ...row, ...row];
+
         return (
           <div class:list={["marquee-row", directions[index] === 'reverse' && 'is-reverse']}>
             <div class="marquee-track">
               {doubled.map((item) => {
                 const icon = iconMap[item] ?? fallback;
+
                 return (
                   <span class:list={["marquee-pill", accentClasses[icon.accent]]}>
                     <span class="marquee-icon" set:html={icon.svg}></span>
@@ -70,8 +75,11 @@ const fallback = { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="t
 
 <style>
   .marquee-section { padding: 0.5rem 0 4rem; }
+
   .toolbelt-intro { margin-bottom: 1.7rem; }
+
   .marquee-shell { display: grid; gap: 1rem; overflow: hidden; }
+
   .marquee-shell::after,
   .marquee-shell::before {
     content: "";
@@ -82,20 +90,24 @@ const fallback = { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="t
     z-index: 2;
     pointer-events: none;
   }
+
   .marquee-shell::before {
     left: 0;
     background: linear-gradient(90deg, var(--panel-strong), transparent);
   }
+
   .marquee-shell::after {
     right: 0;
     background: linear-gradient(270deg, var(--panel-strong), transparent);
   }
+
   .marquee-row {
     overflow: hidden;
     border-radius: 18px;
     background: var(--hover-soft);
     border: 1px solid var(--border-soft);
   }
+
   .marquee-track {
     display: flex;
     width: max-content;
@@ -103,7 +115,9 @@ const fallback = { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="t
     padding: 0.95rem 0.9rem;
     animation: marquee-left 34s linear infinite;
   }
+
   .marquee-row.is-reverse .marquee-track { animation-name: marquee-right; }
+
   .marquee-pill {
     display: inline-flex;
     align-items: center;
@@ -117,6 +131,7 @@ const fallback = { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="t
     white-space: nowrap;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
   }
+
   .marquee-icon {
     width: 18px;
     height: 18px;
@@ -124,23 +139,28 @@ const fallback = { accent: 'blue', svg: `<svg viewBox="0 0 24 24" aria-hidden="t
     color: inherit;
     opacity: 0.95;
   }
+
   .marquee-icon :global(svg) {
     width: 18px;
     height: 18px;
     display: block;
   }
+
   .marquee-pill.is-blue { color: #8bdcff; border-color: rgba(56,189,248,0.16); }
   .marquee-pill.is-amber { color: #f8cf6b; border-color: rgba(245,158,11,0.16); }
   .marquee-pill.is-green { color: #7ee1a0; border-color: rgba(34,197,94,0.16); }
   .marquee-pill.is-purple { color: #c792ff; border-color: rgba(168,85,247,0.16); }
+
   @keyframes marquee-left {
     from { transform: translateX(0); }
     to { transform: translateX(-33.333%); }
   }
+
   @keyframes marquee-right {
     from { transform: translateX(-33.333%); }
     to { transform: translateX(0); }
   }
+
   @media (prefers-reduced-motion: reduce) {
     .marquee-track { animation: none; }
   }

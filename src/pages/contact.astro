@@ -7,8 +7,8 @@ import { site } from '../data/site';
   <section class="container page-shell">
     <div class="page-header">
       <span class="eyebrow" data-animate="fade-up">Contact</span>
-      <h1 class="section-title" data-animate="fade-up" data-delay="80">Need cleaner data, stronger reporting, or a more reliable workflow?</h1>
-      <p class="lead" data-animate="fade-up" data-delay="160">This page keeps the next step simple. If the work fits what you need, here are the fastest ways to reach me or review my background.</p>
+      <h1 class="section-title" data-animate="fade-up" data-delay="80">Let’s discuss data cleaning, reporting, or workflow support.</h1>
+      <p class="lead" data-animate="fade-up" data-delay="160">For work inquiries, recruiter screening, or portfolio questions, you can reach me through email or review my resume and project links below.</p>
     </div>
 
     <div class="grid-3 contact-grid" data-stagger-parent="90">
@@ -20,15 +20,17 @@ import { site } from '../data/site';
         <div class="spacer-1"></div>
         <button type="button" class="btn-ghost" data-copy={site.email}>Copy email address</button>
       </div>
+
       <div class="panel panel-pad-lg contact-card contact-green" data-animate="fade-up">
         <h2>GitHub</h2>
-        <p class="muted">Repositories, source work, and the portfolio codebase.</p>
+        <p class="muted">Project repositories, source files, and portfolio code.</p>
         <div class="spacer-1"></div>
         <a class="btn-ghost" href={site.githubUrl} target="_blank" rel="noreferrer">Open GitHub</a>
       </div>
+
       <div class="panel panel-pad-lg contact-card contact-amber" data-animate="fade-up">
         <h2>Resume</h2>
-        <p class="muted">Quick access for applications, recruiter review, and screening calls.</p>
+        <p class="muted">Resume for recruiter review, applications, and screening.</p>
         <div class="spacer-1"></div>
         <a class="btn-ghost" href={site.resumeUrl} target="_blank" rel="noreferrer">Download resume</a>
       </div>
@@ -42,6 +44,7 @@ import { site } from '../data/site';
     font-size: 1.42rem;
     letter-spacing: -0.02em;
   }
+
   .contact-blue { border-top: 3px solid rgba(56,189,248,0.8); }
   .contact-green { border-top: 3px solid rgba(34,197,94,0.8); }
   .contact-amber { border-top: 3px solid rgba(245,158,11,0.78); }

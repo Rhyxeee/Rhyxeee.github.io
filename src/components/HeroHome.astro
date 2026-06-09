@@ -13,25 +13,30 @@ const accentMap: Record<string, string> = {
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="eyebrow" data-animate="fade-up">
-        <span class="status-dot" aria-hidden="true"></span>Data Manager · Analytics and Reporting
+        <span class="status-dot" aria-hidden="true"></span>Data Manager · Data Quality & Reporting Systems
       </span>
-      <h1 class="display-title" data-animate="fade-up" data-delay="80">I turn messy records into <span class="accent-blue">decision-ready systems.</span></h1>
+
+      <h1 class="display-title" data-animate="fade-up" data-delay="80">Cleaner data. Clearer reporting. <span class="accent-blue">Workflows teams can trust.</span></h1>
+
       <p class="lead hero-lead" data-animate="fade-up" data-delay="160">
-        I clean, audit, and structure business data so dashboards, reports, and workflows stay
-        reliable and ready for real decisions.
+        I clean, validate, and structure business data for dashboards, audits, and repeatable reporting workflows.
       </p>
+
       <div class="hero-actions" data-animate="fade-up" data-delay="240">
         <a href="/projects" class="btn">View Projects</a>
         <a href={site.resumeUrl} target="_blank" rel="noreferrer" class="btn-ghost">Download Resume</a>
       </div>
+
       <div class="stats-grid" data-animate="fade-up" data-delay="320">
         {stats.map((item) => {
           const count = item.value.replace(/[^0-9.]/g, '');
-          const prefix = item.value.startsWith('₱') ? '₱' : item.value.startsWith('$') ? '$' : '';
-          const suffix = item.value.includes('M+') ? 'M+' : item.value.includes('%') ? '%' : '+';
+          const hasCount = count.length > 0;
+          const prefix = hasCount ? (item.value.startsWith('₱') ? '₱' : item.value.startsWith('$') ? '$' : '') : undefined;
+          const suffix = hasCount ? (item.value.includes('M+') ? 'M+' : item.value.includes('%') ? '%' : '+') : undefined;
+
           return (
-            <div class="stat-card card" style={`--accent:${accentMap[item.accent]};`}>
-              <span class="stat-value" data-count={count} data-prefix={prefix} data-suffix={suffix}>{item.value}</span>
+            <div class="stat-card card" style={`--accent:${accentMap[item.accent as keyof typeof accentMap]};`}>
+              <span class="stat-value" data-count={hasCount ? count : undefined} data-prefix={prefix} data-suffix={suffix}>{item.value}</span>
               <span class="stat-label">{item.label}</span>
             </div>
           );
@@ -44,20 +49,22 @@ const accentMap: Record<string, string> = {
         <div class="avatar-ring"></div>
         <img src={site.profileImage} alt={site.name} class="hero-avatar" width="320" height="320" />
       </div>
+
       <div class="hero-side-copy">
         <span class="pill accent-border-blue">Currently at GSH Investments</span>
         <h2>{site.name}</h2>
         <p>
-          Data manager focused on reporting systems, analytics support, and audit-ready workflow design.
+          Data Manager focused on data quality, reporting workflows, analytics support, and audit-ready documentation.
         </p>
+
         <div class="hero-mini-grid">
           <div class="mini-card card">
             <strong>Primary focus</strong>
-            <span>Data cleaning, reporting workflows, operational QA, and decision-ready outputs.</span>
+            <span>Data cleaning, validation, reporting workflows, and operational QA.</span>
           </div>
           <div class="mini-card card">
             <strong>Working style</strong>
-            <span>Clear logic, clean handoff, practical reporting, and review-ready outputs.</span>
+            <span>Structured, careful, documented, and easy to review.</span>
           </div>
         </div>
       </div>
@@ -72,21 +79,25 @@ const accentMap: Record<string, string> = {
     gap: 1.6rem;
     align-items: stretch;
   }
+
   .hero-copy {
     display: flex;
     flex-direction: column;
     min-height: 100%;
     padding-top: 0.35rem;
   }
+
   .hero-lead {
     max-width: 42rem;
   }
+
   .hero-actions {
     display: flex;
     gap: 0.85rem;
     flex-wrap: wrap;
     margin: 1.7rem 0 1.65rem;
   }
+
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -94,6 +105,7 @@ const accentMap: Record<string, string> = {
     margin-top: auto;
     align-items: stretch;
   }
+
   .stat-card {
     min-height: 122px;
     padding: 1.05rem 1rem 0.95rem;
@@ -104,6 +116,7 @@ const accentMap: Record<string, string> = {
     flex-direction: column;
     justify-content: flex-start;
   }
+
   .stat-card::before {
     content: "";
     position: absolute;
@@ -112,6 +125,7 @@ const accentMap: Record<string, string> = {
     height: 3px;
     background: var(--accent);
   }
+
   .stat-value {
     display: block;
     font-size: clamp(1.8rem, 2vw, 2.05rem);
@@ -119,14 +133,18 @@ const accentMap: Record<string, string> = {
     letter-spacing: -0.04em;
     margin-bottom: 0.24rem;
   }
+
   .stat-label { color: var(--muted-2); font-size: 0.95rem; }
+
   .hero-side {
     display: flex;
     flex-direction: column;
     gap: 0.95rem;
     min-height: 100%;
   }
+
   .hero-avatar-wrap { position: relative; width: min(100%, 280px); margin: 0 auto; }
+
   .avatar-ring {
     position: absolute;
     inset: -11px;
@@ -134,6 +152,7 @@ const accentMap: Record<string, string> = {
     border: 1px solid rgba(56,189,248,0.18);
     box-shadow: 0 0 0 12px rgba(56,189,248,0.04), 0 0 0 22px rgba(56,189,248,0.02);
   }
+
   .hero-avatar {
     width: 100%;
     aspect-ratio: 1;
@@ -142,17 +161,21 @@ const accentMap: Record<string, string> = {
     border: 3px solid rgba(56,189,248,0.34);
     background: #d4d4d8;
   }
+
   .hero-side-copy {
     display: flex;
     flex-direction: column;
     flex: 1;
   }
+
   .hero-side-copy h2 {
     margin: 0.65rem 0 0.35rem;
     font-size: 1.72rem;
     letter-spacing: -0.03em;
   }
+
   .hero-side-copy p { margin: 0; color: var(--muted); line-height: 1.72; }
+
   .hero-mini-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -160,18 +183,22 @@ const accentMap: Record<string, string> = {
     margin-top: auto;
     align-items: stretch;
   }
+
   .mini-card {
     min-height: 150px;
     padding: 1rem;
     display: grid;
     gap: 0.35rem;
   }
+
   .mini-card strong { font-size: 0.98rem; }
   .mini-card span { color: var(--muted); line-height: 1.68; }
+
   @media (max-width: 1024px) {
     .hero-grid { grid-template-columns: 1fr; }
     .hero-copy { padding-top: 0; }
   }
+
   @media (max-width: 720px) {
     .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .hero-mini-grid { grid-template-columns: 1fr; }

@@ -13,49 +13,52 @@ const featuredProof = proofCards.slice(0, 3);
 
 <BaseLayout title={`${site.name} · ${site.title}`} description={site.description} currentPath="/">
   <HeroHome />
+
   <TechStackMarquee />
 
   <section class="container page-shell" style="padding-top:1rem;">
     <div class="page-header">
-      <span class="eyebrow" data-animate="fade-up">Featured projects</span>
-      <h2 class="section-title" data-animate="fade-up" data-delay="80">Selected case studies built for cleaner data, clearer systems, and stronger reporting.</h2>
-      <p class="lead" data-animate="fade-up" data-delay="160">These are the strongest portfolio pieces to open first. Each project page covers the problem, the working method, and the outcome.</p>
+      <span class="eyebrow" data-animate="fade-up">Selected Projects</span>
+      <h2 class="section-title" data-animate="fade-up" data-delay="80">Case studies in data cleaning, reporting, SQL, and analytics.</h2>
+      <p class="lead" data-animate="fade-up" data-delay="160">Each case study shows the problem, approach, tools used, and final output.</p>
     </div>
+
     <div class="grid-3" data-stagger-parent="90">
       {featuredProjects.map((project) => (
         <div data-animate="fade-up"><ProjectCard {...project} href={`/projects/${project.slug}`} links={project.links} /></div>
       ))}
     </div>
+
     <div class="spacer-2"></div>
     <a class="btn-ghost" href="/projects">Open all projects</a>
   </section>
 
   <section class="container page-shell" style="padding-top:1.5rem;">
     <div class="page-header cluster-head">
-      <span class="eyebrow" data-animate="fade-up">What clients can scan quickly</span>
-      <h2 class="section-title" data-animate="fade-up" data-delay="80">The site is grouped around what people usually want first.</h2>
-      <p class="lead" data-animate="fade-up" data-delay="160">Instead of burying everything in one long scroll, the home page points to the key areas that help people decide whether to keep reading.</p>
+      <span class="eyebrow" data-animate="fade-up">Explore the Portfolio</span>
+      <h2 class="section-title" data-animate="fade-up" data-delay="80">Quick links to the main sections of my work.</h2>
+      <p class="lead" data-animate="fade-up" data-delay="160">Review my experience, results, resume, and contact details without going through one long page.</p>
     </div>
 
     <div class="grid-3 cluster-grid" data-stagger-parent="90" data-animate-children>
       <QuickPreviewCard
-        title="About + Experience"
+        title="Experience"
         kicker="Background"
-        body="Who I am, how I work, and the environments where I am strongest all live on a dedicated page."
+        body="Current and previous roles in data operations, reporting support, and workflow QA."
         href="/about"
         accent="blue"
       />
       <QuickPreviewCard
-        title="Proof + Credibility"
-        kicker="Signals"
-        body="Results, capability markers, and trust-building evidence are grouped so people can verify the work fast."
+        title="Results"
+        kicker="Credibility"
+        body="Key metrics, selected outcomes, and credibility markers."
         href="/proof"
         accent="amber"
       />
       <QuickPreviewCard
-        title="Contact + Resume"
+        title="Contact"
         kicker="Next step"
-        body="Direct ways to reach out, review my resume, and move from browsing into a real conversation."
+        body="Resume, email, GitHub, and LinkedIn links for recruiter or project inquiries."
         href="/contact"
         accent="green"
       />
@@ -65,20 +68,20 @@ const featuredProof = proofCards.slice(0, 3);
   <section class="container page-shell" style="padding-top:1rem;">
     <div class="grid-2 home-proof-grid">
       <div class="panel panel-pad-lg home-stack-card">
-        <span class="eyebrow">Current role snapshot</span>
-        <h3 class="home-subtitle">Work built around messy records, cleaner workflows, and dependable outputs.</h3>
+        <span class="eyebrow">Current work</span>
+        <h3 class="home-subtitle">Current work in real estate data operations, QA, and reporting support.</h3>
         <div class="card role-snapshot">
           <strong>{experienceRows[0].role}</strong>
           <div class="muted role-meta">{experienceRows[0].company} · {experienceRows[0].meta}</div>
           <p class="muted role-copy">{experienceRows[0].summary}</p>
         </div>
         <div class="spacer-1"></div>
-        <a href="/about" class="btn-ghost">Open about and experience</a>
+        <a href="/about" class="btn-ghost">Open experience</a>
       </div>
 
       <div class="panel panel-pad-lg home-proof-card">
-        <span class="eyebrow">Selected proof</span>
-        <h3 class="home-subtitle">Signals that make the work easier to trust.</h3>
+        <span class="eyebrow">Results</span>
+        <h3 class="home-subtitle">Results and credibility markers.</h3>
         <div class="proof-stack">
           {featuredProof.map((item) => (
             <div class={`card proof-item proof-${item.accent}`}>
@@ -96,28 +99,29 @@ const featuredProof = proofCards.slice(0, 3);
     <div class="grid-2 lower-cluster">
       <div class="panel panel-pad-lg">
         <span class="eyebrow">Recent outcomes</span>
-        <h3 class="home-subtitle">Four quick proof points worth knowing.</h3>
+        <h3 class="home-subtitle">Four results across data cleaning, analytics, reporting, and audit work.</h3>
         <ul class="list-clean outcome-list">
           {achievements.map((item) => (
             <li class="card">{item}</li>
           ))}
         </ul>
       </div>
+
       <div class="panel panel-pad-lg">
-        <span class="eyebrow">What teams usually need</span>
-        <h3 class="home-subtitle">The recurring problems this portfolio is built to solve.</h3>
+        <span class="eyebrow">Common problems</span>
+        <h3 class="home-subtitle">Common problems I help solve.</h3>
         <div class="need-grid">
           <div class="card need-card need-blue">
-            <strong>Messy records</strong>
-            <p class="muted">Inputs that need cleanup, structure, and enough discipline to support later reporting.</p>
+            <strong>Unclean source data</strong>
+            <p class="muted">Records that need deduplication, validation, standardization, and review.</p>
           </div>
           <div class="card need-card need-amber">
-            <strong>Weak visibility</strong>
-            <p class="muted">Datasets that hide patterns until the right dashboard, KPI view, or business framing is built.</p>
+            <strong>Limited reporting visibility</strong>
+            <p class="muted">Data that needs clearer KPIs, dashboards, or business framing.</p>
           </div>
           <div class="card need-card need-green">
-            <strong>Fragile handoff</strong>
-            <p class="muted">Work that needs clearer documentation, repeatable logic, and outputs other people can actually use.</p>
+            <strong>Weak documentation</strong>
+            <p class="muted">Processes that need repeatable steps, clean handoff, and reviewable outputs.</p>
           </div>
         </div>
       </div>
@@ -129,46 +133,57 @@ const featuredProof = proofCards.slice(0, 3);
   .cluster-head { margin-bottom: 1.8rem; }
   .cluster-grid { align-items: stretch; }
   .home-proof-grid, .lower-cluster { align-items: stretch; }
+
   .home-subtitle {
     margin: 0 0 1rem;
     font-size: clamp(1.7rem, 2.4vw, 2.2rem);
     letter-spacing: -0.03em;
     line-height: 1.15;
   }
+
   .role-snapshot {
     padding: 1rem;
     display: grid;
     gap: 0.45rem;
   }
+
   .role-meta { font-size: 0.96rem; }
   .role-copy { margin: 0.3rem 0 0; }
+
   .proof-stack {
     display: grid;
     gap: 0.9rem;
   }
+
   .proof-item {
     padding: 1rem;
     border-left: 3px solid transparent;
   }
+
   .proof-blue { border-left-color: rgba(56,189,248,0.8); }
   .proof-amber { border-left-color: rgba(245,158,11,0.78); }
   .proof-green { border-left-color: rgba(34,197,94,0.8); }
   .proof-meta { margin-top: 0.35rem; font-size: 0.92rem; }
   .proof-item p { margin: 0.65rem 0 0; }
+
   .outcome-list {
     display: grid;
     gap: 0.9rem;
   }
+
   .outcome-list li {
     padding: 1rem;
     color: var(--muted);
     line-height: 1.78;
   }
+
   .need-grid { display: grid; gap: 0.9rem; }
+
   .need-card {
     padding: 1rem;
     border-left: 3px solid transparent;
   }
+
   .need-card p { margin: 0.55rem 0 0; }
   .need-blue { border-left-color: rgba(56,189,248,0.8); }
   .need-amber { border-left-color: rgba(245,158,11,0.78); }
