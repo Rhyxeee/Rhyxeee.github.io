@@ -1,5 +1,37 @@
 export const projects = [
   {
+    slug: 'subnational-economic-resilience',
+    title: 'Subnational Economic Resilience',
+    category: 'Statistical Modeling',
+    accent: 'purple',
+    description:
+      'Classified 117 Philippine provinces and cities into two resilience typologies using seven years of official economic accounts — validating the structure with MANOVA before clustering.',
+    imageSrc: '/images/subnational-resilience.svg',
+    imageAlt: 'PCA scatter of two subnational economic resilience clusters (93 vs 24 units)',
+    tags: ['R', 'MANOVA', 'PCA', 'Hierarchical Clustering'],
+    summary:
+      'A validation-first multivariate study of Philippine subnational economies: prove that sectoral growth structure shifted over time, then classify 117 provinces and cities into two resilience pathways.',
+    problem:
+      'Regional GDP averages away what matters locally — two provinces can post identical growth while one runs on diversified services and another on a single volatile sector. There was no structural way to group economies by how they actually grow and how stable that growth is.',
+    approach: [
+      'Computed year-on-year real growth (constant 2018 prices) for six consolidated sectors across six intervals — 702 unit-by-interval observations from PSA Provincial Product Accounts.',
+      'Validated with a one-way MANOVA (Pillai\u2019s Trace, chosen because Mardia\u2019s test showed non-normality) that the six-sector growth structure genuinely differs across time before attempting any classification.',
+      'Reduced 12 correlated indicators to 6 components (81% of variance) with PCA, then applied Ward\u2019s hierarchical clustering; chose k by silhouette and stress-tested against k-means and three internal validity indices.'
+    ],
+    outcome:
+      'Two exploratory resilience typologies emerged: a diversified, growth-responsive group of 93 units and a lower-growth, more volatile group of 24 — cutting across the usual province-versus-city lines. The clustering separation is modest (silhouette 0.29), so the typologies are framed as a way to prioritize where to look closer, not as hard verdicts.',
+    links: [
+      {
+        label: 'View the R analysis on GitHub',
+        href: 'https://github.com/Rhyxeee/subnational-economic-resilience'
+      },
+      {
+        label: 'Read the full thesis (PDF)',
+        href: '/docs/subnational-economic-resilience-thesis.pdf'
+      }
+    ]
+  },
+  {
     slug: 'tmdb-data-engineering-master-documentation',
     title: 'TMDb Data Engineering Workflow',
     category: 'Data Engineering',
